@@ -2,6 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Aloevera Display — Body & Communication Font */
+@font-face {
+  font-family: 'Aloevera Display';
+  src: url('/fonts/AloeveraDisplay-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aloevera Display';
+  src: url('/fonts/AloeveraDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aloevera Display';
+  src: url('/fonts/AloeveraDisplay-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aloevera Display';
+  src: url('/fonts/AloeveraDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aloevera Display';
+  src: url('/fonts/AloeveraDisplay-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aloevera Display';
+  src: url('/fonts/AloeveraDisplay-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     /* Flint Racks Brand Colors */

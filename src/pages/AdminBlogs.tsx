@@ -3,6 +3,7 @@ import { getAllPosts, createPost, updatePost, deletePost, slugify, type BlogPost
 import { Plus, Edit, Trash2, Eye, EyeOff, LogOut, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import logoRed from "@/assets/logo-red.svg";
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "flintracks2024";
@@ -115,10 +116,8 @@ export default function AdminBlogs() {
       <div className="min-h-screen bg-iron flex items-center justify-center">
         <div className="w-full max-w-md p-8">
           <div className="text-center mb-10">
-            <span className="font-heading text-3xl tracking-wider text-primary">
-              FLINT RACKS
-            </span>
-            <p className="font-body text-iron-foreground/60 text-sm mt-2">Blog Admin Panel</p>
+            <img src={logoRed} alt="Flint Racks" className="h-8 w-auto mx-auto" />
+            <p className="font-body text-iron-foreground/60 text-sm mt-4">Blog Admin Panel</p>
           </div>
           <form onSubmit={handleLogin} className="flex flex-col gap-5">
             <div>

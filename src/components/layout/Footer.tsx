@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import logoRed from "@/assets/logo-red.svg";
 
 const footerLinks = [
   {
@@ -39,10 +40,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-6">
-              <span className="font-heading text-3xl tracking-wider text-primary">
-                FLINT RACKS
-              </span>
-              <span className="text-primary text-xs align-super">®</span>
+              <img src={logoRed} alt="Flint Racks" className="h-8 w-auto" />
             </Link>
             <p className="font-body text-iron-foreground/60 text-sm leading-relaxed max-w-sm mb-8">
               Industrial racking solutions designed, fabricated, and installed with precision. 

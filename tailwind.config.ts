@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ['"Bebas Neue"', 'sans-serif'],
-        body: ['"DM Sans"', 'sans-serif'],
+        body: ['"Aloevera Display"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

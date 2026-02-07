@@ -55,10 +55,10 @@ export default function Index() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative h-screen max-h-[100vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImg} alt="Industrial warehouse with pallet racking" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-iron/95 via-iron/70 to-iron/30" />
+          <div className="absolute inset-0 bg-iron/80" />
         </div>
         <div className="relative container-brand section-padding py-32">
           <motion.div

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoRed from "@/assets/logo-red.svg";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -20,11 +21,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-iron/95 backdrop-blur-sm">
       <div className="container-brand section-padding flex items-center justify-between h-20">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-heading text-3xl tracking-wider text-primary">
-            FLINT RACKS
-          </span>
-          <span className="text-primary text-xs">®</span>
+        <Link to="/" className="flex items-center">
+          <img src={logoRed} alt="Flint Racks" className="h-7 w-auto" />
         </Link>
 
         {/* Desktop Nav */}

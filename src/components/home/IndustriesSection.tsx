@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,6 +20,7 @@ const industries = [
 
 export default function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const listRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-20 lg:py-28 bg-background overflow-hidden">
@@ -38,7 +39,7 @@ export default function IndustriesSection() {
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
           {/* Industries list */}
-          <div className="w-full lg:w-1/2">
+          <div ref={listRef} className="w-full lg:w-1/2">
             {industries.map((industry, i) => (
               <motion.div
                 key={industry.name}
@@ -49,21 +50,26 @@ export default function IndustriesSection() {
                 onMouseEnter={() => setActiveIndex(i)}
                 className="group cursor-pointer"
               >
-                <div className="flex items-center gap-4 py-5 lg:py-6">
-                  {/* Arrow icon — visible only when active */}
+                <div
+                  className={`flex items-center gap-4 py-5 lg:py-6 transition-colors duration-300 ${
+                    activeIndex === i ? "bg-primary" : "bg-transparent"
+                  }`}
+                  style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+                >
+                  {/* Arrow icon */}
                   <div className="w-7 overflow-hidden hidden lg:block">
                     <ArrowUpRight
                       size={24}
                       className={`transition-all duration-300 ${
                         activeIndex === i
-                          ? "translate-x-0 opacity-100 text-foreground"
+                          ? "translate-x-0 opacity-100 text-primary-foreground"
                           : "-translate-x-full opacity-0 text-muted-foreground"
                       }`}
                     />
                   </div>
                   <span
                     className={`font-heading text-2xl md:text-3xl lg:text-4xl tracking-wide uppercase transition-colors duration-300 ${
-                      activeIndex === i ? "text-foreground" : "text-muted-foreground/50"
+                      activeIndex === i ? "text-primary-foreground" : "text-muted-foreground/50"
                     }`}
                   >
                     {industry.name}
@@ -80,8 +86,8 @@ export default function IndustriesSection() {
             ))}
           </div>
 
-          {/* Image area */}
-          <div className="w-full lg:w-1/2 relative aspect-[4/5] overflow-hidden">
+          {/* Image area — height matches the list */}
+          <div className="w-full lg:w-1/2 relative overflow-hidden lg:self-stretch">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex}

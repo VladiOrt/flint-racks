@@ -6,6 +6,7 @@ import HeroSection from "@/components/home/HeroSection";
 import BenefitsSection from "@/components/home/BenefitsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import IndustriesSection from "@/components/home/IndustriesSection";
+import HomeFAQSection from "@/components/home/HomeFAQSection";
 import aboutImg from "@/assets/about-installation.jpg";
 
 const stats = [
@@ -98,6 +99,9 @@ export default function Index() {
 
       {/* Industries */}
       <IndustriesSection />
+
+      {/* FAQs */}
+      <HomeFAQSection />
 
       {/* Latest Blogs */}
       <LatestBlogs />

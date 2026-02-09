@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-warehouse.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -11,31 +12,45 @@ const fadeUp = {
 export default function HeroSection() {
   return (
     <section className="relative h-screen max-h-[100vh] flex items-center overflow-hidden bg-iron">
-      {/* Background image with split reveal */}
-      <div className="absolute inset-0 flex">
-        {/* Left image half */}
+      {/* Background video (revealed behind curtains) */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+          poster={heroImg}
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Curtain overlay — two image halves that slide open */}
+      <div className="absolute inset-0 flex pointer-events-none z-[1]">
+        {/* Left curtain */}
         <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "50%" }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className="h-full overflow-hidden"
+          initial={{ x: "0%" }}
+          animate={{ x: "-100%" }}
+          transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1], delay: 0.6 }}
+          className="w-1/2 h-full overflow-hidden flex-shrink-0"
         >
           <img
             src={heroImg}
-            alt="Almacén industrial con racks"
+            alt=""
             className="w-screen h-full object-cover"
           />
         </motion.div>
-        {/* Right image half */}
+        {/* Right curtain */}
         <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "50%" }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          className="h-full overflow-hidden flex justify-end"
+          initial={{ x: "0%" }}
+          animate={{ x: "100%" }}
+          transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1], delay: 0.6 }}
+          className="w-1/2 h-full overflow-hidden flex-shrink-0 flex justify-end"
         >
           <img
             src={heroImg}
-            alt="Almacén industrial con racks"
+            alt=""
             className="w-screen h-full object-cover object-right"
           />
         </motion.div>
@@ -45,16 +60,16 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="absolute inset-0 bg-iron/75"
+        transition={{ duration: 0.8, delay: 1.6 }}
+        className="absolute inset-0 bg-iron/70 z-[2]"
       />
 
       {/* Decorative lines */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.08 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute inset-0 pointer-events-none"
+        transition={{ duration: 1, delay: 2 }}
+        className="absolute inset-0 pointer-events-none z-[3]"
       >
         <div className="h-full w-full flex justify-between px-[20%]">
           <div className="w-px h-full bg-iron-foreground" />
@@ -65,12 +80,12 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Content */}
-      <div className="relative container-brand section-padding w-full">
+      <div className="relative container-brand section-padding w-full z-[4]">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={{
-            visible: { transition: { staggerChildren: 0.2, delayChildren: 1 } },
+            visible: { transition: { staggerChildren: 0.2, delayChildren: 1.8 } },
           }}
           className="flex flex-col lg:flex-row items-end lg:items-end justify-between gap-12 lg:gap-16"
         >

@@ -20,11 +20,8 @@ export default function HeroSection() {
   // Overlay on curtain image: visible initially, fades out as curtains open
   const curtainOverlayOpacity = useTransform(scrollYProgress, [0, 0.3], [0.6, 0]);
 
-  // Overlay fades in after curtains open (on video)
-  const overlayOpacity = useTransform(scrollYProgress, [0.25, 0.45], [0, 0.75]);
-
-  // Lines fade in
-  const linesOpacity = useTransform(scrollYProgress, [0.35, 0.55], [0, 0.08]);
+  // Lines fade in then out
+  const linesOpacity = useTransform(scrollYProgress, [0.35, 0.5, 0.7, 0.85], [0, 0.08, 0.08, 0]);
 
   // Parallax: video moves up slowly as you scroll past
   const videoY = useTransform(scrollYProgress, [0.4, 1], ["0%", "-20%"]);
@@ -137,13 +134,6 @@ export default function HeroSection() {
             </div>
           </div>
         </motion.div>
-
-        {/* Dark overlay */}
-        <motion.div
-          style={{ opacity: overlayOpacity }}
-          className="absolute inset-0 bg-iron z-[2]"
-        />
-
         {/* Decorative lines */}
         <motion.div
           style={{ opacity: linesOpacity }}

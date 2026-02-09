@@ -1,6 +1,6 @@
 import { Shield, Cog, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import benefit1Img from "@/assets/benefit-1.jpg";
 import benefit2Img from "@/assets/benefit-2.jpg";
@@ -70,6 +70,44 @@ const mobileBenefits = [
 export default function BenefitsSection() {
   const isMobile = useIsMobile();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scrollToIndex = useCallback((index: number) => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const child = container.children[index] as HTMLElement;
+    if (child) {
+      container.scrollTo({ left: child.offsetLeft - (container.offsetWidth - child.offsetWidth) / 2, behavior: "smooth" });
+    }
+  }, []);
+
+  // Auto-advance every 5s
+  useEffect(() => {
+    if (!isMobile) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % mobileBenefits.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isMobile, scrollToIndex]);
+
+  // Track scroll position to update dots
+  useEffect(() => {
+    if (!isMobile || !scrollRef.current) return;
+    const container = scrollRef.current;
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const childWidth = (container.children[0] as HTMLElement)?.offsetWidth || 1;
+      const gap = 16;
+      const index = Math.round(scrollLeft / (childWidth + gap));
+      setActiveIndex(Math.min(index, mobileBenefits.length - 1));
+    };
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
 
   if (isMobile) {
     return (
@@ -106,6 +144,19 @@ export default function BenefitsSection() {
                 </p>
               </div>
             </div>
+          ))}
+        </div>
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-4">
+          {mobileBenefits.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setActiveIndex(i); scrollToIndex(i); }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                i === activeIndex ? "bg-primary w-6" : "bg-muted-foreground/30"
+              }`}
+              aria-label={`Ir al beneficio ${i + 1}`}
+            />
           ))}
         </div>
       </section>

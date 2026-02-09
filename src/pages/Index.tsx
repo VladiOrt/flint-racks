@@ -6,6 +6,9 @@ import LatestBlogs from "@/components/blog/LatestBlogs";
 import HeroSection from "@/components/home/HeroSection";
 import aboutImg from "@/assets/about-installation.jpg";
 import servicesImg from "@/assets/services-racks.jpg";
+import benefit1Img from "@/assets/benefit-1.jpg";
+import benefit2Img from "@/assets/benefit-2.jpg";
+import benefit3Img from "@/assets/benefit-3.jpg";
 
 const stats = [
   { value: "18+", label: "Años de Experiencia" },
@@ -106,36 +109,106 @@ export default function Index() {
       </section>
 
       {/* Benefits */}
-      <section className="py-16 lg:py-20 bg-sand">
+      <section className="py-20 lg:py-28 bg-background">
         <div className="container-brand section-padding">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-10"
+            className="text-center mb-16"
           >
-            <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Por Qué Elegirnos
-            </span>
-            <h2 className="font-heading text-4xl md:text-5xl tracking-wide text-foreground mt-3">
-              BENEFICIOS DE TRABAJAR CON NOSOTROS
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground leading-[0.95]">
+              BENEFICIOS DE TRABAJAR
+              <br />
+              CON NOSOTROS
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {["Ingeniería estructural certificada", "Soluciones personalizadas para cada industria", "Gestión integral de proyectos", "Prácticas de instalación con seguridad primero"].map((item, i) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex flex-col items-center gap-3 text-center p-6"
-              >
-                <CheckCircle size={28} className="text-primary" />
-                <span className="font-body text-sm text-foreground font-medium">{item}</span>
-              </motion.div>
-            ))}
+
+          {/* Checkerboard grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {/* Row 1: text - image - text */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center text-center gap-4 py-8"
+            >
+              <Shield size={36} className="text-foreground" strokeWidth={1} />
+              <h3 className="font-heading text-xl tracking-wide text-foreground">
+                INGENIERÍA ESTRUCTURAL
+                <br />
+                CERTIFICADA
+              </h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Cada diseño cumple con normativas sísmicas y de seguridad, respaldado por ingenieros certificados.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <img src={benefit1Img} alt="Instalación de racks industriales" className="w-full aspect-[4/5] object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-col items-center text-center gap-4 py-8"
+            >
+              <Cog size={36} className="text-foreground" strokeWidth={1} />
+              <h3 className="font-heading text-xl tracking-wide text-foreground">
+                SOLUCIONES
+                <br />
+                PERSONALIZADAS
+              </h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Diseñamos cada proyecto según las necesidades específicas de tu industria y operación.
+              </p>
+            </motion.div>
+
+            {/* Row 2: image - text - image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <img src={benefit2Img} alt="Detalle de estructura metálica" className="w-full aspect-[4/5] object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-col items-center text-center gap-4 py-8"
+            >
+              <TrendingUp size={36} className="text-foreground" strokeWidth={1} />
+              <h3 className="font-heading text-xl tracking-wide text-foreground">
+                GESTIÓN INTEGRAL
+                <br />
+                DE PROYECTOS
+              </h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Acompañamiento completo desde el diseño hasta la instalación y mantenimiento continuo.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <img src={benefit3Img} alt="Almacén con racks organizados" className="w-full aspect-[4/5] object-cover" />
+            </motion.div>
           </div>
         </div>
       </section>

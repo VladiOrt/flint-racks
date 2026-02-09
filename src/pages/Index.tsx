@@ -57,21 +57,6 @@ export default function Index() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Clients Marquee */}
-      <section className="bg-sand py-8 overflow-hidden">
-        <div className="container-brand section-padding">
-          <p className="font-body text-xs text-sand-foreground/50 uppercase tracking-widest text-center mb-6">
-            La confianza de líderes de la industria
-          </p>
-        </div>
-        <div className="flex items-center gap-16 animate-marquee whitespace-nowrap">
-          {[...clients, ...clients, ...clients].map((client, i) => (
-            <span key={i} className="font-heading text-xl tracking-wider text-sand-foreground/30">
-              {client}
-            </span>
-          ))}
-        </div>
-      </section>
 
       {/* About Preview */}
       <section className="py-20 lg:py-28 bg-background">

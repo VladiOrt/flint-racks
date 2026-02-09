@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import LatestBlogs from "@/components/blog/LatestBlogs";
 import HeroSection from "@/components/home/HeroSection";
 import BenefitsSection from "@/components/home/BenefitsSection";
 import ServicesSection from "@/components/home/ServicesSection";
+import IndustriesSection from "@/components/home/IndustriesSection";
 import aboutImg from "@/assets/about-installation.jpg";
-import servicesImg from "@/assets/services-racks.jpg";
 
 const stats = [
   { value: "18+", label: "Años de Experiencia" },
@@ -97,41 +96,8 @@ export default function Index() {
       {/* Services */}
       <ServicesSection />
 
-      {/* Marquee Banner */}
-      <MarqueeBanner />
-
-      {/* CTA Section */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={servicesImg} alt="Detalles de racks industriales" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-iron/90" />
-        </div>
-        <div className="relative container-brand section-padding text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wide text-iron-foreground leading-[0.95]">
-              ¿LISTO PARA
-              <br />
-              <span className="text-primary">CONSTRUIR MÁS FUERTE?</span>
-            </h2>
-            <p className="font-body text-iron-foreground/60 text-base mt-6 max-w-lg mx-auto leading-relaxed">
-              Cada rack que diseñamos sostiene más que productos — respalda tu logística, 
-              tu seguridad y la continuidad de tu negocio.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-5 text-sm mt-10 hover:bg-red-deep transition-colors duration-200"
-            >
-              Inicia Tu Proyecto
-              <ArrowRight size={16} />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      {/* Industries */}
+      <IndustriesSection />
 
       {/* Latest Blogs */}
       <LatestBlogs />

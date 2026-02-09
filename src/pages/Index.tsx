@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Cog, TrendingUp, Users, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import LatestBlogs from "@/components/blog/LatestBlogs";
 import HeroSection from "@/components/home/HeroSection";
 import BenefitsSection from "@/components/home/BenefitsSection";
+import ServicesSection from "@/components/home/ServicesSection";
 import aboutImg from "@/assets/about-installation.jpg";
 import servicesImg from "@/assets/services-racks.jpg";
 
@@ -15,42 +16,6 @@ const stats = [
   { value: "50+", label: "Miembros del Equipo" },
 ];
 
-const services = [
-  {
-    icon: Shield,
-    title: "Diseño e Ingeniería",
-    description: "Soluciones de racks personalizadas, diseñadas según tus especificaciones exactas, requisitos sísmicos y flujo operativo.",
-  },
-  {
-    icon: Cog,
-    title: "Fabricación",
-    description: "Manufactura propia con materiales certificados y riguroso control de calidad en cada etapa.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Instalación",
-    description: "Instalación profesional con mínima interrupción en tus operaciones. Planes de despliegue por fases disponibles.",
-  },
-  {
-    icon: Users,
-    title: "Mantenimiento e Inspección",
-    description: "Programas regulares de inspección y servicios de mantenimiento para mantener tus sistemas seguros y funcionando.",
-  },
-];
-
-const clients = [
-  "CLIMB THE MOUNTAIN",
-  "WALL PAINT SHOP",
-  "CHIPPY'S",
-  "MIGHTY FURNITURES",
-  "CARA INDOORS",
-  "THE H SHOP",
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 export default function Index() {
   return (
@@ -129,50 +94,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-20 lg:py-28 bg-background">
-        <div className="container-brand section-padding">
-          <div className="text-center mb-16">
-            <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Lo Que Hacemos
-            </span>
-            <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
-              NUESTROS SERVICIOS
-            </h2>
-            <p className="font-body text-muted-foreground text-base mt-4 max-w-xl mx-auto leading-relaxed">
-              Desde el diseño hasta la instalación, proporcionamos soluciones integrales de racks que maximizan 
-              la eficiencia y seguridad de tu almacén.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group bg-card border border-border hover:border-primary/30 p-8 lg:p-10 transition-all duration-300"
-              >
-                <service.icon size={40} className="text-primary mb-6" strokeWidth={1.5} />
-                <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3">
-                  {service.title.toUpperCase()}
-                </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 font-body text-sm font-semibold text-foreground mt-6 group-hover:text-primary transition-colors"
-                >
-                  Conocer Más
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Services */}
+      <ServicesSection />
 
       {/* Marquee Banner */}
       <MarqueeBanner />

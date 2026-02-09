@@ -80,7 +80,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
             strokeDasharray={perimeter}
             strokeDashoffset={isHovered ? 0 : perimeter}
             style={{
-              transition: `stroke-dashoffset 2s linear`,
+              transition: `stroke-dashoffset 1s linear`,
             }}
           />
         </svg>
@@ -95,7 +95,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       </p>
       <Link
         to="/services"
-        className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground font-body font-semibold px-6 py-3 text-sm mt-6 hover:bg-secondary/80 transition-colors duration-200 self-start relative z-[2]"
+        className="inline-flex items-center gap-2 border-2 border-primary text-primary bg-transparent font-body font-semibold px-6 py-3 text-sm mt-6 hover:bg-primary hover:text-primary-foreground transition-colors duration-200 self-start relative z-[2]"
       >
         Conocer Más
         <ArrowRight size={14} />
@@ -180,7 +180,7 @@ export default function ServicesSection() {
               </p>
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground font-body font-semibold px-6 py-3 text-sm mt-4 hover:bg-secondary/80 transition-colors duration-200 self-start"
+                className="inline-flex items-center gap-2 border-2 border-primary text-primary bg-transparent font-body font-semibold px-6 py-3 text-sm mt-4 hover:bg-primary hover:text-primary-foreground transition-colors duration-200 self-start"
               >
                 Conocer Más
                 <ArrowRight size={14} />

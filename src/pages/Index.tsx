@@ -58,7 +58,7 @@ export default function Index() {
       <HeroSection />
 
 
-      {/* About Preview */}
+      {/* Brand Statement */}
       <section className="py-20 lg:py-28 bg-background">
         <div className="container-brand section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -80,14 +80,6 @@ export default function Index() {
                 e implementar racks industriales y soluciones de almacenamiento, respaldados por 
                 conocimiento técnico y experiencia de campo.
               </p>
-              <div className="flex flex-col gap-3 mt-8">
-                {["Ingeniería estructural certificada", "Soluciones personalizadas para cada industria", "Gestión integral de proyectos", "Prácticas de instalación con seguridad primero"].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle size={18} className="text-primary flex-shrink-0" />
-                    <span className="font-body text-sm text-foreground">{item}</span>
-                  </div>
-                ))}
-              </div>
               <Link
                 to="/about"
                 className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-8 py-4 text-sm mt-10 hover:bg-primary transition-colors duration-200"
@@ -109,6 +101,41 @@ export default function Index() {
                 <p className="font-body text-sm text-primary-foreground/80 mt-1">Años de<br/>Experiencia</p>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-16 lg:py-20 bg-sand">
+        <div className="container-brand section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
+              Por Qué Elegirnos
+            </span>
+            <h2 className="font-heading text-4xl md:text-5xl tracking-wide text-foreground mt-3">
+              BENEFICIOS DE TRABAJAR CON NOSOTROS
+            </h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {["Ingeniería estructural certificada", "Soluciones personalizadas para cada industria", "Gestión integral de proyectos", "Prácticas de instalación con seguridad primero"].map((item, i) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="flex flex-col items-center gap-3 text-center p-6"
+              >
+                <CheckCircle size={28} className="text-primary" />
+                <span className="font-body text-sm text-foreground font-medium">{item}</span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

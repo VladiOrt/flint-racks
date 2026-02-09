@@ -12,16 +12,16 @@ export default function BlogPost() {
     return (
       <section className="py-40 bg-background">
         <div className="container-brand section-padding text-center">
-          <h1 className="font-heading text-5xl text-foreground">ARTICLE NOT FOUND</h1>
+          <h1 className="font-heading text-5xl text-foreground">ARTÍCULO NO ENCONTRADO</h1>
           <p className="font-body text-muted-foreground mt-4">
-            This article doesn't exist or hasn't been published yet.
+            Este artículo no existe o aún no ha sido publicado.
           </p>
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-8 py-4 text-sm mt-8 hover:bg-primary transition-colors"
           >
             <ArrowLeft size={16} />
-            Back to Blog
+            Volver al Blog
           </Link>
         </div>
       </section>
@@ -95,7 +95,6 @@ export default function BlogPost() {
         );
       } else {
         flushList();
-        // Handle inline bold
         const parts = trimmed.split(/(\*\*.+?\*\*)/g);
         elements.push(
           <p key={i} className="font-body text-base text-foreground/80 leading-relaxed my-3">
@@ -127,7 +126,7 @@ export default function BlogPost() {
             className="inline-flex items-center gap-2 font-body text-sm text-iron-foreground/60 hover:text-primary transition-colors mb-8"
           >
             <ArrowLeft size={14} />
-            Back to Blog
+            Volver al Blog
           </Link>
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-wider text-iron-foreground leading-[0.95] max-w-4xl">
             {post.title.toUpperCase()}
@@ -146,7 +145,7 @@ export default function BlogPost() {
             <div className="flex items-center gap-2">
               <Calendar size={16} className="text-primary" />
               <span className="font-body text-sm text-iron-foreground/60">
-                {new Date(post.date).toLocaleDateString("en-US", {
+                {new Date(post.date).toLocaleDateString("es-MX", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",

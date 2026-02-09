@@ -8,39 +8,39 @@ import heroImg from "@/assets/hero-warehouse.jpg";
 const services = [
   {
     icon: Warehouse,
-    title: "Selective Pallet Racking",
-    description: "The most versatile storage system, offering direct access to every pallet position. Ideal for operations requiring high selectivity and fast inventory turnover.",
-    features: ["Direct access to all pallets", "FIFO inventory management", "Adjustable beam heights", "Compatible with all forklift types"],
+    title: "Rack Selectivo",
+    description: "El sistema de almacenamiento más versátil, con acceso directo a cada posición de tarima. Ideal para operaciones que requieren alta selectividad y rotación rápida de inventario.",
+    features: ["Acceso directo a todas las tarimas", "Gestión de inventario FIFO", "Alturas de viga ajustables", "Compatible con todo tipo de montacargas"],
   },
   {
     icon: Layers,
-    title: "Drive-In & Drive-Through Racking",
-    description: "High-density storage that eliminates aisles between racks. Perfect for large quantities of the same SKU and cold storage environments.",
-    features: ["Maximum storage density", "Ideal for cold storage", "LIFO/FIFO options", "Reduced footprint"],
+    title: "Rack Drive-In y Drive-Through",
+    description: "Almacenamiento de alta densidad que elimina pasillos entre racks. Perfecto para grandes cantidades del mismo SKU y ambientes de almacenamiento en frío.",
+    features: ["Máxima densidad de almacenamiento", "Ideal para cuartos fríos", "Opciones LIFO/FIFO", "Huella reducida"],
   },
   {
     icon: Truck,
-    title: "Push-Back Racking Systems",
-    description: "Dynamic storage using nested carts on inclined rails. Combines high density with better selectivity than drive-in systems.",
-    features: ["2-6 pallets deep per lane", "Gravity-fed retrieval", "Multiple SKU storage", "Faster access times"],
+    title: "Sistemas Push-Back",
+    description: "Almacenamiento dinámico con carros anidados sobre rieles inclinados. Combina alta densidad con mejor selectividad que los sistemas drive-in.",
+    features: ["2-6 tarimas de profundidad por carril", "Recuperación por gravedad", "Almacenamiento de múltiples SKU", "Tiempos de acceso más rápidos"],
   },
   {
     icon: Ruler,
-    title: "Cantilever Racking",
-    description: "Designed for long, bulky, or irregularly shaped items. Arms extend from vertical columns to create unobstructed storage bays.",
-    features: ["No front column obstruction", "Adjustable arm heights", "Indoor and outdoor options", "Heavy-duty load capacity"],
+    title: "Rack Cantilever",
+    description: "Diseñado para artículos largos, voluminosos o de forma irregular. Los brazos se extienden desde columnas verticales creando bahías de almacenamiento sin obstrucción.",
+    features: ["Sin obstrucción de columna frontal", "Alturas de brazo ajustables", "Opciones interior y exterior", "Capacidad de carga pesada"],
   },
   {
     icon: BarChart3,
-    title: "Mezzanine & Multi-Tier Systems",
-    description: "Elevate your storage capacity by adding intermediate floor levels within your existing warehouse structure.",
-    features: ["Double or triple floor space", "Integrated with racking", "Customizable layouts", "Code-compliant engineering"],
+    title: "Mezzanine y Sistemas Multinivel",
+    description: "Eleva tu capacidad de almacenamiento agregando niveles intermedios de piso dentro de tu estructura de almacén existente.",
+    features: ["Duplica o triplica el espacio", "Integrado con racks", "Diseños personalizables", "Ingeniería con normativa"],
   },
   {
     icon: Wrench,
-    title: "Rack Inspection & Maintenance",
-    description: "Comprehensive inspection programs and maintenance services to ensure the ongoing safety and performance of your racking systems.",
-    features: ["Annual certified inspections", "Damage assessment reports", "Component replacement", "Safety compliance audits"],
+    title: "Inspección y Mantenimiento de Racks",
+    description: "Programas integrales de inspección y servicios de mantenimiento para garantizar la seguridad y el rendimiento continuo de tus sistemas de racks.",
+    features: ["Inspecciones anuales certificadas", "Reportes de evaluación de daños", "Reemplazo de componentes", "Auditorías de cumplimiento de seguridad"],
   },
 ];
 
@@ -55,20 +55,20 @@ export default function Services() {
       {/* Hero */}
       <section className="relative py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={servicesImg} alt="Industrial racking" className="w-full h-full object-cover" />
+          <img src={servicesImg} alt="Racks industriales" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-iron/90" />
         </div>
         <div className="relative container-brand section-padding">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
             <motion.span variants={fadeUp} className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Our Services
+              Nuestros Servicios
             </motion.span>
             <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
-              SOLUTIONS
+              SOLUCIONES
               <br />
-              <span className="text-primary">ENGINEERED</span>
+              <span className="text-primary">DISEÑADAS</span>
               <br />
-              FOR YOUR NEEDS
+              PARA TI
             </motion.h1>
           </motion.div>
         </div>
@@ -79,13 +79,13 @@ export default function Services() {
         <div className="container-brand section-padding">
           <div className="text-center mb-16">
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              What We Offer
+              Lo Que Ofrecemos
             </span>
             <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
-              RACKING SYSTEMS
+              SISTEMAS DE RACKS
             </h2>
             <p className="font-body text-muted-foreground text-base mt-4 max-w-xl mx-auto">
-              From selective to high-density, we engineer and install the right solution for your operation.
+              Desde selectivo hasta alta densidad, diseñamos e instalamos la solución adecuada para tu operación.
             </p>
           </div>
 
@@ -126,17 +126,17 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                Our Process
+                Nuestro Proceso
               </span>
               <h2 className="font-heading text-5xl tracking-wide text-iron-foreground mt-3 leading-[0.95]">
-                FROM CONCEPT TO OPERATION
+                DEL CONCEPTO A LA OPERACIÓN
               </h2>
               <div className="flex flex-col gap-8 mt-10">
                 {[
-                  { step: "01", title: "Consultation & Assessment", desc: "We analyze your space, operations, and requirements." },
-                  { step: "02", title: "Design & Engineering", desc: "Custom solutions designed to your exact specifications." },
-                  { step: "03", title: "Fabrication", desc: "In-house manufacturing with certified materials." },
-                  { step: "04", title: "Installation", desc: "Professional deployment with minimal disruption." },
+                  { step: "01", title: "Consultoría y Evaluación", desc: "Analizamos tu espacio, operaciones y requerimientos." },
+                  { step: "02", title: "Diseño e Ingeniería", desc: "Soluciones personalizadas diseñadas a tus especificaciones exactas." },
+                  { step: "03", title: "Fabricación", desc: "Manufactura propia con materiales certificados." },
+                  { step: "04", title: "Instalación", desc: "Despliegue profesional con mínima interrupción." },
                 ].map((item) => (
                   <div key={item.step} className="flex gap-6">
                     <span className="font-heading text-4xl text-primary/30">{item.step}</span>
@@ -151,7 +151,7 @@ export default function Services() {
               </div>
             </div>
             <div>
-              <img src={heroImg} alt="Warehouse project" className="w-full aspect-[3/4] object-cover" />
+              <img src={heroImg} alt="Proyecto de almacén" className="w-full aspect-[3/4] object-cover" />
             </div>
           </div>
         </div>
@@ -163,16 +163,16 @@ export default function Services() {
       <section className="py-20 lg:py-24 bg-sand">
         <div className="container-brand section-padding text-center">
           <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-sand-foreground">
-            START YOUR PROJECT TODAY
+            INICIA TU PROYECTO HOY
           </h2>
           <p className="font-body text-sand-foreground/60 text-base mt-4 max-w-lg mx-auto">
-            Contact us for a free consultation and warehouse assessment.
+            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-10 py-4 text-sm mt-8 hover:bg-primary transition-colors"
           >
-            Get a Quote
+            Cotizar
             <ArrowRight size={16} />
           </Link>
         </div>

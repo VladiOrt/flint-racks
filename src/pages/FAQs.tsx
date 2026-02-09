@@ -10,36 +10,36 @@ import MarqueeBanner from "@/components/layout/MarqueeBanner";
 
 const faqs = [
   {
-    question: "What types of racking systems do you offer?",
-    answer: "We offer a comprehensive range including selective pallet racking, drive-in and drive-through racking, push-back systems, cantilever racks, mezzanine solutions, and multi-tier systems. Each solution is engineered to meet your specific operational requirements.",
+    question: "¿Qué tipos de sistemas de racks ofrecen?",
+    answer: "Ofrecemos una gama completa que incluye rack selectivo, rack drive-in y drive-through, sistemas push-back, racks cantilever, soluciones de mezzanine y sistemas multinivel. Cada solución está diseñada para cumplir con tus requerimientos operativos específicos.",
   },
   {
-    question: "How long does a typical installation take?",
-    answer: "Installation timelines vary based on project scope. A standard warehouse installation typically takes 2-4 weeks. We offer phased deployment plans to minimize disruption to your operations, allowing you to continue working while we install.",
+    question: "¿Cuánto tiempo toma una instalación típica?",
+    answer: "Los tiempos de instalación varían según el alcance del proyecto. Una instalación estándar de almacén típicamente toma de 2 a 4 semanas. Ofrecemos planes de despliegue por fases para minimizar la interrupción en tus operaciones, permitiéndote continuar trabajando mientras instalamos.",
   },
   {
-    question: "Do you provide rack inspection services?",
-    answer: "Yes. We provide comprehensive inspection programs including annual certified inspections, damage assessment reports, component replacement, and safety compliance audits. Regular inspections are critical to maintaining a safe warehouse environment.",
+    question: "¿Proporcionan servicios de inspección de racks?",
+    answer: "Sí. Proporcionamos programas integrales de inspección que incluyen inspecciones anuales certificadas, reportes de evaluación de daños, reemplazo de componentes y auditorías de cumplimiento de seguridad. Las inspecciones regulares son críticas para mantener un ambiente de almacén seguro.",
   },
   {
-    question: "Can you work with my existing warehouse layout?",
-    answer: "Absolutely. Our engineering team conducts thorough site assessments, considering floor conditions, ceiling clearances, column placements, and existing workflow patterns. We design solutions that optimize your current space.",
+    question: "¿Pueden trabajar con la distribución existente de mi almacén?",
+    answer: "Por supuesto. Nuestro equipo de ingeniería realiza evaluaciones exhaustivas del sitio, considerando las condiciones del piso, alturas de techo, ubicación de columnas y patrones de flujo de trabajo existentes. Diseñamos soluciones que optimizan tu espacio actual.",
   },
   {
-    question: "What is the lead time for a new racking project?",
-    answer: "From initial consultation to installation, a typical project takes 6-10 weeks depending on complexity and scope. This includes design, engineering, fabrication, and installation. Rush timelines are available for urgent projects.",
+    question: "¿Cuál es el tiempo de entrega para un nuevo proyecto de racks?",
+    answer: "Desde la consulta inicial hasta la instalación, un proyecto típico toma de 6 a 10 semanas dependiendo de la complejidad y el alcance. Esto incluye diseño, ingeniería, fabricación e instalación. Se dispone de tiempos acelerados para proyectos urgentes.",
   },
   {
-    question: "Do your racking systems meet seismic requirements?",
-    answer: "Yes. All our systems are engineered to meet or exceed local seismic requirements. We use certified structural calculations and materials, and every installation includes proper anchoring and bracing for seismic zones.",
+    question: "¿Sus sistemas de racks cumplen con los requisitos sísmicos?",
+    answer: "Sí. Todos nuestros sistemas están diseñados para cumplir o superar los requisitos sísmicos locales. Utilizamos cálculos estructurales y materiales certificados, y cada instalación incluye anclaje y arriostramiento adecuados para zonas sísmicas.",
   },
   {
-    question: "What industries do you serve?",
-    answer: "We serve a wide range of industries including logistics and distribution, food and beverage, pharmaceutical, automotive, retail, e-commerce, manufacturing, and cold storage operations.",
+    question: "¿Qué industrias atienden?",
+    answer: "Atendemos una amplia gama de industrias incluyendo logística y distribución, alimentos y bebidas, farmacéutica, automotriz, retail, e-commerce, manufactura y operaciones de almacenamiento en frío.",
   },
   {
-    question: "Do you offer financing or leasing options?",
-    answer: "We work with our clients to find the best financial arrangement for their needs. Contact us to discuss available options including direct purchase, leasing, and phased implementation plans.",
+    question: "¿Ofrecen opciones de financiamiento o arrendamiento?",
+    answer: "Trabajamos con nuestros clientes para encontrar el mejor arreglo financiero para sus necesidades. Contáctanos para discutir las opciones disponibles incluyendo compra directa, arrendamiento y planes de implementación por fases.",
   },
 ];
 
@@ -56,14 +56,12 @@ export default function FAQs() {
         <div className="container-brand section-padding">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
             <motion.span variants={fadeUp} className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              FAQs
+              Preguntas Frecuentes
             </motion.span>
             <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
-              FREQUENTLY
+              PREGUNTAS
               <br />
-              ASKED
-              <br />
-              <span className="text-primary">QUESTIONS</span>
+              <span className="text-primary">FRECUENTES</span>
             </motion.h1>
           </motion.div>
         </div>
@@ -94,16 +92,16 @@ export default function FAQs() {
           {/* CTA */}
           <div className="text-center mt-20">
             <h3 className="font-heading text-3xl tracking-wide text-foreground">
-              STILL HAVE QUESTIONS?
+              ¿AÚN TIENES PREGUNTAS?
             </h3>
             <p className="font-body text-muted-foreground text-base mt-3">
-              Our team is ready to help you find the right solution.
+              Nuestro equipo está listo para ayudarte a encontrar la solución adecuada.
             </p>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-10 py-4 text-sm mt-6 hover:bg-primary transition-colors"
             >
-              Contact Us
+              Contáctanos
             </Link>
           </div>
         </div>

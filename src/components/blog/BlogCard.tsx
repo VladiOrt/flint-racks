@@ -14,7 +14,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-iron/80" />
         <div className="absolute bottom-4 left-4">
           <span className="font-body text-xs text-iron-foreground/60 bg-iron/80 px-3 py-1">
-            {new Date(post.date).toLocaleDateString("en-US", {
+            {new Date(post.date).toLocaleDateString("es-MX", {
               year: "numeric",
               month: "long",
               day: "numeric",
@@ -48,7 +48,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           to={`/blog/${post.slug}`}
           className="inline-flex items-center gap-2 font-body text-sm font-semibold text-foreground group-hover:text-primary transition-colors"
         >
-          Read More
+          Leer Más
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>

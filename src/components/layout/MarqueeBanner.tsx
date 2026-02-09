@@ -1,5 +1,5 @@
 export default function MarqueeBanner() {
-  const text = "BUILDING FOUNDATIONS \u00A0•\u00A0 CRAFTING STRENGTH \u00A0•\u00A0 STRUCTURE IS POWER \u00A0•\u00A0 ";
+  const text = "CONSTRUYENDO CIMIENTOS \u00A0•\u00A0 FORJANDO FORTALEZA \u00A0•\u00A0 LA ESTRUCTURA ES PODER \u00A0•\u00A0 ";
   const repeated = text.repeat(8);
 
   return (

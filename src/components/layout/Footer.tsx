@@ -4,29 +4,29 @@ import logoRed from "@/assets/logo-red.svg";
 
 const footerLinks = [
   {
-    title: "Company",
+    title: "Empresa",
     links: [
-      { label: "About Us", path: "/about" },
-      { label: "Services", path: "/services" },
+      { label: "Nosotros", path: "/about" },
+      { label: "Servicios", path: "/services" },
       { label: "Blog", path: "/blog" },
-      { label: "Contact", path: "/contact" },
+      { label: "Contacto", path: "/contact" },
     ],
   },
   {
-    title: "Services",
+    title: "Servicios",
     links: [
-      { label: "Selective Racking", path: "/services" },
-      { label: "Drive-In Racking", path: "/services" },
-      { label: "Push-Back Systems", path: "/services" },
-      { label: "Cantilever Racks", path: "/services" },
+      { label: "Rack Selectivo", path: "/services" },
+      { label: "Rack Drive-In", path: "/services" },
+      { label: "Sistemas Push-Back", path: "/services" },
+      { label: "Rack Cantilever", path: "/services" },
     ],
   },
   {
-    title: "Support",
+    title: "Soporte",
     links: [
-      { label: "FAQs", path: "/faqs" },
-      { label: "Privacy Policy", path: "/privacy" },
-      { label: "Terms of Service", path: "/terms" },
+      { label: "Preguntas Frecuentes", path: "/faqs" },
+      { label: "Política de Privacidad", path: "/privacy" },
+      { label: "Términos de Servicio", path: "/terms" },
     ],
   },
 ];
@@ -43,8 +43,8 @@ export default function Footer() {
               <img src={logoRed} alt="Flint Racks" className="h-8 w-auto" />
             </Link>
             <p className="font-body text-iron-foreground/60 text-sm leading-relaxed max-w-sm mb-8">
-              Industrial racking solutions designed, fabricated, and installed with precision. 
-              Structure that elevates your business.
+              Soluciones de racks industriales diseñadas, fabricadas e instaladas con precisión. 
+              Estructura que eleva tu negocio.
             </p>
             <div className="flex flex-col gap-3">
               <a href="mailto:contact@flintracks.com" className="flex items-center gap-3 text-sm text-iron-foreground/60 hover:text-primary transition-colors">
@@ -89,7 +89,7 @@ export default function Footer() {
       <div className="border-t border-iron-foreground/10">
         <div className="container-brand section-padding py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-iron-foreground/40">
-            © {new Date().getFullYear()} Flint Racks. All rights reserved.
+            © {new Date().getFullYear()} Flint Racks. Todos los derechos reservados.
           </p>
           <p className="font-body text-xs text-iron-foreground/40">
             Estructura es Poder

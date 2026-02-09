@@ -8,32 +8,32 @@ import aboutImg from "@/assets/about-installation.jpg";
 import servicesImg from "@/assets/services-racks.jpg";
 
 const stats = [
-  { value: "18+", label: "Years of Experience" },
-  { value: "1,200+", label: "Projects Completed" },
-  { value: "98%", label: "Customer Satisfaction" },
-  { value: "50+", label: "Team Members" },
+  { value: "18+", label: "Años de Experiencia" },
+  { value: "1,200+", label: "Proyectos Completados" },
+  { value: "98%", label: "Satisfacción del Cliente" },
+  { value: "50+", label: "Miembros del Equipo" },
 ];
 
 const services = [
   {
     icon: Shield,
-    title: "Design & Engineering",
-    description: "Custom racking solutions engineered to your exact specifications, seismic requirements, and operational workflow.",
+    title: "Diseño e Ingeniería",
+    description: "Soluciones de racks personalizadas, diseñadas según tus especificaciones exactas, requisitos sísmicos y flujo operativo.",
   },
   {
     icon: Cog,
-    title: "Fabrication",
-    description: "In-house manufacturing with certified materials and rigorous quality control at every stage.",
+    title: "Fabricación",
+    description: "Manufactura propia con materiales certificados y riguroso control de calidad en cada etapa.",
   },
   {
     icon: TrendingUp,
-    title: "Installation",
-    description: "Professional installation with minimal disruption to your operations. Phased deployment plans available.",
+    title: "Instalación",
+    description: "Instalación profesional con mínima interrupción en tus operaciones. Planes de despliegue por fases disponibles.",
   },
   {
     icon: Users,
-    title: "Maintenance & Inspection",
-    description: "Regular inspection programs and maintenance services to keep your systems safe and performing.",
+    title: "Mantenimiento e Inspección",
+    description: "Programas regulares de inspección y servicios de mantenimiento para mantener tus sistemas seguros y funcionando.",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative h-screen max-h-[100vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Industrial warehouse with pallet racking" className="w-full h-full object-cover" />
+          <img src={heroImg} alt="Almacén industrial con racks" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-iron/80" />
         </div>
         <div className="relative container-brand section-padding py-32">
@@ -70,33 +70,33 @@ export default function Index() {
             className="max-w-2xl"
           >
             <motion.span variants={fadeUp} className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Industrial Racking Solutions
+              Soluciones de Racks Industriales
             </motion.span>
             <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl lg:text-8xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
-              MORE THAN RACKS:
+              MÁS QUE RACKS:
               <br />
-              <span className="text-primary">STRUCTURE</span>
+              <span className="text-primary">ESTRUCTURA</span>
               <br />
-              THAT ELEVATES
+              QUE ELEVA
               <br />
-              YOUR BUSINESS.
+              TU NEGOCIO.
             </motion.h1>
             <motion.p variants={fadeUp} className="font-body text-iron-foreground/70 text-lg mt-6 max-w-md leading-relaxed">
-              We design, fabricate, and install industrial racking solutions backed by technical expertise and field experience.
+              Diseñamos, fabricamos e instalamos soluciones de racks industriales respaldadas por experiencia técnica y de campo.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm hover:bg-red-deep transition-colors duration-200"
               >
-                Get a Quote
+                Cotizar
                 <ArrowRight size={16} />
               </Link>
               <Link
                 to="/services"
                 className="inline-flex items-center gap-2 border border-iron-foreground/30 text-iron-foreground font-body font-semibold px-8 py-4 text-sm hover:border-primary hover:text-primary transition-colors duration-200"
               >
-                Our Services
+                Nuestros Servicios
               </Link>
             </motion.div>
           </motion.div>
@@ -107,7 +107,7 @@ export default function Index() {
       <section className="bg-sand py-8 overflow-hidden">
         <div className="container-brand section-padding">
           <p className="font-body text-xs text-sand-foreground/50 uppercase tracking-widest text-center mb-6">
-            Trusted by industry leaders
+            La confianza de líderes de la industria
           </p>
         </div>
         <div className="flex items-center gap-16 animate-marquee whitespace-nowrap">
@@ -130,19 +130,19 @@ export default function Index() {
               transition={{ duration: 0.6 }}
             >
               <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                About Flint Racks
+                Sobre Flint Racks
               </span>
               <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3 leading-[0.95]">
-                RELIABLE AND COST-EFFECTIVE SOLUTIONS TAILORED TO YOUR NEEDS
+                SOLUCIONES CONFIABLES Y RENTABLES A TU MEDIDA
               </h2>
               <p className="font-body text-muted-foreground text-base mt-6 leading-relaxed">
-                Flint Racks was born from the conviction that efficiency and safety are the foundation 
-                of every well-designed operation. We are a brand focused on designing, manufacturing, 
-                and implementing industrial racks and storage solutions, backed by technical knowledge 
-                and field experience.
+                Flint Racks nació de la convicción de que la eficiencia y la seguridad son la base 
+                de toda operación bien diseñada. Somos una marca enfocada en diseñar, fabricar 
+                e implementar racks industriales y soluciones de almacenamiento, respaldados por 
+                conocimiento técnico y experiencia de campo.
               </p>
               <div className="flex flex-col gap-3 mt-8">
-                {["Certified structural engineering", "Custom solutions for every industry", "End-to-end project management", "Safety-first installation practices"].map((item) => (
+                {["Ingeniería estructural certificada", "Soluciones personalizadas para cada industria", "Gestión integral de proyectos", "Prácticas de instalación con seguridad primero"].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <CheckCircle size={18} className="text-primary flex-shrink-0" />
                     <span className="font-body text-sm text-foreground">{item}</span>
@@ -153,7 +153,7 @@ export default function Index() {
                 to="/about"
                 className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-8 py-4 text-sm mt-10 hover:bg-primary transition-colors duration-200"
               >
-                Learn More
+                Conocer Más
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -164,10 +164,10 @@ export default function Index() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <img src={aboutImg} alt="Industrial racking installation" className="w-full aspect-[4/5] object-cover" />
+              <img src={aboutImg} alt="Instalación de racks industriales" className="w-full aspect-[4/5] object-cover" />
               <div className="absolute -bottom-6 -left-6 bg-primary p-8">
                 <span className="font-heading text-5xl text-primary-foreground">18+</span>
-                <p className="font-body text-sm text-primary-foreground/80 mt-1">Years of<br/>Experience</p>
+                <p className="font-body text-sm text-primary-foreground/80 mt-1">Años de<br/>Experiencia</p>
               </div>
             </motion.div>
           </div>
@@ -204,14 +204,14 @@ export default function Index() {
         <div className="container-brand section-padding">
           <div className="text-center mb-16">
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              What We Do
+              Lo Que Hacemos
             </span>
             <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
-              OUR SERVICES
+              NUESTROS SERVICIOS
             </h2>
             <p className="font-body text-muted-foreground text-base mt-4 max-w-xl mx-auto leading-relaxed">
-              From design to installation, we provide comprehensive racking solutions that maximize 
-              your warehouse efficiency and safety.
+              Desde el diseño hasta la instalación, proporcionamos soluciones integrales de racks que maximizan 
+              la eficiencia y seguridad de tu almacén.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -235,7 +235,7 @@ export default function Index() {
                   to="/services"
                   className="inline-flex items-center gap-2 font-body text-sm font-semibold text-foreground mt-6 group-hover:text-primary transition-colors"
                 >
-                  Learn More
+                  Conocer Más
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
@@ -250,7 +250,7 @@ export default function Index() {
       {/* CTA Section */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={servicesImg} alt="Industrial racking details" className="w-full h-full object-cover" />
+          <img src={servicesImg} alt="Detalles de racks industriales" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-iron/90" />
         </div>
         <div className="relative container-brand section-padding text-center">
@@ -261,19 +261,19 @@ export default function Index() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wide text-iron-foreground leading-[0.95]">
-              READY TO BUILD
+              ¿LISTO PARA
               <br />
-              <span className="text-primary">STRONGER?</span>
+              <span className="text-primary">CONSTRUIR MÁS FUERTE?</span>
             </h2>
             <p className="font-body text-iron-foreground/60 text-base mt-6 max-w-lg mx-auto leading-relaxed">
-              Every rack we design holds more than products — it supports your logistics, 
-              your safety, and the continuity of your business.
+              Cada rack que diseñamos sostiene más que productos — respalda tu logística, 
+              tu seguridad y la continuidad de tu negocio.
             </p>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-5 text-sm mt-10 hover:bg-red-deep transition-colors duration-200"
             >
-              Start Your Project
+              Inicia Tu Proyecto
               <ArrowRight size={16} />
             </Link>
           </motion.div>

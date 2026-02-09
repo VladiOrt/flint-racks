@@ -20,7 +20,7 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you! We'll be in touch shortly.");
+    toast.success("¡Gracias! Nos pondremos en contacto contigo pronto.");
     setFormData({ name: "", email: "", company: "", phone: "", message: "" });
   };
 
@@ -31,14 +31,14 @@ export default function Contact() {
         <div className="container-brand section-padding">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
             <motion.span variants={fadeUp} className="font-body text-sm text-primary-foreground/80 font-semibold uppercase tracking-wider">
-              Contact Us
+              Contacto
             </motion.span>
             <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-primary-foreground mt-4 leading-[0.95]">
-              LET'S BUILD
+              CONSTRUYAMOS
               <br />
-              SOMETHING
+              ALGO
               <br />
-              TOGETHER
+              JUNTOS
             </motion.h1>
           </motion.div>
         </div>
@@ -51,14 +51,14 @@ export default function Contact() {
             {/* Contact Info */}
             <div>
               <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                Get In Touch
+                Ponte en Contacto
               </span>
               <h2 className="font-heading text-5xl tracking-wide text-foreground mt-3 leading-[0.95]">
-                READY TO START YOUR PROJECT?
+                ¿LISTO PARA INICIAR TU PROYECTO?
               </h2>
               <p className="font-body text-muted-foreground text-base mt-6 leading-relaxed">
-                Whether you need a new racking system, a warehouse assessment, or want to discuss 
-                your storage optimization needs, we're here to help.
+                Ya sea que necesites un nuevo sistema de racks, una evaluación de almacén o quieras 
+                discutir tus necesidades de optimización de almacenamiento, estamos aquí para ayudarte.
               </p>
 
               <div className="flex flex-col gap-6 mt-10">
@@ -67,7 +67,7 @@ export default function Contact() {
                     <Mail size={20} className="text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-body font-semibold text-sm text-foreground">Email</h4>
+                    <h4 className="font-body font-semibold text-sm text-foreground">Correo</h4>
                     <p className="font-body text-sm text-muted-foreground group-hover:text-primary transition-colors">
                       contact@flintracks.com
                     </p>
@@ -78,7 +78,7 @@ export default function Contact() {
                     <Phone size={20} className="text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-body font-semibold text-sm text-foreground">Phone</h4>
+                    <h4 className="font-body font-semibold text-sm text-foreground">Teléfono</h4>
                     <p className="font-body text-sm text-muted-foreground group-hover:text-primary transition-colors">
                       +52 (123) 456-7890
                     </p>
@@ -89,7 +89,7 @@ export default function Contact() {
                     <MapPin size={20} className="text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-body font-semibold text-sm text-foreground">Location</h4>
+                    <h4 className="font-body font-semibold text-sm text-foreground">Ubicación</h4>
                     <p className="font-body text-sm text-muted-foreground">
                       Monterrey, Nuevo León, México
                     </p>
@@ -101,13 +101,13 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="bg-card border border-border p-8 lg:p-10">
               <h3 className="font-heading text-2xl tracking-wide text-foreground mb-6">
-                SEND US A MESSAGE
+                ENVÍANOS UN MENSAJE
               </h3>
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Full Name *
+                      Nombre Completo *
                     </label>
                     <input
                       type="text"
@@ -119,7 +119,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Email *
+                      Correo Electrónico *
                     </label>
                     <input
                       type="email"
@@ -133,7 +133,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Company
+                      Empresa
                     </label>
                     <input
                       type="text"
@@ -144,7 +144,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Phone
+                      Teléfono
                     </label>
                     <input
                       type="tel"
@@ -156,7 +156,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                    Message *
+                    Mensaje *
                   </label>
                   <textarea
                     required
@@ -170,7 +170,7 @@ export default function Contact() {
                   type="submit"
                   className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm hover:bg-red-deep transition-colors w-full sm:w-auto"
                 >
-                  Send Message
+                  Enviar Mensaje
                   <Send size={16} />
                 </button>
               </form>

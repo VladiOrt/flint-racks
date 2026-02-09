@@ -5,11 +5,11 @@ import aboutImg from "@/assets/about-installation.jpg";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
 const values = [
-  { icon: ShieldCheck, title: "Solidity", description: "Guaranteed reliable structures built to last and perform under demanding conditions." },
-  { icon: Lightbulb, title: "Innovation", description: "Design adapted to your specific operational needs and growth plans." },
-  { icon: Handshake, title: "Commitment", description: "We accompany our clients through every phase — from design to operation." },
-  { icon: Gauge, title: "Efficiency", description: "Maximizing space, time, and productivity in every installation." },
-  { icon: Target, title: "Safety", description: "Every rack protects not only products but your complete business operation." },
+  { icon: ShieldCheck, title: "Solidez", description: "Estructuras confiables garantizadas, construidas para durar y rendir bajo condiciones exigentes." },
+  { icon: Lightbulb, title: "Innovación", description: "Diseño adaptado a tus necesidades operativas específicas y planes de crecimiento." },
+  { icon: Handshake, title: "Compromiso", description: "Acompañamos a nuestros clientes en cada fase — desde el diseño hasta la operación." },
+  { icon: Gauge, title: "Eficiencia", description: "Maximizando espacio, tiempo y productividad en cada instalación." },
+  { icon: Target, title: "Seguridad", description: "Cada rack protege no solo productos, sino toda tu operación empresarial." },
 ];
 
 const fadeUp = {
@@ -23,20 +23,20 @@ export default function About() {
       {/* Hero */}
       <section className="relative py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Warehouse" className="w-full h-full object-cover" />
+          <img src={heroImg} alt="Almacén" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-iron/90" />
         </div>
         <div className="relative container-brand section-padding">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
             <motion.span variants={fadeUp} className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              About Us
+              Nosotros
             </motion.span>
             <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
-              OUR VISION IS
+              NUESTRA VISIÓN ES
               <br />
-              <span className="text-primary">BUILDING</span>
+              <span className="text-primary">CONSTRUIR</span>
               <br />
-              YOUR FUTURE
+              TU FUTURO
             </motion.h1>
           </motion.div>
         </div>
@@ -48,29 +48,29 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                Who We Are
+                Quiénes Somos
               </span>
               <h2 className="font-heading text-5xl tracking-wide text-foreground mt-3 leading-[0.95]">
-                BUILT WITH SAFETY, DESIGNED FOR PERFORMANCE
+                CONSTRUIDO CON SEGURIDAD, DISEÑADO PARA RENDIR
               </h2>
               <p className="font-body text-muted-foreground text-base mt-6 leading-relaxed">
-                Flint Racks was born from the conviction that efficiency and safety are the foundation 
-                of every well-designed operation. We are a brand focused on designing, manufacturing, 
-                and implementing industrial racks and storage solutions, backed by technical knowledge 
-                and field experience.
+                Flint Racks nació de la convicción de que la eficiencia y la seguridad son la base 
+                de toda operación bien diseñada. Somos una marca enfocada en diseñar, fabricar 
+                e implementar racks industriales y soluciones de almacenamiento, respaldados por 
+                conocimiento técnico y experiencia de campo.
               </p>
               <p className="font-body text-muted-foreground text-base mt-4 leading-relaxed">
-                In a world where company operations depend on their capacity for organization, safety, 
-                and space optimization, we become a strategic partner. We talk about metal structures, 
-                but also about trust, support, and a vision for growth.
+                En un mundo donde las operaciones de las empresas dependen de su capacidad de organización, 
+                seguridad y optimización de espacio, nos convertimos en un socio estratégico. Hablamos de 
+                estructuras metálicas, pero también de confianza, respaldo y visión de crecimiento.
               </p>
               <p className="font-body text-muted-foreground text-base mt-4 leading-relaxed">
-                Because we understand that every rack holds much more than products: it sustains the 
-                logistics, the safety, and the continuity of the business.
+                Porque entendemos que cada rack sostiene mucho más que productos: sostiene la 
+                logística, la seguridad y la continuidad del negocio.
               </p>
             </div>
             <div className="relative">
-              <img src={aboutImg} alt="Installation" className="w-full aspect-square object-cover" />
+              <img src={aboutImg} alt="Instalación" className="w-full aspect-square object-cover" />
             </div>
           </div>
         </div>
@@ -81,10 +81,10 @@ export default function About() {
         <div className="container-brand section-padding">
           <div className="text-center mb-16">
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              What We Stand For
+              Lo Que Nos Define
             </span>
             <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-iron-foreground mt-3">
-              BRAND VALUES
+              VALORES DE MARCA
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -115,17 +115,17 @@ export default function About() {
         <div className="container-brand section-padding">
           <div className="text-center mb-16">
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Our Team
+              Nuestro Equipo
             </span>
             <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
-              TEAM MEMBERS
+              MIEMBROS DEL EQUIPO
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Thomas Edwards", role: "COO", initials: "TE" },
-              { name: "María González", role: "Safety Director", initials: "MG" },
-              { name: "Carlos Mendoza", role: "Design Engineer", initials: "CM" },
+              { name: "Thomas Edwards", role: "Director de Operaciones", initials: "TE" },
+              { name: "María González", role: "Directora de Seguridad", initials: "MG" },
+              { name: "Carlos Mendoza", role: "Ingeniero de Diseño", initials: "CM" },
             ].map((member) => (
               <div key={member.name} className="text-center group">
                 <div className="w-48 h-48 mx-auto bg-iron flex items-center justify-center mb-6">
@@ -145,16 +145,16 @@ export default function About() {
       <section className="bg-sand py-20 lg:py-24">
         <div className="container-brand section-padding text-center">
           <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-sand-foreground leading-[0.95]">
-            READY TO WORK TOGETHER?
+            ¿LISTO PARA TRABAJAR JUNTOS?
           </h2>
           <p className="font-body text-sand-foreground/60 text-base mt-4 max-w-lg mx-auto">
-            Let us help you optimize your warehouse operations with solutions engineered for your specific needs.
+            Permítenos ayudarte a optimizar las operaciones de tu almacén con soluciones diseñadas para tus necesidades específicas.
           </p>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-10 py-4 text-sm mt-8 hover:bg-primary transition-colors"
           >
-            Contact Us
+            Contáctanos
             <CheckCircle size={16} />
           </a>
         </div>

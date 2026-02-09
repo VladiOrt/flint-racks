@@ -3,7 +3,7 @@ import { ArrowRight, Shield, Cog, TrendingUp, Users, CheckCircle } from "lucide-
 import { motion } from "framer-motion";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import LatestBlogs from "@/components/blog/LatestBlogs";
-import heroImg from "@/assets/hero-warehouse.jpg";
+import HeroSection from "@/components/home/HeroSection";
 import aboutImg from "@/assets/about-installation.jpg";
 import servicesImg from "@/assets/services-racks.jpg";
 
@@ -55,53 +55,7 @@ export default function Index() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen max-h-[100vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroImg} alt="Almacén industrial con racks" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-iron/80" />
-        </div>
-        <div className="relative container-brand section-padding py-32">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              visible: { transition: { staggerChildren: 0.15 } },
-            }}
-            className="max-w-2xl"
-          >
-            <motion.span variants={fadeUp} className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Soluciones de Racks Industriales
-            </motion.span>
-            <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl lg:text-8xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
-              MÁS QUE RACKS:
-              <br />
-              <span className="text-primary">ESTRUCTURA</span>
-              <br />
-              QUE ELEVA
-              <br />
-              TU NEGOCIO.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="font-body text-iron-foreground/70 text-lg mt-6 max-w-md leading-relaxed">
-              Diseñamos, fabricamos e instalamos soluciones de racks industriales respaldadas por experiencia técnica y de campo.
-            </motion.p>
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm hover:bg-red-deep transition-colors duration-200"
-              >
-                Cotizar
-                <ArrowRight size={16} />
-              </Link>
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 border border-iron-foreground/30 text-iron-foreground font-body font-semibold px-8 py-4 text-sm hover:border-primary hover:text-primary transition-colors duration-200"
-              >
-                Nuestros Servicios
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Clients Marquee */}
       <section className="bg-sand py-8 overflow-hidden">

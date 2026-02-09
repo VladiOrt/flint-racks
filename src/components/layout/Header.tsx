@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import logoRed from "@/assets/logo-red.svg";
 
 const navItems = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Services", path: "/services" },
+  { label: "Inicio", path: "/" },
+  { label: "Nosotros", path: "/about" },
+  { label: "Servicios", path: "/services" },
   { label: "Blog", path: "/blog" },
-  { label: "FAQs", path: "/faqs" },
-  { label: "Contact", path: "/contact" },
+  { label: "Preguntas", path: "/faqs" },
+  { label: "Contacto", path: "/contact" },
 ];
 
 export default function Header() {
@@ -47,14 +47,14 @@ export default function Header() {
           to="/contact"
           className="hidden lg:inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3 hover:bg-red-deep transition-colors duration-200"
         >
-          Get a Quote
+          Cotizar
         </Link>
 
         {/* Mobile Toggle */}
         <button
           className="lg:hidden text-iron-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label="Abrir menú"
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -89,7 +89,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 inline-flex items-center justify-center bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3"
               >
-                Get a Quote
+                Cotizar
               </Link>
             </nav>
           </motion.div>

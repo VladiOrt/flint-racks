@@ -19,10 +19,10 @@ export default function LatestBlogs({ excludeSlug, limit = 3 }: LatestBlogsProps
         <div className="flex items-end justify-between mb-12">
           <div>
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Latest Insights
+              Últimas Publicaciones
             </span>
             <h2 className="font-heading text-4xl md:text-5xl tracking-wide text-foreground mt-2">
-              FROM THE BLOG
+              DEL BLOG
             </h2>
           </div>
         </div>

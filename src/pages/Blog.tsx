@@ -21,12 +21,12 @@ export default function Blog() {
               Blog
             </motion.span>
             <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
-              INSIGHTS &
+              CONOCIMIENTO Y
               <br />
-              <span className="text-primary">EXPERTISE</span>
+              <span className="text-primary">EXPERIENCIA</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="font-body text-iron-foreground/60 text-lg mt-6 max-w-md">
-              Industry knowledge, best practices, and technical insights from our team of experts.
+              Conocimiento de la industria, mejores prácticas e información técnica de nuestro equipo de expertos.
             </motion.p>
           </motion.div>
         </div>
@@ -38,7 +38,7 @@ export default function Blog() {
           {posts.length === 0 ? (
             <div className="text-center py-20">
               <p className="font-body text-muted-foreground text-lg">
-                No published articles yet. Check back soon.
+                Aún no hay artículos publicados. Vuelve pronto.
               </p>
             </div>
           ) : (
@@ -47,7 +47,7 @@ export default function Blog() {
               {posts.length > 0 && (
                 <div className="mb-16">
                   <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                    Latest Article
+                    Último Artículo
                   </span>
                   <div className="mt-4">
                     <BlogCard post={posts[0]} />
@@ -59,7 +59,7 @@ export default function Blog() {
               {posts.length > 1 && (
                 <div>
                   <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                    All Articles
+                    Todos los Artículos
                   </span>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
                     {posts.slice(1).map((post) => (

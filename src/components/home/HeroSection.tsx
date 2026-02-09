@@ -61,18 +61,20 @@ export default function HeroSection() {
             <img
               src={heroImg}
               alt=""
-              className="w-screen h-full object-cover"
+              className="h-full object-cover"
+              style={{ width: '200%', maxWidth: 'none' }}
             />
           </motion.div>
           {/* Right curtain */}
           <motion.div
             style={{ x: rightCurtain }}
-            className="w-1/2 h-full overflow-hidden flex-shrink-0 flex justify-end"
+            className="w-1/2 h-full overflow-hidden flex-shrink-0"
           >
             <img
               src={heroImg}
               alt=""
-              className="w-screen h-full object-cover object-right"
+              className="h-full object-cover"
+              style={{ width: '200%', maxWidth: 'none', marginLeft: '-100%' }}
             />
           </motion.div>
         </div>
@@ -88,8 +90,8 @@ export default function HeroSection() {
           style={{ opacity: curtainContentOpacity, y: curtainContentY }}
           className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none"
         >
-          <div className="container-brand section-padding w-full">
-            <div className="flex flex-col lg:flex-row items-end justify-between gap-12 lg:gap-16 w-full mx-auto">
+          <div className="w-[90%] lg:w-full container-brand section-padding mx-auto">
+            <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 lg:gap-16 w-full mx-auto">
               <div className="flex-1 flex flex-col gap-8">
                 <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7rem] tracking-wider text-iron-foreground leading-[0.9]">
                   MÁS QUE

@@ -90,17 +90,12 @@ export default function Index() {
               </Link>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative"
+              transition={{ duration: 0.5 }}
             >
               <img src={aboutImg} alt="Instalación de racks industriales" className="w-full aspect-[4/5] object-cover" />
-              <div className="absolute -bottom-6 -left-6 bg-primary p-8">
-                <span className="font-heading text-5xl text-primary-foreground">18+</span>
-                <p className="font-body text-sm text-primary-foreground/80 mt-1">Años de<br/>Experiencia</p>
-              </div>
             </motion.div>
           </div>
         </div>

@@ -17,7 +17,10 @@ export default function HeroSection() {
   const leftCurtain = useTransform(scrollYProgress, [0, 0.35], ["0%", "-100%"]);
   const rightCurtain = useTransform(scrollYProgress, [0, 0.35], ["0%", "100%"]);
 
-  // Overlay fades in after curtains open
+  // Overlay on curtain image: visible initially, fades out as curtains open
+  const curtainOverlayOpacity = useTransform(scrollYProgress, [0, 0.3], [0.6, 0]);
+
+  // Overlay fades in after curtains open (on video)
   const overlayOpacity = useTransform(scrollYProgress, [0.25, 0.45], [0, 0.75]);
 
   // Lines fade in
@@ -77,10 +80,16 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Dark overlay on curtain — fades out as curtains open */}
+        <motion.div
+          style={{ opacity: curtainOverlayOpacity }}
+          className="absolute inset-0 bg-iron z-[1]"
+        />
+
         {/* Content ON the curtain — fades out on scroll */}
         <motion.div
           style={{ opacity: curtainContentOpacity, y: curtainContentY }}
-          className="absolute inset-0 z-[1] flex items-end pb-16 lg:pb-20 pointer-events-none"
+          className="absolute inset-0 z-[2] flex items-end pb-16 lg:pb-20 pointer-events-none"
         >
           <div className="container-brand section-padding w-full">
             <div className="flex flex-col lg:flex-row items-end justify-between gap-12 lg:gap-16 w-full">

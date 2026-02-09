@@ -86,7 +86,7 @@ export default function HeroSection() {
         {/* Content ON the curtain — fades out on scroll */}
         <motion.div
           style={{ opacity: curtainContentOpacity, y: curtainContentY }}
-          className="absolute inset-0 z-[2] flex items-end justify-center pb-10 lg:pb-12 pointer-events-none"
+          className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none"
         >
           <div className="container-brand section-padding w-full">
             <div className="flex flex-col lg:flex-row items-end justify-between gap-12 lg:gap-16 w-full mx-auto">

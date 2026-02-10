@@ -5,6 +5,7 @@ import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import MissionStatsSection from "@/components/services/MissionStatsSection";
 import ServiceShowcaseSection from "@/components/services/ServiceShowcaseSection";
 import ExpertiseSection from "@/components/services/ExpertiseSection";
+import ProductShowcaseSection from "@/components/services/ProductShowcaseSection";
 import servicesImg from "@/assets/services-racks.jpg";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
@@ -125,6 +126,8 @@ export default function Services() {
       <ServiceShowcaseSection />
 
       <ExpertiseSection />
+
+      <ProductShowcaseSection />
 
       {/* Process */}
       <section className="py-20 lg:py-28 bg-iron">

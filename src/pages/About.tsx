@@ -24,10 +24,13 @@ export default function About() {
       {/* Hero */}
       <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-end overflow-hidden">
         {/* Background image */}
-        <img
+        <motion.img
           src={heroImg}
           alt="Almacén industrial"
           className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.15 }}
+          transition={{ duration: 10, ease: "easeOut" }}
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-iron/70" />
@@ -40,7 +43,7 @@ export default function About() {
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
         >
           <span
-            className="font-heading text-[18vw] lg:text-[14vw] tracking-wider leading-none"
+            className="font-heading text-[15vw] sm:text-[18vw] lg:text-[14vw] tracking-wider leading-none max-w-full overflow-hidden"
             style={{
               background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
               WebkitBackgroundClip: "text",

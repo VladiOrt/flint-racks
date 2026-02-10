@@ -39,7 +39,15 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
         >
-          <span className="font-heading text-[18vw] lg:text-[14vw] tracking-wider text-iron-foreground/10 leading-none">
+          <span
+            className="font-heading text-[18vw] lg:text-[14vw] tracking-wider leading-none"
+            style={{
+              background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             NOSOTROS
           </span>
         </motion.div>

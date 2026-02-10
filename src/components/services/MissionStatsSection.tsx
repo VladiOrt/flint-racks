@@ -88,9 +88,9 @@ export default function MissionStatsSection() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-block font-body text-sm text-foreground font-semibold uppercase tracking-wider border border-foreground rounded-full px-4 py-1.5"
+              className="font-body text-sm text-primary font-semibold uppercase tracking-wider"
             >
-              Ventajas
+              Ventajas Que Se Reflejan
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}

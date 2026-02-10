@@ -114,8 +114,10 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="border border-foreground/10 p-8 hover:border-primary/30 transition-colors"
-                style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
+                className="border p-8 transition-all duration-200"
+                style={{ backgroundColor: 'transparent', borderColor: '#404040' }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#C7B69D'; e.currentTarget.style.borderColor = '#000000'; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.borderColor = '#404040'; }}
               >
                 <value.icon size={36} className="text-primary mb-4" strokeWidth={1.5} />
                 <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3">
@@ -133,20 +135,20 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: values.length * 0.1 }}
-              className="border border-primary/30 p-8 flex flex-col justify-between"
-              style={{ backgroundColor: 'rgba(255,255,255,0.25)' }}
+              className="border p-8 flex flex-col justify-between"
+              style={{ backgroundColor: '#000000', borderColor: '#000000' }}
             >
               <div>
-                <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3">
+                <h3 className="font-heading text-2xl tracking-wide text-white mb-3">
                   TRABAJA CON NOSOTROS
                 </h3>
-                <p className="font-body text-sm text-foreground/60 leading-relaxed">
+                <p className="font-body text-sm text-white/60 leading-relaxed">
                   Conoce nuestros servicios y descubre cómo podemos optimizar tu operación.
                 </p>
               </div>
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 border-2 border-primary text-primary font-body font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-colors duration-200 w-fit mt-6"
+                className="inline-flex items-center gap-2 border-2 border-white text-white font-body font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-colors duration-200 w-fit mt-6"
               >
                 Ver Servicios
                 <ArrowRight size={16} />

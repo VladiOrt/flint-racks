@@ -136,7 +136,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: values.length * 0.1 }}
               className="border p-8 flex flex-col justify-between"
-              style={{ backgroundColor: '#000000', borderColor: '#000000' }}
+              style={{ backgroundColor: 'hsl(var(--primary))', borderColor: 'hsl(var(--primary))' }}
             >
               <div>
                 <h3 className="font-heading text-2xl tracking-wide text-white mb-3">

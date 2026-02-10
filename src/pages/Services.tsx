@@ -142,13 +142,14 @@ export default function Services() {
               </h2>
               <div className="flex flex-col gap-8 mt-10">
                 {[
-                  { step: "01", title: "Consultoría y Evaluación", desc: "Analizamos tu espacio, operaciones y requerimientos." },
-                  { step: "02", title: "Diseño e Ingeniería", desc: "Soluciones personalizadas diseñadas a tus especificaciones exactas." },
-                  { step: "03", title: "Fabricación", desc: "Manufactura propia con materiales certificados." },
-                  { step: "04", title: "Instalación", desc: "Despliegue profesional con mínima interrupción." },
+                  { step: "01", title: "Primer Contacto", desc: "Nos acercamos a ti para conocer tus necesidades y entender cómo podemos atender los retos de tu operación." },
+                  { step: "02", title: "Información del Cliente", desc: "Realizamos una entrevista detallada para mapear dimensiones, necesidades específicas y definir cómo trabajaremos juntos." },
+                  { step: "03", title: "Visita de Campo", desc: "Nuestros especialistas visitan tu bodega para evaluar necesidades de carga, distribución y logística interna." },
+                  { step: "04", title: "Levantamiento y Propuesta", desc: "El especialista realiza un levantamiento completo, determina materiales y costos, y te presenta una propuesta que satisfaga tus necesidades." },
+                  { step: "05", title: "Aprobación y Planeación", desc: "Cada bodega es diferente. Tu ejecutivo creará una planeación a la medida para cumplir con el proyecto en tiempo y forma según tu industria." },
                 ].map((item) => (
                   <div key={item.step} className="flex gap-6">
-                    <span className="font-heading text-4xl text-primary/30">{item.step}</span>
+                    <span className="font-heading text-4xl text-primary">{item.step}</span>
                     <div>
                       <h3 className="font-heading text-xl tracking-wide text-iron-foreground">
                         {item.title.toUpperCase()}
@@ -159,8 +160,16 @@ export default function Services() {
                 ))}
               </div>
             </div>
-            <div>
-              <img src={heroImg} alt="Proyecto de almacén" className="w-full aspect-[3/4] object-cover" />
+            <div className="overflow-hidden">
+              <motion.img
+                src={heroImg}
+                alt="Proyecto de almacén"
+                className="w-full aspect-[3/4] object-cover"
+                initial={{ scale: 1 }}
+                whileInView={{ scale: 1.2 }}
+                viewport={{ once: true }}
+                transition={{ duration: 20, ease: "linear" }}
+              />
             </div>
           </div>
         </div>

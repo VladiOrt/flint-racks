@@ -22,28 +22,28 @@ export default function ServiceShowcaseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
           {/* ===== LEFT HALF ===== */}
           <div className="relative h-full overflow-hidden hidden lg:block">
-            {/* Base layer: Service 2 text */}
+            {/* Base layer: Service 2 (Prediseñados) text */}
             <div className="absolute inset-0 flex flex-col justify-center bg-sand px-12 lg:px-16 z-[1]">
               <TextPanel
-                subtitle="A la Medida"
-                title="Racks Personalizados"
-                paragraph="Diseñamos y fabricamos soluciones de almacenamiento únicas, adaptadas a las dimensiones, cargas y flujos operativos de tu almacén."
+                subtitle="Estándar"
+                title="Racks Prediseñados"
+                paragraph="Sistemas de almacenamiento probados y listos para instalar, con tiempos de entrega reducidos y máxima eficiencia operativa."
               />
             </div>
 
-            {/* Overlay layer: Service 1 image (slides in from bottom) */}
+            {/* Overlay layer: Service 1 (Personalizados) image (slides in from bottom) */}
             <motion.div
               className="absolute inset-0 z-[2] overflow-hidden"
               style={{ y: leftImageY }}
             >
               <motion.img
-                src={imgPredefined}
-                alt="Racks Prediseñados"
+                src={imgCustom}
+                alt="Racks Personalizados"
                 className="w-full h-full object-cover"
                 initial={{ scale: 1 }}
-                whileInView={{ scale: 1.15 }}
+                whileInView={{ scale: 1.2 }}
                 viewport={{ once: true }}
-                transition={{ duration: 30, ease: "linear" }}
+                transition={{ duration: 20, ease: "linear" }}
               />
               <motion.div
                 className="absolute inset-0 bg-iron"
@@ -53,9 +53,9 @@ export default function ServiceShowcaseSection() {
                 <span className="font-heading text-8xl text-iron-foreground/25 leading-none block">
                   01
                 </span>
-                <div className="w-full h-px bg-iron-foreground/40 my-3" />
+                <div className="w-full h-px bg-white my-3" />
                 <p className="font-heading text-sm tracking-wider uppercase max-w-[260px] ml-auto">
-                  Soluciones listas para optimizar tu almacén
+                  Esta solución es ideal para quienes buscan un diseño único adaptado a su operación
                 </p>
               </div>
             </motion.div>
@@ -63,38 +63,38 @@ export default function ServiceShowcaseSection() {
 
           {/* ===== RIGHT HALF ===== */}
           <div className="relative h-full overflow-hidden">
-            {/* Base layer: Service 2 image */}
+            {/* Base layer: Service 2 (Prediseñados) image */}
             <div className="absolute inset-0 z-[1] overflow-hidden">
               <motion.img
-                src={imgCustom}
-                alt="Racks Personalizados"
+                src={imgPredefined}
+                alt="Racks Prediseñados"
                 className="w-full h-full object-cover"
                 initial={{ scale: 1 }}
-                whileInView={{ scale: 1.15 }}
+                whileInView={{ scale: 1.2 }}
                 viewport={{ once: true }}
-                transition={{ duration: 30, ease: "linear" }}
+                transition={{ duration: 20, ease: "linear" }}
               />
               <div className="absolute inset-0 bg-iron/40" />
               <div className="absolute bottom-10 left-10 text-iron-foreground z-[3]">
                 <span className="font-heading text-8xl text-iron-foreground/25 leading-none block">
                   02
                 </span>
-                <div className="w-full h-px bg-iron-foreground/40 my-3" />
+                <div className="w-full h-px bg-white my-3" />
                 <p className="font-heading text-sm tracking-wider uppercase max-w-[260px]">
-                  Diseño e ingeniería según tu operación
+                  Esta solución es ideal para quienes necesitan rapidez de instalación y eficiencia comprobada
                 </p>
               </div>
             </div>
 
-            {/* Overlay layer: Service 1 text (slides in from top) */}
+            {/* Overlay layer: Service 1 (Personalizados) text (slides in from top) */}
             <motion.div
               className="absolute inset-0 flex flex-col justify-center bg-sand px-12 lg:px-16 z-[2]"
               style={{ y: rightTextY }}
             >
               <TextPanel
-                subtitle="Estándar"
-                title="Racks Prediseñados"
-                paragraph="Sistemas de almacenamiento probados y listos para instalar, con tiempos de entrega reducidos y máxima eficiencia operativa."
+                subtitle="A la Medida"
+                title="Racks Personalizados"
+                paragraph="Diseñamos y fabricamos soluciones de almacenamiento únicas, adaptadas a las dimensiones, cargas y flujos operativos de tu almacén."
               />
             </motion.div>
           </div>
@@ -115,7 +115,7 @@ function TextPanel({
 }) {
   return (
     <div className="max-w-md flex flex-col items-start text-left">
-      <span className="font-body text-sm font-semibold uppercase tracking-wider text-sand-foreground/60 mb-4">
+      <span className="font-body text-sm font-semibold uppercase tracking-wider text-primary mb-4">
         {subtitle}
       </span>
 
@@ -127,13 +127,13 @@ function TextPanel({
         {paragraph}
       </p>
 
-      <div className="w-16 h-px bg-border my-8" />
+      <div className="w-16 h-px bg-white my-8" />
 
       <Link
         to="/contact"
         className="inline-flex items-center gap-2 bg-sand-foreground text-sand font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
       >
-        Cotizar
+        Cotizar Ahora
         <ArrowRight size={16} />
       </Link>
     </div>

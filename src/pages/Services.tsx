@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Warehouse, Layers, Truck, Wrench, BarChart3, Ruler } from "lucide-react";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import MissionStatsSection from "@/components/services/MissionStatsSection";
+import ServiceShowcaseSection from "@/components/services/ServiceShowcaseSection";
 import servicesImg from "@/assets/services-racks.jpg";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
@@ -119,6 +120,8 @@ export default function Services() {
       </section>
 
       <MissionStatsSection />
+
+      <ServiceShowcaseSection />
 
       {/* Services Grid */}
       <section className="py-20 lg:py-28 bg-background">

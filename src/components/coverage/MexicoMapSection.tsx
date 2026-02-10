@@ -4,7 +4,6 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-  ZoomableGroup,
 } from "react-simple-maps";
 
 const GEO_URL =
@@ -48,120 +47,105 @@ const MexicoMapSection = () => {
           <div
             className="relative"
             style={{
-              transform: "rotateX(15deg) rotateZ(-2deg)",
+              transform: "rotateX(20deg) rotateZ(-2deg)",
               transformStyle: "preserve-3d",
             }}
+            onMouseLeave={() => setTooltip(null)}
           >
-            {/* Shadow/reflection effect for 3D look */}
-            <div
-              className="absolute inset-0 rounded-2xl opacity-20 blur-xl"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--primary) / 0.3), transparent)",
-                transform: "translateZ(-20px) translateY(20px)",
+            <ComposableMap
+              projection="geoMercator"
+              projectionConfig={{
+                scale: 1200,
+                center: [-102.5, 23.5],
               }}
-            />
-
-            <div
-              className="relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-4 md:p-8"
-              onMouseLeave={() => setTooltip(null)}
+              width={800}
+              height={520}
+              style={{ width: "100%", height: "auto" }}
             >
-              <ComposableMap
-                projection="geoMercator"
-                projectionConfig={{
-                  scale: 1200,
-                  center: [-102.5, 23.5],
-                }}
-                width={800}
-                height={520}
-                style={{ width: "100%", height: "auto" }}
-              >
-                <ZoomableGroup>
-                  <Geographies geography={GEO_URL}>
-                    {({ geographies }) =>
-                      geographies
-                        .filter((geo) => geo.properties.state_name)
-                        .map((geo) => (
-                          <Geography
-                            key={geo.rsmKey}
-                            geography={geo}
-                            onMouseEnter={(e) => {
-                              const rect = (
-                                e.currentTarget.closest("svg") as SVGSVGElement
-                              )?.getBoundingClientRect();
-                              if (rect) {
-                                setTooltip({
-                                  name: geo.properties.state_name,
-                                  x: e.clientX - rect.left,
-                                  y: e.clientY - rect.top,
-                                });
-                              }
-                            }}
-                            onMouseMove={(e) => {
-                              const rect = (
-                                e.currentTarget.closest("svg") as SVGSVGElement
-                              )?.getBoundingClientRect();
-                              if (rect) {
-                                setTooltip({
-                                  name: geo.properties.state_name,
-                                  x: e.clientX - rect.left,
-                                  y: e.clientY - rect.top,
-                                });
-                              }
-                            }}
-                            onMouseLeave={() => setTooltip(null)}
-                            style={{
-                              default: {
-                                fill: "hsl(var(--primary) / 0.65)",
-                                stroke: "hsl(var(--background))",
-                                strokeWidth: 0.5,
-                                outline: "none",
-                                transition: "all 0.2s ease",
-                              },
-                              hover: {
-                                fill: "hsl(var(--primary))",
-                                stroke: "hsl(var(--background))",
-                                strokeWidth: 0.8,
-                                outline: "none",
-                                cursor: "pointer",
-                                filter: "drop-shadow(0 4px 8px hsl(var(--primary) / 0.4))",
-                              },
-                              pressed: {
-                                fill: "hsl(var(--primary))",
-                                outline: "none",
-                              },
-                            }}
-                          />
-                        ))
-                    }
-                  </Geographies>
-                </ZoomableGroup>
-              </ComposableMap>
+              <Geographies geography={GEO_URL}>
+                {({ geographies }) =>
+                  geographies
+                    .filter((geo) => geo.properties.state_name)
+                    .map((geo) => (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        onMouseEnter={(e) => {
+                          const rect = (
+                            e.currentTarget.closest("svg") as SVGSVGElement
+                          )?.getBoundingClientRect();
+                          if (rect) {
+                            setTooltip({
+                              name: geo.properties.state_name,
+                              x: e.clientX - rect.left,
+                              y: e.clientY - rect.top,
+                            });
+                          }
+                        }}
+                        onMouseMove={(e) => {
+                          const rect = (
+                            e.currentTarget.closest("svg") as SVGSVGElement
+                          )?.getBoundingClientRect();
+                          if (rect) {
+                            setTooltip({
+                              name: geo.properties.state_name,
+                              x: e.clientX - rect.left,
+                              y: e.clientY - rect.top,
+                            });
+                          }
+                        }}
+                        onMouseLeave={() => setTooltip(null)}
+                        style={{
+                          default: {
+                            fill: "hsl(var(--muted-foreground) / 0.3)",
+                            stroke: "hsl(var(--background))",
+                            strokeWidth: 0.5,
+                            outline: "none",
+                            transition: "all 0.2s ease",
+                          },
+                          hover: {
+                            fill: "hsl(var(--primary))",
+                            stroke: "hsl(var(--background))",
+                            strokeWidth: 0.8,
+                            outline: "none",
+                            cursor: "pointer",
+                            filter: "drop-shadow(0 4px 8px hsl(var(--primary) / 0.4))",
+                          },
+                          pressed: {
+                            fill: "hsl(var(--primary))",
+                            outline: "none",
+                          },
+                        }}
+                      />
+                    ))
+                }
+              </Geographies>
+            </ComposableMap>
 
-              {/* Tooltip Card */}
-              {tooltip && (
-                <div
-                  className="absolute pointer-events-none z-50 transition-all duration-150"
-                  style={{
-                    left: tooltip.x,
-                    top: tooltip.y - 10,
-                    transform: "translate(-50%, -100%)",
-                  }}
-                >
-                  <div className="bg-foreground text-background px-5 py-3 rounded-lg shadow-xl min-w-[180px] text-center">
-                    <p className="font-heading text-lg uppercase tracking-wide">
-                      {tooltip.name}
-                    </p>
-                    <p className="font-body text-sm text-background/70 mt-0.5">
-                      Cubierto por Flint Racks
-                    </p>
-                  </div>
-                  {/* Arrow */}
-                  <div className="flex justify-center">
-                    <div className="w-3 h-3 bg-foreground rotate-45 -mt-1.5" />
-                  </div>
+            {/* Tooltip Card */}
+            {tooltip && (
+              <div
+                className="absolute pointer-events-none z-50 transition-all duration-150"
+                style={{
+                  left: tooltip.x,
+                  top: tooltip.y - 10,
+                  transform: "translate(-50%, -100%)",
+                }}
+              >
+                <div className="bg-foreground text-background px-5 py-3 rounded-lg shadow-xl min-w-[180px] text-center">
+                  <p className="font-heading text-lg uppercase tracking-wide">
+                    {tooltip.name}
+                  </p>
+                  <p className="font-body text-sm text-background/70 mt-0.5">
+                    Cubierto por Flint Racks
+                  </p>
                 </div>
-              )}
-            </div>
+                {/* Arrow */}
+                <div className="flex justify-center">
+                  <div className="w-3 h-3 bg-foreground rotate-45 -mt-1.5" />
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

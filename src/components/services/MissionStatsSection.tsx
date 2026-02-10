@@ -1,43 +1,80 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { ShieldCheck, Wrench, TrendingUp } from "lucide-react";
 import imgRacks from "@/assets/services-racks.jpg";
 
-const stats = [
-  { value: 500, suffix: "+", label: "Proyectos Completados", description: "Soluciones de almacenamiento instaladas en todo México con resultados comprobados." },
-  { value: 15, suffix: "+", label: "Años de Experiencia", description: "Respaldados por más de una década de conocimiento técnico y operativo en el sector." },
-  { value: 99, suffix: "%", label: "Clientes Satisfechos", description: "Nuestro compromiso con la calidad se refleja en la confianza de quienes nos eligen." },
+const advantages = [
+  {
+    icon: ShieldCheck,
+    title: "Calidad Garantizada",
+    description: "Cada estructura es fabricada con materiales certificados y procesos de control de calidad rigurosos que aseguran durabilidad y rendimiento.",
+  },
+  {
+    icon: Wrench,
+    title: "Soluciones a la Medida",
+    description: "Diseñamos cada proyecto según las necesidades específicas de tu operación, espacio disponible y proyección de crecimiento.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Respaldo Técnico",
+    description: "Acompañamiento integral desde la consultoría inicial hasta la instalación y mantenimiento, con un equipo de ingenieros especializados.",
+  },
 ];
 
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.round(v));
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false);
+function AdvantageCard({ advantage, index }: { advantage: typeof advantages[0]; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [perimeter, setPerimeter] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          animate(count, value, { duration: 2, ease: "easeOut" });
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [count, value]);
+    if (!cardRef.current) return;
+    const update = () => {
+      const { width, height } = cardRef.current!.getBoundingClientRect();
+      setPerimeter(2 * (width + height));
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
-  useEffect(() => {
-    const unsubscribe = rounded.on("change", (v) => {
-      if (ref.current) ref.current.textContent = `${v}${suffix}`;
-    });
-    return unsubscribe;
-  }, [rounded, suffix]);
-
-  return <span ref={ref} className="font-heading text-6xl md:text-7xl lg:text-8xl tracking-wide text-foreground">0{suffix}</span>;
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative bg-card p-8 lg:p-10 flex flex-col h-full border border-border"
+      style={{
+        boxShadow: isHovered ? "0px 5px 10px rgba(0,0,0,0.1)" : "0px 0px 0px rgba(0,0,0,0)",
+        transition: "box-shadow 0.3s ease",
+      }}
+    >
+      {perimeter > 0 && (
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" style={{ zIndex: 1 }}>
+          <rect
+            x="0.5" y="0.5"
+            width="calc(100% - 1px)" height="calc(100% - 1px)"
+            fill="none"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            strokeDasharray={perimeter}
+            strokeDashoffset={isHovered ? 0 : perimeter}
+            style={{ transition: "stroke-dashoffset 1s linear" }}
+          />
+        </svg>
+      )}
+      <advantage.icon size={40} className="text-primary mb-6 relative z-[2]" strokeWidth={1.5} />
+      <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3 relative z-[2]">
+        {advantage.title.toUpperCase()}
+      </h3>
+      <p className="font-body text-sm text-muted-foreground leading-relaxed flex-1 relative z-[2]">
+        {advantage.description}
+      </p>
+    </motion.div>
+  );
 }
 
 export default function MissionStatsSection() {
@@ -53,7 +90,7 @@ export default function MissionStatsSection() {
               viewport={{ once: true }}
               className="inline-block font-body text-sm text-foreground font-semibold uppercase tracking-wider border border-foreground rounded-full px-4 py-1.5"
             >
-              Industrias
+              Ventajas
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -62,7 +99,7 @@ export default function MissionStatsSection() {
               transition={{ delay: 0.1, duration: 0.6 }}
               className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-wide text-foreground mt-6 leading-[0.95] uppercase"
             >
-              Construcción de calidad es la base de un mejor futuro
+              Calidad y respaldo en cada estructura que construimos
             </motion.h2>
           </div>
           <motion.div
@@ -80,28 +117,10 @@ export default function MissionStatsSection() {
           </motion.div>
         </div>
 
-        {/* Stats grid */}
+        {/* Advantage cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="p-8 lg:p-10"
-              style={{ backgroundColor: "#faf6ec" }}
-            >
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <div className="mt-6 pt-6 border-t border-foreground/15">
-                <h3 className="font-heading text-sm tracking-wider text-foreground uppercase mb-2">
-                  {stat.label}
-                </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  {stat.description}
-                </p>
-              </div>
-            </motion.div>
+          {advantages.map((adv, i) => (
+            <AdvantageCard key={adv.title} advantage={adv} index={i} />
           ))}
         </div>
       </div>

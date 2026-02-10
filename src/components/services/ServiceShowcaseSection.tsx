@@ -18,11 +18,12 @@ export default function ServiceShowcaseSection() {
 
   return (
     <section ref={sectionRef} className="relative" style={{ height: "350vh" }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+      {/* ===== DESKTOP: sticky split-screen ===== */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden hidden lg:block">
+        <div className="grid grid-cols-2 h-full">
           {/* ===== LEFT HALF ===== */}
-          <div className="relative h-full overflow-hidden hidden lg:block">
-            {/* Base layer: Service 2 (Prediseñados) text */}
+          <div className="relative h-full overflow-hidden">
+            {/* Base layer: Prediseñados text */}
             <div className="absolute inset-0 flex flex-col justify-center bg-sand px-12 lg:px-16 z-[1]">
               <TextPanel
                 subtitle="Estándar"
@@ -31,7 +32,7 @@ export default function ServiceShowcaseSection() {
               />
             </div>
 
-            {/* Overlay layer: Service 1 (Personalizados) image (slides in from bottom) */}
+            {/* Overlay: Personalizados image (slides in from bottom) */}
             <motion.div
               className="absolute inset-0 z-[2] overflow-hidden"
               style={{ y: leftImageY }}
@@ -51,7 +52,7 @@ export default function ServiceShowcaseSection() {
               />
               <div className="absolute bottom-10 right-10 text-right text-iron-foreground z-[3]">
                 <span className="font-heading text-8xl text-iron-foreground/25 leading-none block">
-                  01
+                  02
                 </span>
                 <div className="w-full h-px bg-white my-3" />
                 <p className="font-heading text-sm tracking-wider uppercase max-w-[260px] ml-auto">
@@ -63,7 +64,7 @@ export default function ServiceShowcaseSection() {
 
           {/* ===== RIGHT HALF ===== */}
           <div className="relative h-full overflow-hidden">
-            {/* Base layer: Service 2 (Prediseñados) image */}
+            {/* Base layer: Prediseñados image */}
             <div className="absolute inset-0 z-[1] overflow-hidden">
               <motion.img
                 src={imgPredefined}
@@ -77,7 +78,7 @@ export default function ServiceShowcaseSection() {
               <div className="absolute inset-0 bg-iron/40" />
               <div className="absolute bottom-10 left-10 text-iron-foreground z-[3]">
                 <span className="font-heading text-8xl text-iron-foreground/25 leading-none block">
-                  02
+                  01
                 </span>
                 <div className="w-full h-px bg-white my-3" />
                 <p className="font-heading text-sm tracking-wider uppercase max-w-[260px]">
@@ -86,7 +87,7 @@ export default function ServiceShowcaseSection() {
               </div>
             </div>
 
-            {/* Overlay layer: Service 1 (Personalizados) text (slides in from top) */}
+            {/* Overlay: Personalizados text (slides in from top) */}
             <motion.div
               className="absolute inset-0 flex flex-col justify-center bg-sand px-12 lg:px-16 z-[2]"
               style={{ y: rightTextY }}
@@ -97,6 +98,73 @@ export default function ServiceShowcaseSection() {
                 paragraph="Diseñamos y fabricamos soluciones de almacenamiento únicas, adaptadas a las dimensiones, cargas y flujos operativos de tu almacén."
               />
             </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== MOBILE: stacked blocks ===== */}
+      <div className="lg:hidden">
+        {/* 1) Prediseñados text */}
+        <div className="bg-sand px-6 py-16">
+          <TextPanel
+            subtitle="Estándar"
+            title="Racks Prediseñados"
+            paragraph="Sistemas de almacenamiento probados y listos para instalar, con tiempos de entrega reducidos y máxima eficiencia operativa."
+          />
+        </div>
+
+        {/* 2) Prediseñados image */}
+        <div className="relative h-[70vh] overflow-hidden">
+          <motion.img
+            src={imgPredefined}
+            alt="Racks Prediseñados"
+            className="w-full h-full object-cover"
+            initial={{ scale: 1 }}
+            whileInView={{ scale: 1.2 }}
+            viewport={{ once: true }}
+            transition={{ duration: 20, ease: "linear" }}
+          />
+          <div className="absolute inset-0 bg-iron/40" />
+          <div className="absolute bottom-8 left-6 text-iron-foreground z-[3]">
+            <span className="font-heading text-7xl text-iron-foreground/25 leading-none block">
+              01
+            </span>
+            <div className="w-full h-px bg-white my-3" />
+            <p className="font-heading text-sm tracking-wider uppercase max-w-[260px]">
+              Esta solución es ideal para quienes necesitan rapidez de instalación y eficiencia comprobada
+            </p>
+          </div>
+        </div>
+
+        {/* 3) Personalizados text */}
+        <div className="bg-sand px-6 py-16">
+          <TextPanel
+            subtitle="A la Medida"
+            title="Racks Personalizados"
+            paragraph="Diseñamos y fabricamos soluciones de almacenamiento únicas, adaptadas a las dimensiones, cargas y flujos operativos de tu almacén."
+          />
+        </div>
+
+        {/* 4) Personalizados image */}
+        <div className="relative h-[70vh] overflow-hidden">
+          <motion.img
+            src={imgCustom}
+            alt="Racks Personalizados"
+            className="w-full h-full object-cover"
+            initial={{ scale: 1 }}
+            whileInView={{ scale: 1.2 }}
+            viewport={{ once: true }}
+            transition={{ duration: 20, ease: "linear" }}
+          />
+          <div className="absolute inset-0 bg-iron/40" />
+          <div className="absolute bottom-8 left-6 text-iron-foreground z-[3]">
+            <span className="font-heading text-7xl text-iron-foreground/25 leading-none block">
+              02
+            </span>
+            <div className="w-full h-px bg-white my-3" />
+            <p className="font-heading text-sm tracking-wider uppercase max-w-[260px]">
+              Esta solución es ideal para quienes buscan un diseño único adaptado a su operación
+            </p>
           </div>
         </div>
       </div>
@@ -115,7 +183,7 @@ function TextPanel({
 }) {
   return (
     <div className="max-w-md flex flex-col items-start text-left">
-      <span className="font-body text-sm font-semibold uppercase tracking-wider text-primary mb-4">
+      <span className="font-body text-sm font-semibold uppercase tracking-wider text-[#000000] mb-4">
         {subtitle}
       </span>
 

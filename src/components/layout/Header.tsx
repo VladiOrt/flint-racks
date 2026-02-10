@@ -10,7 +10,7 @@ const navItems = [
   { label: "Servicios", path: "/services" },
   { label: "Cobertura", path: "/cobertura" },
   { label: "Blog", path: "/blog" },
-  { label: "Preguntas", path: "/faqs" },
+  { label: "FAQ", path: "/faqs" },
   { label: "Contacto", path: "/contact" },
 ];
 

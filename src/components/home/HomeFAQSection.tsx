@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, ArrowRight } from "lucide-react";
 
 const faqs = [
   {
@@ -33,6 +34,11 @@ const faqs = [
     answer:
       "Todos nuestros racks cuentan con garantía de fabricación. Además, proporcionamos garantía en la instalación y ofrecemos soporte técnico continuo. Los detalles específicos de garantía se definen según el tipo de producto y proyecto.",
   },
+  {
+    question: "¿Trabajan con empresas de cualquier tamaño?",
+    answer:
+      "Sí, atendemos desde pequeñas y medianas empresas hasta grandes corporativos. Nuestras soluciones son escalables y se adaptan a cualquier volumen de operación, garantizando siempre la misma calidad y compromiso sin importar el tamaño del proyecto.",
+  },
 ];
 
 export default function HomeFAQSection() {
@@ -50,12 +56,28 @@ export default function HomeFAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wide text-foreground text-center mb-16 leading-[0.95]"
+          className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wide text-foreground text-center mb-6 leading-[0.95]"
         >
           PREGUNTAS
           <br />
           FRECUENTES
         </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="text-center mb-16"
+        >
+          <Link
+            to="/faqs"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
+          >
+            Ver Todas las Preguntas
+            <ArrowRight size={16} />
+          </Link>
+        </motion.div>
 
         <div className="max-w-4xl mx-auto">
           {faqs.map((faq, i) => {

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import imgPredefined from "@/assets/service-predefined-racks.jpg";
 import imgCustom from "@/assets/service-custom-racks.jpg";
-import logoBlack from "@/assets/logo-stacked-black.png";
 
 export default function ServiceShowcaseSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -13,13 +12,8 @@ export default function ServiceShowcaseSection() {
     offset: ["start start", "end end"],
   });
 
-  // Service 1 panels slide IN (from off-screen to 0)
-  // Left image: starts at -110% (above), slides to 0%
   const leftImageY = useTransform(scrollYProgress, [0.15, 0.55], ["110%", "0%"]);
-  // Right text: starts at 110% (below), slides to 0%
   const rightTextY = useTransform(scrollYProgress, [0.15, 0.55], ["-110%", "0%"]);
-
-  // Overlay opacity for images
   const overlayOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0.5, 0.35]);
 
   return (
@@ -28,30 +22,33 @@ export default function ServiceShowcaseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
           {/* ===== LEFT HALF ===== */}
           <div className="relative h-full overflow-hidden hidden lg:block">
-            {/* Base layer: Service 2 text (visible initially) */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center bg-sand px-8 z-[1]">
+            {/* Base layer: Service 2 text */}
+            <div className="absolute inset-0 flex flex-col justify-center bg-sand px-12 lg:px-16 z-[1]">
               <TextPanel
-                badge="A la Medida"
+                subtitle="A la Medida"
                 title="Racks Personalizados"
-                alignRight
+                paragraph="Diseñamos y fabricamos soluciones de almacenamiento únicas, adaptadas a las dimensiones, cargas y flujos operativos de tu almacén."
               />
             </div>
 
             {/* Overlay layer: Service 1 image (slides in from bottom) */}
             <motion.div
-              className="absolute inset-0 z-[2]"
+              className="absolute inset-0 z-[2] overflow-hidden"
               style={{ y: leftImageY }}
             >
-              <img
+              <motion.img
                 src={imgPredefined}
                 alt="Racks Prediseñados"
                 className="w-full h-full object-cover"
+                initial={{ scale: 1 }}
+                whileInView={{ scale: 1.15 }}
+                viewport={{ once: true }}
+                transition={{ duration: 30, ease: "linear" }}
               />
               <motion.div
                 className="absolute inset-0 bg-iron"
                 style={{ opacity: overlayOpacity }}
               />
-              {/* Float text bottom-right */}
               <div className="absolute bottom-10 right-10 text-right text-iron-foreground z-[3]">
                 <span className="font-heading text-8xl text-iron-foreground/25 leading-none block">
                   01
@@ -66,15 +63,18 @@ export default function ServiceShowcaseSection() {
 
           {/* ===== RIGHT HALF ===== */}
           <div className="relative h-full overflow-hidden">
-            {/* Base layer: Service 2 image (visible initially) */}
-            <div className="absolute inset-0 z-[1]">
-              <img
+            {/* Base layer: Service 2 image */}
+            <div className="absolute inset-0 z-[1] overflow-hidden">
+              <motion.img
                 src={imgCustom}
                 alt="Racks Personalizados"
                 className="w-full h-full object-cover"
+                initial={{ scale: 1 }}
+                whileInView={{ scale: 1.15 }}
+                viewport={{ once: true }}
+                transition={{ duration: 30, ease: "linear" }}
               />
               <div className="absolute inset-0 bg-iron/40" />
-              {/* Float text bottom-left */}
               <div className="absolute bottom-10 left-10 text-iron-foreground z-[3]">
                 <span className="font-heading text-8xl text-iron-foreground/25 leading-none block">
                   02
@@ -88,12 +88,13 @@ export default function ServiceShowcaseSection() {
 
             {/* Overlay layer: Service 1 text (slides in from top) */}
             <motion.div
-              className="absolute inset-0 flex flex-col justify-center items-center bg-sand px-8 z-[2]"
+              className="absolute inset-0 flex flex-col justify-center bg-sand px-12 lg:px-16 z-[2]"
               style={{ y: rightTextY }}
             >
               <TextPanel
-                badge="Estándar"
+                subtitle="Estándar"
                 title="Racks Prediseñados"
+                paragraph="Sistemas de almacenamiento probados y listos para instalar, con tiempos de entrega reducidos y máxima eficiencia operativa."
               />
             </motion.div>
           </div>
@@ -104,35 +105,33 @@ export default function ServiceShowcaseSection() {
 }
 
 function TextPanel({
-  badge,
+  subtitle,
   title,
-  alignRight = false,
+  paragraph,
 }: {
-  badge: string;
+  subtitle: string;
   title: string;
-  alignRight?: boolean;
+  paragraph: string;
 }) {
   return (
-    <div className={`max-w-md flex flex-col ${alignRight ? "items-end text-right" : "items-start text-left"}`}>
-      <img
-        src={logoBlack}
-        alt="Flint Racks"
-        className="w-14 h-auto mb-12"
-      />
-
-      <span className="inline-block font-body text-xs font-semibold uppercase tracking-wider bg-iron text-iron-foreground px-4 py-1.5 rounded-full mb-5">
-        {badge}
+    <div className="max-w-md flex flex-col items-start text-left">
+      <span className="font-body text-sm font-semibold uppercase tracking-wider text-sand-foreground/60 mb-4">
+        {subtitle}
       </span>
 
       <h2 className="font-heading text-4xl sm:text-5xl tracking-wide text-sand-foreground leading-[0.95] uppercase">
         {title}
       </h2>
 
+      <p className="font-body text-sm text-sand-foreground/70 leading-relaxed mt-5 max-w-sm">
+        {paragraph}
+      </p>
+
       <div className="w-16 h-px bg-border my-8" />
 
       <Link
         to="/contact"
-        className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200"
+        className="inline-flex items-center gap-2 bg-sand-foreground text-sand font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
       >
         Cotizar
         <ArrowRight size={16} />

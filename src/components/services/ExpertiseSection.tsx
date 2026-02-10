@@ -6,13 +6,13 @@ import imgDetail from "@/assets/expertise-detail.jpg";
 const points = [
   {
     icon: Warehouse,
-    title: "Soluciones Industriales",
-    desc: "Diseñamos sistemas de almacenamiento que maximizan cada metro cuadrado de tu almacén, adaptados a tus flujos operativos.",
+    title: "Acero de Grado Industrial",
+    desc: "Cada componente es fabricado con acero de alta resistencia proveniente de los principales manufactureros internacionales del continente asiático.",
   },
   {
     icon: Wrench,
-    title: "Ingeniería Especializada",
-    desc: "Cada proyecto cuenta con respaldo de ingeniería estructural certificada, garantizando seguridad y cumplimiento normativo.",
+    title: "Precisión Milimétrica",
+    desc: "Cada pieza pasa por rigurosos controles de calidad dimensional, garantizando ensambles perfectos y estructuras seguras en cada instalación.",
   },
 ];
 
@@ -32,15 +32,26 @@ export default function ExpertiseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left – Text */}
           <div>
-            <motion.h2
+            <motion.span
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               custom={0}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-wide text-foreground leading-[0.95] uppercase"
+              className="font-body text-sm text-primary font-semibold uppercase tracking-wider"
             >
-              Tu Almacén, Construido con Experiencia y Precisión
+              Calidad Sin Compromiso
+            </motion.span>
+
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={0.5}
+              className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-wide text-foreground leading-[0.95] uppercase mt-3"
+            >
+              Materiales de Clase Mundial
             </motion.h2>
 
             <motion.p
@@ -51,7 +62,7 @@ export default function ExpertiseSection() {
               custom={1}
               className="font-body text-muted-foreground text-base leading-relaxed mt-6 max-w-lg"
             >
-              Con años de trayectoria en el diseño e instalación de racks industriales, transformamos espacios de almacenamiento en operaciones eficientes y seguras.
+              En Flint Racks trabajamos exclusivamente con los mejores manufactureros de acero a nivel internacional, provenientes del continente asiático, asegurando un cuidado milimétrico en cada pieza que integra nuestras infraestructuras.
             </motion.p>
 
             <div className="flex flex-col gap-8 mt-10">

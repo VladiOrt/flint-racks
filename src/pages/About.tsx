@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Target, Lightbulb, Handshake, Gauge, ShieldCheck } from "lucide-react";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
-import aboutImg from "@/assets/about-installation.jpg";
+import MissionGallerySection from "@/components/about/MissionGallerySection";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
 const values = [
@@ -92,61 +92,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission Statement */}
-      <section className="py-24 lg:py-36 bg-background">
-        <div className="container-brand section-padding">
-          <div className="text-center max-w-5xl mx-auto">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="font-body text-sm text-primary font-semibold uppercase tracking-wider"
-            >
-              Quiénes Somos
-            </motion.span>
-
-            <div className="mt-8 space-y-1">
-              {[
-                "Nuestra misión es simple: diseñar,",
-                "fabricar e instalar soluciones de",
-                "almacenamiento que impulsen la",
-                "eficiencia, seguridad y crecimiento",
-                "de tu operación.",
-              ].map((line, i) => (
-                <div key={i} className="overflow-hidden">
-                  <motion.div
-                    initial={{ opacity: 0, y: "100%" }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.15 * i, ease: "easeOut" }}
-                  >
-                    <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground leading-[1.1] uppercase">
-                      {line}
-                    </h2>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="mt-10"
-            >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 border-2 border-foreground text-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300"
-              >
-                Ver Nuestros Servicios
-                <ArrowRight size={16} />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <MissionGallerySection />
 
       {/* Values */}
       <section className="py-20 lg:py-28 bg-iron">

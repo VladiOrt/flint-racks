@@ -176,7 +176,7 @@ export default function Services() {
       </section>
 
       {/* CTA - Reference style */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <img
           src={heroImg}
           alt="Proyecto de almacén"

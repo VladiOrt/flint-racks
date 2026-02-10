@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import FAQs from "./pages/FAQs";
+import Coverage from "./pages/Coverage";
 import AdminBlogs from "./pages/AdminBlogs";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faqs" element={<FAQs />} />
+            <Route path="/cobertura" element={<Coverage />} />
           </Route>
           {/* Admin has no layout (standalone) */}
           <Route path="/admin-blogs" element={<AdminBlogs />} />

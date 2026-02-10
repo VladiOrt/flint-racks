@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 import coverageHero from "@/assets/coverage-hero.jpg";
+import MexicoMapSection from "@/components/coverage/MexicoMapSection";
 
 const coverageFaqs = [
   {
@@ -170,6 +171,9 @@ export default function Coverage() {
           </div>
         </div>
       </section>
+
+      {/* Interactive Map */}
+      <MexicoMapSection />
 
       {/* FAQs + CTA */}
       <section className="py-20 lg:py-28 bg-background">

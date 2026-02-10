@@ -38,7 +38,7 @@ export default function ProductShowcaseSection() {
     <section className="bg-background overflow-hidden">
       {/* Big text banner */}
       <div className="py-10 lg:py-14 flex items-center justify-center">
-        <span className="font-heading text-[18vw] sm:text-[15vw] lg:text-[12vw] tracking-wider leading-none text-foreground select-none">
+        <span className="font-heading text-[15vw] sm:text-[12vw] lg:text-[8vw] tracking-wider leading-none text-foreground select-none whitespace-nowrap">
           CASOS DE ÉXITO
         </span>
       </div>

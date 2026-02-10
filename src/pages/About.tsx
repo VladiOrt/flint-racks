@@ -92,36 +92,58 @@ export default function About() {
         </div>
       </section>
 
-      {/* Intro */}
-      <section className="py-20 lg:py-28 bg-background">
+      {/* Mission Statement */}
+      <section className="py-24 lg:py-36 bg-background">
         <div className="container-brand section-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                Quiénes Somos
-              </span>
-              <h2 className="font-heading text-5xl tracking-wide text-foreground mt-3 leading-[0.95]">
-                CONSTRUIDO CON SEGURIDAD, DISEÑADO PARA RENDIR
-              </h2>
-              <p className="font-body text-muted-foreground text-base mt-6 leading-relaxed">
-                Flint Racks nació de la convicción de que la eficiencia y la seguridad son la base 
-                de toda operación bien diseñada. Somos una marca enfocada en diseñar, fabricar 
-                e implementar racks industriales y soluciones de almacenamiento, respaldados por 
-                conocimiento técnico y experiencia de campo.
-              </p>
-              <p className="font-body text-muted-foreground text-base mt-4 leading-relaxed">
-                En un mundo donde las operaciones de las empresas dependen de su capacidad de organización, 
-                seguridad y optimización de espacio, nos convertimos en un socio estratégico. Hablamos de 
-                estructuras metálicas, pero también de confianza, respaldo y visión de crecimiento.
-              </p>
-              <p className="font-body text-muted-foreground text-base mt-4 leading-relaxed">
-                Porque entendemos que cada rack sostiene mucho más que productos: sostiene la 
-                logística, la seguridad y la continuidad del negocio.
-              </p>
+          <div className="text-center max-w-5xl mx-auto">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="font-body text-sm text-primary font-semibold uppercase tracking-wider"
+            >
+              Quiénes Somos
+            </motion.span>
+
+            <div className="mt-8 space-y-1">
+              {[
+                "Nuestra misión es simple: diseñar,",
+                "fabricar e instalar soluciones de",
+                "almacenamiento que impulsen la",
+                "eficiencia, seguridad y crecimiento",
+                "de tu operación.",
+              ].map((line, i) => (
+                <div key={i} className="overflow-hidden">
+                  <motion.div
+                    initial={{ opacity: 0, y: "100%" }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.15 * i, ease: "easeOut" }}
+                  >
+                    <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground leading-[1.1] uppercase">
+                      {line}
+                    </h2>
+                  </motion.div>
+                </div>
+              ))}
             </div>
-            <div className="relative">
-              <img src={aboutImg} alt="Instalación" className="w-full aspect-square object-cover" />
-            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="mt-10"
+            >
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 border-2 border-foreground text-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300"
+              >
+                Ver Nuestros Servicios
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>

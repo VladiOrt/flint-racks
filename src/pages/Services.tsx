@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Warehouse, Layers, Truck, Wrench, BarChart3, Ruler } from "lucide-react";
-import MarqueeBanner from "@/components/layout/MarqueeBanner";
+
 import MissionStatsSection from "@/components/services/MissionStatsSection";
 import ServiceShowcaseSection from "@/components/services/ServiceShowcaseSection";
 import ExpertiseSection from "@/components/services/ExpertiseSection";
@@ -175,24 +175,59 @@ export default function Services() {
         </div>
       </section>
 
-      <MarqueeBanner />
+      {/* CTA - Reference style */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <img
+          src={heroImg}
+          alt="Proyecto de almacén"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-foreground/80" />
 
-      {/* CTA */}
-      <section className="py-20 lg:py-24 bg-sand">
-        <div className="container-brand section-padding text-center">
-          <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-sand-foreground">
-            INICIA TU PROYECTO HOY
-          </h2>
-          <p className="font-body text-sand-foreground/60 text-base mt-4 max-w-lg mx-auto">
-            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-10 py-4 text-sm mt-8 hover:bg-primary transition-colors"
+        {/* Watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+          <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
+            CONTÁCTANOS
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 container-brand section-padding text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
           >
-            Cotizar
-            <ArrowRight size={16} />
-          </Link>
+            INICIA TU PROYECTO HOY
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-white/70 text-base mt-6 max-w-lg mx-auto"
+          >
+            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mt-10"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
+            >
+              Cotizar Proyecto
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </>

@@ -172,8 +172,8 @@ export default function Coverage() {
         </div>
       </section>
 
-      {/* Interactive Map */}
-      <MexicoMapSection />
+      {/* Interactive Map - hidden for now */}
+      {/* <MexicoMapSection /> */}
 
       {/* FAQs + CTA */}
       <section className="py-20 lg:py-28 bg-background">

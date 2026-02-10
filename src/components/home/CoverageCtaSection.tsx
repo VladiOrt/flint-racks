@@ -43,13 +43,13 @@ export default function CoverageCtaSection() {
           className="flex items-center justify-center gap-0 mt-12"
         >
           <div className="text-center px-10 lg:px-16">
-            <span className="font-heading text-4xl md:text-5xl text-white">15+</span>
-            <p className="font-body text-sm text-white/70 mt-1">Estados cubiertos</p>
+            <span className="font-heading text-4xl md:text-5xl text-white">98%</span>
+            <p className="font-body text-sm text-white/70 mt-1">Del territorio mexicano cubierto</p>
           </div>
           <div className="w-px h-16 bg-white/30" />
           <div className="text-center px-10 lg:px-16">
-            <span className="font-heading text-4xl md:text-5xl text-white">98%</span>
-            <p className="font-body text-sm text-white/70 mt-1">Entregas a tiempo</p>
+            <span className="font-heading text-4xl md:text-5xl text-white">100%</span>
+            <p className="font-body text-sm text-white/70 mt-1">De clientes felices</p>
           </div>
         </motion.div>
 

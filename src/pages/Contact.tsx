@@ -1,13 +1,9 @@
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import { toast } from "sonner";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+import heroImg from "@/assets/hero-warehouse.jpg";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -27,20 +23,60 @@ export default function Contact() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary py-32 lg:py-40">
-        <div className="container-brand section-padding">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-            <motion.span variants={fadeUp} className="font-body text-sm text-primary-foreground/80 font-semibold uppercase tracking-wider">
-              Contacto
-            </motion.span>
-            <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-primary-foreground mt-4 leading-[0.95]">
+      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-end overflow-hidden">
+        <motion.img
+          src={heroImg}
+          alt="Contacto Flint Racks"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.15 }}
+          transition={{ duration: 10, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-iron/70" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        >
+          <span
+            className="font-heading text-[13vw] sm:text-[15vw] lg:text-[12vw] tracking-wider leading-none max-w-full overflow-hidden"
+            style={{
+              background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            CONTACTO
+          </span>
+        </motion.div>
+
+        <div className="relative container-brand section-padding pb-16 lg:pb-20 w-full">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider text-iron-foreground leading-[0.95] max-w-3xl"
+            >
               CONSTRUYAMOS
               <br />
-              ALGO
-              <br />
-              JUNTOS
+              ALGO <span className="text-primary">JUNTOS</span>
             </motion.h1>
-          </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col gap-5 lg:max-w-sm lg:pb-1"
+            >
+              <p className="font-body text-iron-foreground/70 text-sm leading-relaxed">
+                Estamos listos para ayudarte a optimizar tu almacén con soluciones a la medida de tu operación.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 

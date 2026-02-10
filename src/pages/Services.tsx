@@ -53,24 +53,67 @@ export default function Services() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-32 lg:py-40 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={servicesImg} alt="Racks industriales" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-iron/90" />
-        </div>
-        <div className="relative container-brand section-padding">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-            <motion.span variants={fadeUp} className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Nuestros Servicios
-            </motion.span>
-            <motion.h1 variants={fadeUp} className="font-heading text-6xl md:text-7xl tracking-wider text-iron-foreground mt-4 leading-[0.95]">
+      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-end overflow-hidden">
+        <motion.img
+          src={servicesImg}
+          alt="Racks industriales"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.15 }}
+          transition={{ duration: 10, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-iron/70" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        >
+          <span
+            className="font-heading text-[15vw] sm:text-[18vw] lg:text-[14vw] tracking-wider leading-none max-w-full overflow-hidden"
+            style={{
+              background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            SERVICIOS
+          </span>
+        </motion.div>
+
+        <div className="relative container-brand section-padding pb-16 lg:pb-20 w-full">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider text-iron-foreground leading-[0.95] max-w-3xl"
+            >
               SOLUCIONES
               <br />
-              <span className="text-primary">DISEÑADAS</span>
-              <br />
-              PARA TI
+              <span className="text-primary">DISEÑADAS</span> PARA TI
             </motion.h1>
-          </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col gap-5 lg:max-w-sm lg:pb-1"
+            >
+              <p className="font-body text-iron-foreground/70 text-sm leading-relaxed">
+                Desde rack selectivo hasta alta densidad, diseñamos e instalamos la solución adecuada para tu operación.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200 w-fit"
+              >
+                Cotizar Proyecto
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 

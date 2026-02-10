@@ -140,7 +140,7 @@ function ValuesSection() {
 
   if (isMobile) {
     return (
-      <section className="py-16 overflow-hidden" style={{ backgroundColor: '#d6c4a9' }}>
+      <section className="py-16 overflow-hidden bg-muted">
         <div className="px-6 mb-8 text-center">
           <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">Lo Que Nos Define</span>
           <h2 className="font-heading text-3xl tracking-wide text-foreground mt-3">VALORES DE MARCA</h2>
@@ -167,7 +167,7 @@ function ValuesSection() {
   }
 
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: '#d6c4a9' }}>
+    <section className="py-20 lg:py-28 bg-muted">
       <div className="container-brand section-padding">
         <div className="text-center mb-16">
           <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">Lo Que Nos Define</span>

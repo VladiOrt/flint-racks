@@ -4,6 +4,7 @@ import { ArrowRight, Warehouse, Layers, Truck, Wrench, BarChart3, Ruler } from "
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import MissionStatsSection from "@/components/services/MissionStatsSection";
 import ServiceShowcaseSection from "@/components/services/ServiceShowcaseSection";
+import ExpertiseSection from "@/components/services/ExpertiseSection";
 import servicesImg from "@/assets/services-racks.jpg";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
@@ -123,51 +124,7 @@ export default function Services() {
 
       <ServiceShowcaseSection />
 
-      {/* Services Grid */}
-      <section className="py-20 lg:py-28 bg-background">
-        <div className="container-brand section-padding">
-          <div className="text-center mb-16">
-            <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Lo Que Ofrecemos
-            </span>
-            <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
-              SISTEMAS DE RACKS
-            </h2>
-            <p className="font-body text-muted-foreground text-base mt-4 max-w-xl mx-auto">
-              Desde selectivo hasta alta densidad, diseñamos e instalamos la solución adecuada para tu operación.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group border border-border hover:border-primary/30 bg-card p-8 transition-all duration-300"
-              >
-                <service.icon size={40} className="text-primary mb-6" strokeWidth={1.5} />
-                <h3 className="font-heading text-xl tracking-wide text-foreground mb-3">
-                  {service.title.toUpperCase()}
-                </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6">
-                  {service.description}
-                </p>
-                <ul className="flex flex-col gap-2">
-                  {service.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-xs font-body text-muted-foreground">
-                      <span className="w-1.5 h-1.5 bg-primary flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExpertiseSection />
 
       {/* Process */}
       <section className="py-20 lg:py-28 bg-iron">

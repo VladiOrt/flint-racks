@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Target, Lightbulb, Handshake, Gauge, ShieldCheck } from "lucide-react";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
 import MissionGallerySection from "@/components/about/MissionGallerySection";
+import GalleryScrollAlign from "@/components/about/GalleryScrollAlign";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
 const values = [
@@ -93,6 +94,7 @@ export default function About() {
       </section>
 
       <MissionGallerySection />
+      <GalleryScrollAlign />
 
       {/* Values */}
       <section className="py-20 lg:py-28 bg-iron">

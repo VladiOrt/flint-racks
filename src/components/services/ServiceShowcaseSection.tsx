@@ -17,7 +17,7 @@ export default function ServiceShowcaseSection() {
   const overlayOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0.5, 0.35]);
 
   return (
-    <section ref={sectionRef} className="relative" style={{ height: "350vh" }}>
+    <section ref={sectionRef} className="relative lg:h-[350vh]">
       {/* ===== DESKTOP: sticky split-screen ===== */}
       <div className="sticky top-0 h-screen w-full overflow-hidden hidden lg:block">
         <div className="grid grid-cols-2 h-full">

@@ -7,8 +7,8 @@ import img3 from "@/assets/showcase-rack-3.jpg";
 const images = [img1, img2, img3, img1, img2, img3];
 
 const bars = [
-  { label: "Satisfacción del Cliente", value: 97 },
-  { label: "Proyectos a Tiempo", value: 92 },
+  { label: "Clientes Satisfechos", value: 97 },
+  { label: "Proyectos Entregados a Tiempo", value: 92 },
 ];
 
 function ProgressBar({ label, value }: { label: string; value: number }) {
@@ -39,7 +39,7 @@ export default function ProductShowcaseSection() {
       {/* Big text banner */}
       <div className="py-10 lg:py-14 flex items-center justify-center">
         <span className="font-heading text-[18vw] sm:text-[15vw] lg:text-[12vw] tracking-wider leading-none text-foreground select-none">
-          SISTEMAS
+          CASOS DE ÉXITO
         </span>
       </div>
 
@@ -54,7 +54,7 @@ export default function ProductShowcaseSection() {
             transition={{ duration: 0.6 }}
             className="font-heading text-4xl sm:text-5xl tracking-wide text-foreground leading-[0.95] uppercase"
           >
-            Experiencia en la que Puedes Confiar
+            Impacto Real en Empresas Reales
           </motion.h2>
 
           <motion.p
@@ -64,7 +64,7 @@ export default function ProductShowcaseSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-body text-muted-foreground text-sm leading-relaxed mt-5 max-w-md"
           >
-            Cada proyecto respaldado por años de experiencia en diseño, fabricación e instalación de sistemas de almacenamiento industrial.
+            Nuestros clientes han optimizado sus operaciones logísticas, reducido costos y maximizado su capacidad de almacenamiento gracias a las soluciones de Flint Racks.
           </motion.p>
 
           <div className="w-full h-px bg-border my-8" />

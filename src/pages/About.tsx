@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Target, Lightbulb, Handshake, Gauge, ShieldCheck } from "lucide-react";
-import MarqueeBanner from "@/components/layout/MarqueeBanner";
+import { ArrowRight, Target, Lightbulb, Handshake, Gauge, ShieldCheck } from "lucide-react";
 import MissionGallerySection from "@/components/about/MissionGallerySection";
 import GalleryScrollAlign from "@/components/about/GalleryScrollAlign";
 import heroImg from "@/assets/hero-warehouse.jpg";
@@ -97,13 +96,13 @@ export default function About() {
       <GalleryScrollAlign />
 
       {/* Values */}
-      <section className="py-20 lg:py-28 bg-iron">
+      <section className="py-20 lg:py-28" style={{ backgroundColor: '#d6c4a9' }}>
         <div className="container-brand section-padding">
           <div className="text-center mb-16">
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
               Lo Que Nos Define
             </span>
-            <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-iron-foreground mt-3">
+            <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
               VALORES DE MARCA
             </h2>
           </div>
@@ -115,72 +114,48 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="border border-iron-foreground/10 p-8 hover:border-primary/30 transition-colors"
+                className="border border-foreground/10 p-8 hover:border-primary/30 transition-colors"
+                style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
               >
                 <value.icon size={36} className="text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="font-heading text-2xl tracking-wide text-iron-foreground mb-3">
+                <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3">
                   {value.title.toUpperCase()}
                 </h3>
-                <p className="font-body text-sm text-iron-foreground/60 leading-relaxed">
+                <p className="font-body text-sm text-foreground/60 leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Team */}
-      <section className="py-20 lg:py-28 bg-background">
-        <div className="container-brand section-padding">
-          <div className="text-center mb-16">
-            <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Nuestro Equipo
-            </span>
-            <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">
-              MIEMBROS DEL EQUIPO
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { name: "Thomas Edwards", role: "Director de Operaciones", initials: "TE" },
-              { name: "María González", role: "Directora de Seguridad", initials: "MG" },
-              { name: "Carlos Mendoza", role: "Ingeniero de Diseño", initials: "CM" },
-            ].map((member) => (
-              <div key={member.name} className="text-center group">
-                <div className="w-48 h-48 mx-auto bg-iron flex items-center justify-center mb-6">
-                  <span className="font-heading text-4xl text-primary">{member.initials}</span>
-                </div>
-                <h3 className="font-heading text-xl tracking-wide text-foreground">
-                  {member.name.toUpperCase()}
+            {/* CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: values.length * 0.1 }}
+              className="border border-primary/30 p-8 flex flex-col justify-between"
+              style={{ backgroundColor: 'rgba(255,255,255,0.25)' }}
+            >
+              <div>
+                <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3">
+                  TRABAJA CON NOSOTROS
                 </h3>
-                <p className="font-body text-sm text-muted-foreground mt-1">{member.role}</p>
+                <p className="font-body text-sm text-foreground/60 leading-relaxed">
+                  Conoce nuestros servicios y descubre cómo podemos optimizar tu operación.
+                </p>
               </div>
-            ))}
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 border-2 border-primary text-primary font-body font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-colors duration-200 w-fit mt-6"
+              >
+                Ver Servicios
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-sand py-20 lg:py-24">
-        <div className="container-brand section-padding text-center">
-          <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-sand-foreground leading-[0.95]">
-            ¿LISTO PARA TRABAJAR JUNTOS?
-          </h2>
-          <p className="font-body text-sand-foreground/60 text-base mt-4 max-w-lg mx-auto">
-            Permítenos ayudarte a optimizar las operaciones de tu almacén con soluciones diseñadas para tus necesidades específicas.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-10 py-4 text-sm mt-8 hover:bg-primary transition-colors"
-          >
-            Contáctanos
-            <CheckCircle size={16} />
-          </a>
-        </div>
-      </section>
-
-      <MarqueeBanner />
     </>
   );
 }

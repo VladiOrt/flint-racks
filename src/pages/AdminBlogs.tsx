@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import logoRed from "@/assets/logo-red.svg";
 import RichTextEditor from "@/components/blog/RichTextEditor";
+import CoverImageUpload from "@/components/blog/CoverImageUpload";
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "flintracks2024";
@@ -211,22 +212,12 @@ export default function AdminBlogs() {
             {/* Cover Image */}
             <div>
               <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                Imagen de Portada (URL)
+                Imagen de Portada
               </label>
-              <div className="flex gap-4 items-start">
-                <input
-                  type="text"
-                  value={form.coverImage}
-                  onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
-                  className="flex-1 bg-card border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none"
-                  placeholder="https://ejemplo.com/imagen.jpg"
-                />
-                {form.coverImage && (
-                  <div className="w-24 h-18 border border-border overflow-hidden flex-shrink-0">
-                    <img src={form.coverImage} alt="Preview" className="w-full h-full object-cover" />
-                  </div>
-                )}
-              </div>
+              <CoverImageUpload
+                value={form.coverImage}
+                onChange={(dataUrl) => setForm({ ...form, coverImage: dataUrl })}
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -21,7 +21,11 @@ export default function BlogCard({ post }: BlogCardProps) {
       <div className="hidden md:grid md:grid-cols-[280px_1fr_auto] lg:grid-cols-[320px_1fr_auto] gap-8 items-center py-10">
         {/* Image */}
         <Link to={`/blog/${post.slug}`} className="block aspect-[4/3] overflow-hidden bg-iron">
-          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80 group-hover:scale-105 transition-transform duration-500" />
+          {post.coverImage ? (
+            <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80 group-hover:scale-105 transition-transform duration-500" />
+          )}
         </Link>
 
         {/* Content */}
@@ -65,7 +69,11 @@ export default function BlogCard({ post }: BlogCardProps) {
       <div className="md:hidden py-8">
         {/* Full-width image */}
         <Link to={`/blog/${post.slug}`} className="block aspect-[16/10] overflow-hidden bg-iron mb-6">
-          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80" />
+          {post.coverImage ? (
+            <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80" />
+          )}
         </Link>
 
         {/* Content centered */}

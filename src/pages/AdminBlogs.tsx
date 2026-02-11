@@ -4,6 +4,7 @@ import { Plus, Edit, Trash2, Eye, EyeOff, LogOut, ArrowLeft } from "lucide-react
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import logoRed from "@/assets/logo-red.svg";
+import RichTextEditor from "@/components/blog/RichTextEditor";
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "flintracks2024";
@@ -21,6 +22,7 @@ export default function AdminBlogs() {
     title: "",
     excerpt: "",
     content: "",
+    coverImage: "",
     author: "",
     authorRole: "",
     date: new Date().toISOString().split("T")[0],
@@ -47,6 +49,7 @@ export default function AdminBlogs() {
       title: "",
       excerpt: "",
       content: "",
+      coverImage: "",
       author: "",
       authorRole: "",
       date: new Date().toISOString().split("T")[0],
@@ -88,6 +91,7 @@ export default function AdminBlogs() {
       title: post.title,
       excerpt: post.excerpt,
       content: post.content,
+      coverImage: post.coverImage || "",
       author: post.author,
       authorRole: post.authorRole,
       date: post.date,
@@ -204,6 +208,27 @@ export default function AdminBlogs() {
               </div>
             </div>
 
+            {/* Cover Image */}
+            <div>
+              <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
+                Imagen de Portada (URL)
+              </label>
+              <div className="flex gap-4 items-start">
+                <input
+                  type="text"
+                  value={form.coverImage}
+                  onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
+                  className="flex-1 bg-card border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none"
+                  placeholder="https://ejemplo.com/imagen.jpg"
+                />
+                {form.coverImage && (
+                  <div className="w-24 h-18 border border-border overflow-hidden flex-shrink-0">
+                    <img src={form.coverImage} alt="Preview" className="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
@@ -256,15 +281,11 @@ export default function AdminBlogs() {
 
             <div>
               <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                Contenido * (soporta ## títulos, ### subtítulos, **negritas**, - listas)
+                Contenido *
               </label>
-              <textarea
-                required
-                rows={20}
+              <RichTextEditor
                 value={form.content}
-                onChange={(e) => setForm({ ...form, content: e.target.value })}
-                className="w-full bg-card border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none resize-y font-mono"
-                placeholder="Escribe el contenido de tu artículo aquí..."
+                onChange={(html) => setForm({ ...form, content: html })}
               />
             </div>
 
@@ -333,6 +354,9 @@ export default function AdminBlogs() {
               <thead>
                 <tr className="border-b border-border bg-muted/50">
                   <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground px-6 py-4">
+                    Portada
+                  </th>
+                  <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground px-6 py-4">
                     Título
                   </th>
                   <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground px-6 py-4">
@@ -352,6 +376,15 @@ export default function AdminBlogs() {
               <tbody>
                 {posts.map((post) => (
                   <tr key={post.id} className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="w-16 h-12 bg-iron overflow-hidden">
+                        {post.coverImage ? (
+                          <img src={post.coverImage} alt="" className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80" />
+                        )}
+                      </div>
+                    </td>
                     <td className="px-6 py-4">
                       <span className="font-body text-sm font-medium text-foreground">
                         {post.title}

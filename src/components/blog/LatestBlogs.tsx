@@ -1,5 +1,5 @@
 import { getPublishedPosts } from "@/lib/blogData";
-import BlogCard from "./BlogCard";
+import BlogCardColumn from "./BlogCardColumn";
 
 interface LatestBlogsProps {
   excludeSlug?: string;
@@ -28,7 +28,7 @@ export default function LatestBlogs({ excludeSlug, limit = 3 }: LatestBlogsProps
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <BlogCard key={post.id} post={post} />
+            <BlogCardColumn key={post.id} post={post} />
           ))}
         </div>
       </div>

@@ -4,6 +4,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
+  coverImage?: string;
   author: string;
   authorRole: string;
   date: string;
@@ -19,6 +20,7 @@ const defaultPosts: BlogPost[] = [
     slug: 'maximizing-warehouse-efficiency-with-selective-pallet-racking',
     title: 'Maximizing Warehouse Efficiency with Selective Pallet Racking',
     excerpt: 'Discover how selective pallet racking systems can transform your warehouse operations, improving accessibility and storage density simultaneously.',
+    coverImage: '/assets/blog-cover-1.jpg',
     content: `Selective pallet racking is the most common and versatile storage system used in warehouses today. Its design allows direct access to every pallet position, making it ideal for operations that require high selectivity and fast inventory turnover.
 
 ## Why Choose Selective Racking?
@@ -53,6 +55,7 @@ Every installation is backed by our commitment to safety and structural integrit
     slug: 'safety-first-rack-inspection-best-practices',
     title: 'Safety First: Rack Inspection Best Practices',
     excerpt: 'Regular rack inspections are critical to maintaining a safe warehouse environment. Learn the key checkpoints every facility manager should know.',
+    coverImage: '/assets/blog-cover-2.jpg',
     content: `Warehouse safety starts with the structural integrity of your racking systems. A damaged or improperly maintained rack can pose serious risks to personnel, inventory, and operations.
 
 ## The Importance of Regular Inspections
@@ -100,6 +103,7 @@ At Flint Racks, we design systems with safety margins built in, and we offer ins
     slug: 'drive-in-vs-push-back-racking-which-is-right',
     title: 'Drive-In vs. Push-Back Racking: Which Is Right for Your Operation?',
     excerpt: 'Comparing two high-density storage solutions to help you make the best decision for your warehouse layout and inventory management needs.',
+    coverImage: '/assets/blog-cover-3.jpg',
     content: `When warehouse space is at a premium, high-density storage systems become essential. Two of the most popular options are drive-in racking and push-back racking. Both maximize storage density, but they work in fundamentally different ways.
 
 ## Drive-In Racking
@@ -145,6 +149,7 @@ Contact us for a free consultation and warehouse assessment.`,
     slug: 'upcoming-warehouse-automation-trends-2026',
     title: 'Upcoming Warehouse Automation Trends for 2026',
     excerpt: 'A preview of the automation technologies that will reshape warehouse operations in the coming year.',
+    coverImage: '/assets/blog-cover-4.jpg',
     content: `The warehouse industry is on the cusp of a major transformation. As labor costs rise and e-commerce demands grow, automation is no longer a luxury — it's a necessity.
 
 ## Key Trends to Watch

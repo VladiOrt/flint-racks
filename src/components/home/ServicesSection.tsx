@@ -86,7 +86,7 @@ export default function ServicesSection() {
                       <h3 className="font-heading text-2xl lg:text-3xl text-iron-foreground uppercase tracking-wide mt-1">
                         {service.title}
                       </h3>
-                      <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed max-w-md">
+                      <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed max-w-md line-clamp-3">
                         {service.description}
                       </p>
                     </motion.div>
@@ -134,7 +134,7 @@ export default function ServicesSection() {
                   <h3 className="font-heading text-2xl text-iron-foreground uppercase tracking-wide mt-1">
                     {service.title}
                   </h3>
-                  <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed">
+                  <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed line-clamp-3">
                     {service.description}
                   </p>
                 </div>

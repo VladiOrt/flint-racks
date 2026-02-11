@@ -1,56 +1,99 @@
 import { Link } from "react-router-dom";
 import type { BlogPost } from "@/lib/blogData";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight, Calendar } from "lucide-react";
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const formattedDate = new Date(post.date).toLocaleDateString("es-MX", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).toUpperCase();
+
+  const tags = post.tags ?? ["INDUSTRIAL", "ALMACENAJE"];
+
   return (
-    <article className="group bg-card border border-border hover:border-primary/30 transition-all duration-300">
-      {/* Image placeholder with brand pattern */}
-      <div className="aspect-[16/10] bg-iron relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-iron/80" />
-        <div className="absolute bottom-4 left-4">
-          <span className="font-body text-xs text-iron-foreground/60 bg-iron/80 px-3 py-1">
-            {new Date(post.date).toLocaleDateString("es-MX", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </span>
+    <article className="group">
+      {/* ===== DESKTOP: horizontal row ===== */}
+      <div className="hidden md:grid md:grid-cols-[280px_1fr_auto] lg:grid-cols-[320px_1fr_auto] gap-8 items-center py-10">
+        {/* Image */}
+        <Link to={`/blog/${post.slug}`} className="block aspect-[4/3] overflow-hidden bg-iron">
+          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80 group-hover:scale-105 transition-transform duration-500" />
+        </Link>
+
+        {/* Content */}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Calendar size={14} />
+            <span className="font-body text-xs tracking-wider">{formattedDate}</span>
+          </div>
+
+          <h3 className="font-heading text-xl lg:text-2xl tracking-wide text-foreground leading-tight uppercase group-hover:text-primary transition-colors">
+            <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+          </h3>
+
+          <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2">
+            {post.excerpt}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mt-1">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="font-body text-xs uppercase tracking-wider border border-border px-3 py-1.5 text-foreground"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="p-6">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="font-body text-xs text-primary font-semibold uppercase tracking-wider">
-            {post.author}
-          </span>
-          <span className="text-muted-foreground text-xs">•</span>
-          <span className="font-body text-xs text-muted-foreground">
-            {post.authorRole}
-          </span>
-        </div>
-
-        <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3 group-hover:text-primary transition-colors">
-          <Link to={`/blog/${post.slug}`}>
-            {post.title}
-          </Link>
-        </h3>
-
-        <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
-          {post.excerpt}
-        </p>
-
+        {/* Read More */}
         <Link
           to={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 font-body text-sm font-semibold text-foreground group-hover:text-primary transition-colors"
+          className="inline-flex items-center gap-1.5 font-body text-sm font-semibold uppercase tracking-wider text-foreground group-hover:text-primary transition-colors whitespace-nowrap self-center"
         >
           Leer Más
-          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          <ArrowUpRight size={14} />
         </Link>
+      </div>
+
+      {/* ===== MOBILE: vertical stacked ===== */}
+      <div className="md:hidden py-8">
+        {/* Full-width image */}
+        <Link to={`/blog/${post.slug}`} className="block aspect-[16/10] overflow-hidden bg-iron mb-6">
+          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80" />
+        </Link>
+
+        {/* Content centered */}
+        <div className="flex flex-col items-center text-center gap-3">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Calendar size={14} />
+            <span className="font-body text-xs tracking-wider">{formattedDate}</span>
+          </div>
+
+          <h3 className="font-heading text-xl tracking-wide text-foreground leading-tight uppercase">
+            <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+          </h3>
+
+          <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2">
+            {post.excerpt}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-2 mt-1">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="font-body text-xs uppercase tracking-wider border border-border px-3 py-1.5 text-foreground"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );

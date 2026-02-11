@@ -95,7 +95,7 @@ export default function Blog() {
         </div>
       </section>
 
-      <MarqueeBanner />
+
     </>
   );
 }

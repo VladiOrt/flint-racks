@@ -9,12 +9,16 @@ const services = [
   {
     title: "Racks Prediseñados",
     subtitle: "Estándar",
+    description:
+      "Soluciones de almacenamiento listas para instalar, diseñadas con medidas y configuraciones estándar que se adaptan a la mayoría de los espacios industriales. Ideales para optimizar tu operación de forma rápida y eficiente.",
     image: imgPredefined,
     link: "/services",
   },
   {
     title: "Racks Personalizados",
     subtitle: "A la Medida",
+    description:
+      "Diseñamos y fabricamos racks completamente adaptados a las necesidades específicas de tu operación, espacio y tipo de carga. Cada proyecto es único, garantizando máxima eficiencia y aprovechamiento de tu almacén.",
     image: imgCustom,
     link: "/services",
   },
@@ -82,6 +86,9 @@ export default function ServicesSection() {
                       <h3 className="font-heading text-2xl lg:text-3xl text-iron-foreground uppercase tracking-wide mt-1">
                         {service.title}
                       </h3>
+                      <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed max-w-md">
+                        {service.description}
+                      </p>
                     </motion.div>
 
                     {/* Arrow button */}
@@ -127,6 +134,9 @@ export default function ServicesSection() {
                   <h3 className="font-heading text-2xl text-iron-foreground uppercase tracking-wide mt-1">
                     {service.title}
                   </h3>
+                  <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0">
                   <ArrowUpRight size={16} />

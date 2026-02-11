@@ -232,7 +232,7 @@ export default function About() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="md:hidden font-heading text-sm tracking-[0.3em] text-iron-foreground/70 uppercase"
+              className="md:hidden font-heading text-sm tracking-[0.3em] text-primary uppercase"
             >
               NOSOTROS
             </motion.span>

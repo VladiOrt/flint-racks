@@ -141,15 +141,16 @@ export default function Contact() {
         />
         <div className="absolute inset-0 bg-iron/80" />
 
-        {/* Large watermark */}
+        {/* Large watermark — desktop only */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 flex items-start justify-center pt-28 lg:pt-32 pointer-events-none select-none"
+          className="absolute inset-0 hidden md:flex items-start justify-center pointer-events-none select-none"
+          style={{ paddingTop: '10%' }}
         >
           <span
-            className="font-heading text-[16vw] sm:text-[14vw] lg:text-[10vw] tracking-wider leading-none"
+            className="font-heading text-[10vw] tracking-wider leading-none"
             style={{
               background:
                 "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
@@ -161,6 +162,16 @@ export default function Contact() {
             CONTACTO
           </span>
         </motion.div>
+
+        {/* Mobile subtitle */}
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="md:hidden absolute top-28 left-6 font-heading text-sm tracking-[0.3em] text-primary uppercase z-10"
+        >
+          CONTACTO
+        </motion.span>
 
         {/* Form card */}
         <motion.div

@@ -76,7 +76,7 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Blog Grid */}
+      {/* Blog List */}
       <section className="py-20 lg:py-28 bg-background">
         <div className="container-brand section-padding">
           {posts.length === 0 ? (
@@ -86,33 +86,11 @@ export default function Blog() {
               </p>
             </div>
           ) : (
-            <>
-              {/* Featured Post */}
-              {posts.length > 0 && (
-                <div className="mb-16">
-                  <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                    Último Artículo
-                  </span>
-                  <div className="mt-4">
-                    <BlogCard post={posts[0]} />
-                  </div>
-                </div>
-              )}
-
-              {/* Rest of posts */}
-              {posts.length > 1 && (
-                <div>
-                  <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                    Todos los Artículos
-                  </span>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
-                    {posts.slice(1).map((post) => (
-                      <BlogCard key={post.id} post={post} />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </>
+            <div className="divide-y divide-border">
+              {posts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
           )}
         </div>
       </section>

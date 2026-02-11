@@ -8,6 +8,7 @@ export interface BlogPost {
   authorRole: string;
   date: string;
   status: 'draft' | 'published';
+  tags?: string[];
 }
 
 const STORAGE_KEY = 'flint_racks_blog_posts';

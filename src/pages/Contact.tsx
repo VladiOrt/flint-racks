@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send, ArrowRight, Minus, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Mail, Phone, MapPin, Clock, Send, Minus, Plus } from "lucide-react";
+
 import { toast } from "sonner";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
@@ -323,6 +323,21 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* ── Map ── */}
+      <section className="w-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.443282450274!2d-99.19302092314275!3d19.436445740554795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d203e7b9f2d751%3A0x100e1b6dbac1268c!2stBE%20Studio%20-%20Agencia%20de%20Branding!5e0!3m2!1ses!2smx!4v1770772002634!5m2!1ses!2smx"
+          width="100%"
+          height="550"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Ubicación Flint Racks"
+          className="w-full"
+        />
+      </section>
+
       {/* ── FAQ Section ── */}
       <section className="py-20 lg:py-28 bg-background border-t border-border">
         <div className="container-brand section-padding">
@@ -354,59 +369,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <img
-          src={heroImg}
-          alt="Proyecto de almacén"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-foreground/80" />
-
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-          <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
-            CONTÁCTANOS
-          </span>
-        </div>
-
-        <div className="relative z-10 container-brand section-padding text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
-          >
-            INICIA TU PROYECTO HOY
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-white/70 text-base mt-6 max-w-lg mx-auto"
-          >
-            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="mt-10"
-          >
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
-            >
-              Cotizar Proyecto
-              <ArrowRight size={16} />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
     </>
   );
 }

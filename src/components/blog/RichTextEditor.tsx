@@ -13,7 +13,7 @@ import {
   Youtube,
   List,
   ListOrdered,
-  Code,
+  Pilcrow,
 } from "lucide-react";
 
 interface RichTextEditorProps {
@@ -80,6 +80,34 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Cmd/Ctrl + Alt + 0 => Paragraph
+    if ((e.metaKey || e.ctrlKey) && e.altKey && e.key === '0') {
+      e.preventDefault();
+      formatBlock("p");
+      return;
+    }
+    // Double Enter in list exits to paragraph
+    if (e.key === 'Enter' && !e.shiftKey) {
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0) {
+        const node = sel.anchorNode;
+        const li = node?.parentElement?.closest?.('li');
+        if (li && li.textContent?.trim() === '') {
+          e.preventDefault();
+          const list = li.closest('ul, ol');
+          if (list) {
+            li.remove();
+            if (list.children.length === 0) list.remove();
+          }
+          document.execCommand('insertParagraph', false);
+          formatBlock('p');
+          return;
+        }
+      }
+    }
+  };
+
   const ToolBtn = ({ onClick, active, children, title }: { onClick: () => void; active?: boolean; children: React.ReactNode; title: string }) => (
     <button
       type="button"
@@ -120,7 +148,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
 
         <div className="w-px h-5 bg-border mx-1" />
 
-        <ToolBtn onClick={() => formatBlock("p")} title="Párrafo"><Code size={16} /></ToolBtn>
+        <ToolBtn onClick={() => formatBlock("p")} title="Párrafo (⌘+Alt+0)"><Pilcrow size={16} /></ToolBtn>
       </div>
 
       {/* Image Dialog */}
@@ -182,6 +210,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
         ref={editorRef}
         contentEditable
         onInput={handleInput}
+        onKeyDown={handleKeyDown}
         dangerouslySetInnerHTML={{ __html: value }}
         className="min-h-[400px] px-4 py-3 font-body text-sm text-foreground focus:outline-none prose prose-sm max-w-none [&_h1]:font-heading [&_h1]:text-3xl [&_h1]:tracking-wide [&_h1]:mt-6 [&_h1]:mb-3 [&_h2]:font-heading [&_h2]:text-2xl [&_h2]:tracking-wide [&_h2]:mt-5 [&_h2]:mb-2 [&_h3]:font-heading [&_h3]:text-xl [&_h3]:tracking-wide [&_h3]:mt-4 [&_h3]:mb-2 [&_h4]:font-heading [&_h4]:text-lg [&_h4]:mt-4 [&_h4]:mb-2 [&_h5]:font-heading [&_h5]:text-base [&_h5]:mt-3 [&_h5]:mb-1 [&_h6]:font-heading [&_h6]:text-sm [&_h6]:mt-3 [&_h6]:mb-1 [&_img]:max-w-full [&_img]:h-auto [&_img]:my-4 [&_iframe]:w-full"
       />

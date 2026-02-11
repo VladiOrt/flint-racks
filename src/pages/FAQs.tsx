@@ -227,10 +227,11 @@ export default function FAQs() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+          className="absolute inset-0 hidden md:flex items-start justify-center pointer-events-none select-none"
+          style={{ paddingTop: '10%' }}
         >
           <span
-            className="font-heading text-[22vw] sm:text-[22vw] lg:text-[16vw] tracking-wider leading-none max-w-full overflow-hidden"
+            className="font-heading text-[16vw] tracking-wider leading-none max-w-full overflow-hidden"
             style={{
               background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
               WebkitBackgroundClip: "text",
@@ -244,6 +245,15 @@ export default function FAQs() {
 
         <div className="relative container-brand section-padding pb-16 lg:pb-20 w-full">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="md:hidden font-heading text-sm tracking-[0.3em] text-primary uppercase"
+            >
+              FAQ
+            </motion.span>
+
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

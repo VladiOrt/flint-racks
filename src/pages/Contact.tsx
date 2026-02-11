@@ -1,29 +1,136 @@
 import { useState, FormEvent } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
-import MarqueeBanner from "@/components/layout/MarqueeBanner";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Phone, MapPin, Clock, Send, ArrowRight, Minus, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import heroImg from "@/assets/hero-warehouse.jpg";
 
+/* ─── Contact FAQs ─── */
+const contactFaqs = [
+  {
+    question: "¿Qué tipos de sistemas de racks ofrecen?",
+    answer:
+      "Ofrecemos una gama completa que incluye rack selectivo, rack drive-in y drive-through, sistemas push-back, racks cantilever, soluciones de mezzanine y sistemas multinivel.",
+  },
+  {
+    question: "¿Cuánto tiempo toma una instalación típica?",
+    answer:
+      "Los tiempos de instalación varían según el alcance del proyecto. Una instalación estándar típicamente toma de 2 a 4 semanas. Ofrecemos planes de despliegue por fases para minimizar la interrupción.",
+  },
+  {
+    question: "¿Ofrecen visitas técnicas sin costo?",
+    answer:
+      "Sí, realizamos visitas técnicas de evaluación sin costo ni compromiso. Durante la visita, nuestros ingenieros evalúan el espacio y tus necesidades para elaborar una propuesta personalizada.",
+  },
+  {
+    question: "¿Tienen cobertura a nivel nacional?",
+    answer:
+      "Contamos con cobertura a nivel nacional. Tenemos presencia directa en los principales centros industriales del país y red de distribución que nos permite atender proyectos en cualquier estado.",
+  },
+];
+
+/* ─── FAQ Accordion Item ─── */
+function FAQItem({
+  faq,
+  index,
+  isOpen,
+  onToggle,
+}: {
+  faq: { question: string; answer: string };
+  index: number;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+    >
+      <button
+        onClick={onToggle}
+        className="w-full text-left py-6 flex items-center gap-6 group cursor-pointer"
+      >
+        <span
+          className={`font-heading text-lg tracking-wide transition-colors duration-300 ${
+            isOpen ? "text-foreground" : "text-muted-foreground/50"
+          }`}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span
+          className={`font-heading text-xl md:text-2xl lg:text-3xl tracking-wide uppercase flex-1 transition-colors duration-300 ${
+            isOpen ? "text-foreground" : "text-muted-foreground/50"
+          }`}
+        >
+          {faq.question}
+        </span>
+        <div className="flex-shrink-0">
+          {isOpen ? (
+            <Minus size={24} className="text-foreground" />
+          ) : (
+            <Plus size={24} className="text-muted-foreground/50" />
+          )}
+        </div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed pb-6 pl-12 lg:pl-16 pr-8">
+              {faq.answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="h-px bg-border relative">
+        <div
+          className="absolute inset-y-0 left-0 bg-primary transition-all duration-500 ease-out"
+          style={{ width: isOpen ? "100%" : "0%" }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Contact Page ─── */
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
     phone: "",
+    subject: "",
     message: "",
   });
+  const [agreed, setAgreed] = useState(false);
+  const [openFaq, setOpenFaq] = useState(-1);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (!agreed) {
+      toast.error("Debes aceptar los términos y condiciones.");
+      return;
+    }
     toast.success("¡Gracias! Nos pondremos en contacto contigo pronto.");
-    setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    setAgreed(false);
   };
+
+  const inputClass =
+    "w-full bg-transparent border-b border-iron-foreground/30 px-0 py-3 font-body text-sm text-iron-foreground placeholder:text-iron-foreground/50 focus:border-primary focus:outline-none transition-colors";
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-end overflow-hidden">
+      {/* ── Hero + Form ── */}
+      <section className="relative min-h-[90vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden">
         <motion.img
           src={heroImg}
           alt="Contacto Flint Racks"
@@ -32,18 +139,20 @@ export default function Contact() {
           animate={{ scale: 1.15 }}
           transition={{ duration: 10, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-iron/70" />
+        <div className="absolute inset-0 bg-iron/80" />
 
+        {/* Large watermark */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+          className="absolute inset-0 flex items-start justify-center pt-28 lg:pt-32 pointer-events-none select-none"
         >
           <span
-            className="font-heading text-[13vw] sm:text-[15vw] lg:text-[12vw] tracking-wider leading-none max-w-full overflow-hidden"
+            className="font-heading text-[16vw] sm:text-[14vw] lg:text-[10vw] tracking-wider leading-none"
             style={{
-              background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
+              background:
+                "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.1))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -53,169 +162,251 @@ export default function Contact() {
           </span>
         </motion.div>
 
-        <div className="relative container-brand section-padding pb-16 lg:pb-20 w-full">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider text-iron-foreground leading-[0.95] max-w-3xl"
-            >
-              CONSTRUYAMOS
-              <br />
-              ALGO <span className="text-primary">JUNTOS</span>
-            </motion.h1>
+        {/* Form card */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="relative z-10 w-full max-w-3xl mx-auto px-6 mt-32 lg:mt-40"
+        >
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+              <input
+                type="text"
+                placeholder="Tu Nombre"
+                required
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className={inputClass}
+              />
+              <input
+                type="email"
+                placeholder="Correo Electrónico"
+                required
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className={inputClass}
+              />
+              <input
+                type="tel"
+                placeholder="Teléfono"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+                className={inputClass}
+              />
+              <input
+                type="text"
+                placeholder="Asunto"
+                value={formData.subject}
+                onChange={(e) =>
+                  setFormData({ ...formData, subject: e.target.value })
+                }
+                className={inputClass}
+              />
+            </div>
+            <textarea
+              placeholder="Mensaje"
+              required
+              rows={4}
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              className={`${inputClass} resize-none`}
+            />
 
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors"
+              >
+                Enviar
+              </button>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={agreed}
+                  onChange={() => setAgreed(!agreed)}
+                  className="w-4 h-4 border border-iron-foreground/40 bg-transparent accent-primary"
+                />
+                <span className="font-body text-xs text-iron-foreground/60">
+                  Acepto los términos y condiciones
+                </span>
+              </label>
+            </div>
+          </form>
+        </motion.div>
+      </section>
+
+      {/* ── Info Cards ── */}
+      <section className="py-20 lg:py-28 bg-background">
+        <div className="container-brand section-padding">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {/* Address */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-col gap-5 lg:max-w-sm lg:pb-1"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="border border-border p-6 lg:p-8"
             >
-              <p className="font-body text-iron-foreground/70 text-sm leading-relaxed">
-                Estamos listos para ayudarte a optimizar tu almacén con soluciones a la medida de tu operación.
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="font-heading text-sm tracking-wider text-foreground uppercase">
+                  Dirección
+                </h4>
+                <MapPin size={18} className="text-muted-foreground" />
+              </div>
+              <p className="font-body text-sm text-muted-foreground uppercase leading-relaxed">
+                Monterrey, Nuevo León,
+                <br />
+                México
               </p>
+            </motion.div>
+
+            {/* Reach Us */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="border border-border p-6 lg:p-8"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="font-heading text-sm tracking-wider text-foreground uppercase">
+                  Contáctanos
+                </h4>
+                <Send size={18} className="text-muted-foreground" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="mailto:contact@flintracks.com"
+                  className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  contact@flintracks.com
+                </a>
+                <a
+                  href="tel:+521234567890"
+                  className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  +52 (123) 456-7890
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Hours */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="border border-border p-6 lg:p-8"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="font-heading text-sm tracking-wider text-foreground uppercase">
+                  Horario
+                </h4>
+                <Clock size={18} className="text-muted-foreground" />
+              </div>
+              <div className="font-body text-sm text-muted-foreground uppercase leading-relaxed flex flex-col gap-0.5">
+                <span>Lun – Vie: 8:00 – 18:00</span>
+                <span>Sábado: 9:00 – 14:00</span>
+                <span>Domingo: Cerrado</span>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Contact Content */}
-      <section className="py-20 lg:py-28 bg-background">
+      {/* ── FAQ Section ── */}
+      <section className="py-20 lg:py-28 bg-background border-t border-border">
         <div className="container-brand section-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Info */}
-            <div>
-              <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                Ponte en Contacto
-              </span>
-              <h2 className="font-heading text-5xl tracking-wide text-foreground mt-3 leading-[0.95]">
-                ¿LISTO PARA INICIAR TU PROYECTO?
-              </h2>
-              <p className="font-body text-muted-foreground text-base mt-6 leading-relaxed">
-                Ya sea que necesites un nuevo sistema de racks, una evaluación de almacén o quieras 
-                discutir tus necesidades de optimización de almacenamiento, estamos aquí para ayudarte.
-              </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground leading-[0.95]">
+              PREGUNTAS
+              <br />
+              FRECUENTES
+            </h2>
+          </motion.div>
 
-              <div className="flex flex-col gap-6 mt-10">
-                <a href="mailto:contact@flintracks.com" className="flex items-start gap-4 group">
-                  <div className="bg-iron p-3">
-                    <Mail size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-body font-semibold text-sm text-foreground">Correo</h4>
-                    <p className="font-body text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                      contact@flintracks.com
-                    </p>
-                  </div>
-                </a>
-                <a href="tel:+521234567890" className="flex items-start gap-4 group">
-                  <div className="bg-iron p-3">
-                    <Phone size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-body font-semibold text-sm text-foreground">Teléfono</h4>
-                    <p className="font-body text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                      +52 (123) 456-7890
-                    </p>
-                  </div>
-                </a>
-                <div className="flex items-start gap-4">
-                  <div className="bg-iron p-3">
-                    <MapPin size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-body font-semibold text-sm text-foreground">Ubicación</h4>
-                    <p className="font-body text-sm text-muted-foreground">
-                      Monterrey, Nuevo León, México
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="bg-card border border-border p-8 lg:p-10">
-              <h3 className="font-heading text-2xl tracking-wide text-foreground mb-6">
-                ENVÍANOS UN MENSAJE
-              </h3>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Nombre Completo *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Correo Electrónico *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Empresa
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                      Teléfono
-                    </label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-2 block">
-                    Mensaje *
-                  </label>
-                  <textarea
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-background border border-border px-4 py-3 font-body text-sm text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm hover:bg-red-deep transition-colors w-full sm:w-auto"
-                >
-                  Enviar Mensaje
-                  <Send size={16} />
-                </button>
-              </form>
-            </div>
+          <div className="max-w-4xl mx-auto">
+            {contactFaqs.map((faq, i) => (
+              <FAQItem
+                key={i}
+                faq={faq}
+                index={i}
+                isOpen={openFaq === i}
+                onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      <MarqueeBanner />
+      {/* ── CTA ── */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <img
+          src={heroImg}
+          alt="Proyecto de almacén"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-foreground/80" />
+
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+          <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
+            CONTÁCTANOS
+          </span>
+        </div>
+
+        <div className="relative z-10 container-brand section-padding text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
+          >
+            INICIA TU PROYECTO HOY
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-white/70 text-base mt-6 max-w-lg mx-auto"
+          >
+            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mt-10"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
+            >
+              Cotizar Proyecto
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </>
   );
 }

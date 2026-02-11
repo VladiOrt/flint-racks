@@ -122,8 +122,18 @@ function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; g
 
   return (
     <div>
-      {/* Separator between categories */}
-      <div className="h-px bg-border mb-10" />
+      {/* Category title */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-10"
+      >
+        <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl tracking-wide text-foreground leading-[0.95]">
+          {category.title}
+        </h3>
+      </motion.div>
 
       {/* FAQ items */}
       <div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Minus, Plus } from "lucide-react";
-import MarqueeBanner from "@/components/layout/MarqueeBanner";
+
 import heroImg from "@/assets/hero-warehouse.jpg";
 
 interface FAQCategory {
@@ -122,21 +122,8 @@ function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; g
 
   return (
     <div>
-      {/* Category title */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="mb-10"
-      >
-        <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-          Categoría
-        </span>
-        <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl tracking-wide text-foreground mt-2 leading-[0.95]">
-          {category.title}
-        </h3>
-      </motion.div>
+      {/* Separator between categories */}
+      <div className="h-px bg-border mb-10" />
 
       {/* FAQ items */}
       <div>
@@ -295,26 +282,62 @@ export default function FAQs() {
               );
             })}
           </div>
-
-          {/* CTA */}
-          <div className="text-center mt-20 lg:mt-28">
-            <h3 className="font-heading text-3xl md:text-4xl tracking-wide text-foreground">
-              ¿AÚN TIENES PREGUNTAS?
-            </h3>
-            <p className="font-body text-muted-foreground text-base mt-3">
-              Nuestro equipo está listo para ayudarte a encontrar la solución adecuada.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-10 py-4 text-sm mt-6 hover:bg-primary transition-colors"
-            >
-              Contáctanos
-            </Link>
-          </div>
         </div>
       </section>
 
-      <MarqueeBanner />
+      {/* CTA */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <img
+          src={heroImg}
+          alt="Proyecto de almacén"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-foreground/80" />
+
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+          <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
+            CONTÁCTANOS
+          </span>
+        </div>
+
+        <div className="relative z-10 container-brand section-padding text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
+          >
+            INICIA TU PROYECTO HOY
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-white/70 text-base mt-6 max-w-lg mx-auto"
+          >
+            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mt-10"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
+            >
+              Cotizar Proyecto
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </>
   );
 }

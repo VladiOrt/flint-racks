@@ -1,37 +1,9 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import img1 from "@/assets/showcase-rack-1.jpg";
 import img2 from "@/assets/showcase-rack-2.jpg";
 import img3 from "@/assets/showcase-rack-3.jpg";
 
 const images = [img1, img2, img3, img1, img2, img3];
-
-const bars = [
-  { label: "Clientes Satisfechos", value: 97 },
-  { label: "Proyectos Entregados a Tiempo", value: 92 },
-];
-
-function ProgressBar({ label, value }: { label: string; value: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
-  return (
-    <div ref={ref} className="flex flex-col gap-2">
-      <div className="flex justify-between font-body text-sm font-semibold uppercase tracking-wider text-foreground">
-        <span>{label}</span>
-        <span>{value}%</span>
-      </div>
-      <div className="w-full h-1 bg-border overflow-hidden">
-        <motion.div
-          className="h-full bg-foreground"
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${value}%` } : { width: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        />
-      </div>
-    </div>
-  );
-}
 
 export default function ProductShowcaseSection() {
   return (
@@ -67,13 +39,6 @@ export default function ProductShowcaseSection() {
             Nuestros clientes han optimizado sus operaciones logísticas, reducido costos y maximizado su capacidad de almacenamiento gracias a las soluciones de Flint Racks.
           </motion.p>
 
-          <div className="w-full h-px bg-border my-8" />
-
-          <div className="flex flex-col gap-6 max-w-md">
-            {bars.map((bar) => (
-              <ProgressBar key={bar.label} label={bar.label} value={bar.value} />
-            ))}
-          </div>
         </div>
 
         {/* Right – horizontal scrolling images */}

@@ -7,8 +7,8 @@ import logoRed from "@/assets/logo-red.svg";
 import RichTextEditor from "@/components/blog/RichTextEditor";
 import CoverImageUpload from "@/components/blog/CoverImageUpload";
 
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "flintracks2024";
+const ADMIN_USER = import.meta.env.VITE_ADMIN_USER || "admin";
+const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASS || "change_me_now";
 
 export default function AdminBlogs() {
   const [authenticated, setAuthenticated] = useState(false);

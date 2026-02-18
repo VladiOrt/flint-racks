@@ -1,4 +1,5 @@
 import { useRef, useCallback, useState } from "react";
+import { sanitizeHtml } from "@/lib/sanitize";
 import {
   Bold,
   Italic,
@@ -31,14 +32,14 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
   const exec = useCallback((command: string, value?: string) => {
     document.execCommand(command, false, value);
     if (editorRef.current) {
-      onChange(editorRef.current.innerHTML);
+      onChange(sanitizeHtml(editorRef.current.innerHTML));
     }
   }, [onChange]);
 
   const formatBlock = useCallback((tag: string) => {
     document.execCommand("formatBlock", false, tag);
     if (editorRef.current) {
-      onChange(editorRef.current.innerHTML);
+      onChange(sanitizeHtml(editorRef.current.innerHTML));
     }
   }, [onChange]);
 
@@ -76,7 +77,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
 
   const handleInput = () => {
     if (editorRef.current) {
-      onChange(editorRef.current.innerHTML);
+      onChange(sanitizeHtml(editorRef.current.innerHTML));
     }
   };
 

@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { sanitizeHtml } from "@/lib/sanitize";
 import { getPostBySlug } from "@/lib/blogData";
 import LatestBlogs from "@/components/blog/LatestBlogs";
 import { ArrowLeft, Calendar, User } from "lucide-react";
@@ -180,7 +181,7 @@ export default function BlogPost() {
             {isHtml ? (
               <div
                 className="prose prose-lg max-w-none font-body text-foreground/80 [&_h1]:font-heading [&_h1]:text-4xl [&_h1]:tracking-wide [&_h1]:text-foreground [&_h1]:mt-10 [&_h1]:mb-4 [&_h2]:font-heading [&_h2]:text-3xl [&_h2]:tracking-wide [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:font-heading [&_h3]:text-2xl [&_h3]:tracking-wide [&_h3]:text-foreground [&_h3]:mt-8 [&_h3]:mb-3 [&_h4]:font-heading [&_h4]:text-xl [&_h4]:text-foreground [&_h4]:mt-6 [&_h4]:mb-3 [&_h5]:font-heading [&_h5]:text-lg [&_h5]:text-foreground [&_h5]:mt-5 [&_h5]:mb-2 [&_h6]:font-heading [&_h6]:text-base [&_h6]:text-foreground [&_h6]:mt-4 [&_h6]:mb-2 [&_img]:max-w-full [&_img]:h-auto [&_img]:my-6 [&_iframe]:w-full [&_strong]:font-semibold [&_strong]:text-foreground [&_em]:italic [&_ul]:my-4 [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:my-4 [&_ol]:pl-6 [&_ol]:space-y-2 [&_li]:leading-relaxed [&_p]:leading-relaxed [&_p]:my-3"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
               />
             ) : (
               renderMarkdown(post.content)

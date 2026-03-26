@@ -3,38 +3,37 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logoRed from "@/assets/logo-red.svg";
 
-const footerLinks = [
-  {
-    title: "Informativa",
-    links: [
-      { label: "Inicio", path: "/" },
-      { label: "Nosotros", path: "/about" },
-      { label: "Servicios", path: "/services" },
-      { label: "Cobertura", path: "/cobertura" },
-      { label: "Blog", path: "/blog" },
-      { label: "FAQ", path: "/faqs" },
-      { label: "Contacto", path: "/contact" },
-    ],
-  },
-  {
-    title: "Servicios",
-    links: [
-      { label: "Racks prefabricafos", path: "/services#racks-predisenados" },
-      { label: "Racks personalizados", path: "/services#racks-personalizados" },
-      { label: "Materiales de clase mundial", path: "/services#materiales-clase-mundial" },
-    ],
-  },
-  {
-    title: "Legales",
-    links: [
-      { label: "Política de Privacidad", path: "/privacy" },
-      { label: "Términos de Servicio", path: "/terms" },
-    ],
-  },
-];
-
 export default function Footer() {
   const { t } = useTranslation();
+  const footerLinks = [
+    {
+      title: t("footer.informative_title"),
+      links: [
+        { label: t("footer.link_home"), path: "/" },
+        { label: t("footer.link_about"), path: "/about" },
+        { label: t("footer.link_services"), path: "/services" },
+        { label: t("footer.link_coverage"), path: "/cobertura" },
+        { label: t("footer.link_blog"), path: "/blog" },
+        { label: t("footer.link_faq"), path: "/faqs" },
+        { label: t("footer.link_contact"), path: "/contact" },
+      ],
+    },
+    {
+      title: t("footer.services_links_title"),
+      links: [
+        { label: t("footer.link_predesigned_racks"), path: "/services#racks-predisenados" },
+        { label: t("footer.link_custom_racks"), path: "/services#racks-personalizados" },
+        { label: t("footer.link_world_class_materials"), path: "/services#materiales-clase-mundial" },
+      ],
+    },
+    {
+      title: t("footer.legal_title"),
+      links: [
+        { label: t("footer.link_privacy_policy"), path: "/privacy" },
+        { label: t("footer.link_terms_service"), path: "/terms" },
+      ],
+    },
+  ];
 
   return (
     <footer className="bg-iron text-iron-foreground">
@@ -50,17 +49,17 @@ export default function Footer() {
               {t('footer.brand_text')}
             </p>
             <div className="flex flex-col gap-3">
-              <a href="mailto:contact@flintracks.com" className="flex items-center gap-3 text-sm text-iron-foreground/60 hover:text-primary transition-colors">
+              <a href="mailto:contacto@flintracks.com" className="flex items-center gap-3 text-sm text-iron-foreground/60 hover:text-primary transition-colors">
                 <Mail size={16} />
-                contact@flintracks.com
+                contacto@flintracks.com
               </a>
-              <a href="tel:+521234567890" className="flex items-center gap-3 text-sm text-iron-foreground/60 hover:text-primary transition-colors">
+              <a href="tel:+525563193469" className="flex items-center gap-3 text-sm text-iron-foreground/60 hover:text-primary transition-colors">
                 <Phone size={16} />
-                +52 (123) 456-7890
+                +52 55 6319 3469
               </a>
               <span className="flex items-center gap-3 text-sm text-iron-foreground/60">
                 <MapPin size={16} />
-                Monterrey, NL, México
+                Ejército nacional No. 700 Piso 2 Interior 201, CDMX, México
               </span>
             </div>
           </div>
@@ -100,7 +99,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-body text-xs text-iron-foreground/40 hover:text-primary transition-colors"
           >
-            Diseñado y desarrollado por tBE Studio
+            {t("footer.studio_credit")}
           </a>
         </div>
       </div>

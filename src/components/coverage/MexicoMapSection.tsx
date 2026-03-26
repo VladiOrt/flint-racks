@@ -1,5 +1,6 @@
 import { useState, memo } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   ComposableMap,
   Geographies,
@@ -16,6 +17,7 @@ interface TooltipState {
 }
 
 const MexicoMapSection = () => {
+  const { t } = useTranslation();
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
   return (
@@ -28,11 +30,11 @@ const MexicoMapSection = () => {
           className="text-center mb-12"
         >
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl uppercase text-foreground leading-tight">
-            Mapa de <span className="text-primary">Cobertura</span>
+            {t("coverage.map.title_p1")} <span className="text-primary">{t("coverage.map.title_p2")}</span>
           </h2>
           <div className="w-20 h-1 bg-primary mt-6 mx-auto mb-6" />
           <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
-            Explora nuestra presencia en cada estado de la República Mexicana. Posiciona el cursor sobre cualquier estado para más información.
+            {t("coverage.map.description")}
           </p>
         </motion.div>
 

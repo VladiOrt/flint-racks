@@ -282,16 +282,16 @@ export default function Contact() {
               </div>
               <div className="flex flex-col gap-1">
                 <a
-                  href="mailto:contact@flintracks.com"
+                  href="mailto:contacto@flintracks.com"
                   className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  contact@flintracks.com
+                  contacto@flintracks.com
                 </a>
                 <a
-                  href="tel:+521234567890"
+                  href="tel:+525563193469"
                   className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  +52 (123) 456-7890
+                  +52 55 6319 3469
                 </a>
               </div>
             </motion.div>
@@ -313,7 +313,6 @@ export default function Contact() {
               <div className="font-body text-sm text-muted-foreground uppercase leading-relaxed flex flex-col gap-0.5">
                 <span>{t('contact.info.hours_mon_fri')}</span>
                 <span>{t('contact.info.hours_sat')}</span>
-                <span>{t('contact.info.hours_sun')}</span>
               </div>
             </motion.div>
           </div>
@@ -323,7 +322,7 @@ export default function Contact() {
       {/* ── Map ── */}
       <section className="w-full">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.443282450274!2d-99.19302092314275!3d19.436445740554795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d203e7b9f2d751%3A0x100e1b6dbac1268c!2stBE%20Studio%20-%20Agencia%20de%20Branding!5e0!3m2!1ses!2smx!4v1770772002634!5m2!1ses!2smx"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.4090446137598!2d-99.20021672314279!3d19.43792324050779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d202045b79a3ad%3A0x1a2872df113bf061!2sAv.%20Ej%C3%A9rcito%20Nacional%20Mexicano%20700-Piso%202%20Interior%20201%2C%20Polanco%2C%20Polanco%20III%20Secc%2C%20Miguel%20Hidalgo%2C%2011540%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1774558557694!5m2!1ses!2smx"
           width="100%"
           height="550"
           style={{ border: 0 }}

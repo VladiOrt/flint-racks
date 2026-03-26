@@ -98,7 +98,7 @@ export default function Services() {
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200 w-fit"
               >
-                {t('services.hero.cta')}
+                {t("services.cta.btn")}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>

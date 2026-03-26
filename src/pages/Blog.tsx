@@ -13,7 +13,7 @@ const fadeUp = {
 };
 
 export default function Blog() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const posts = getPublishedPosts();
 
   return (
@@ -87,7 +87,7 @@ export default function Blog() {
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200 w-fit"
               >
-                {t('blog_page.hero.cta') || t('contact.hero.cta')}
+                {t("services.cta.btn")}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -110,7 +110,7 @@ export default function Blog() {
               {posts.length > 0 && (
                 <div>
                   <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider mb-8 block">
-                    {i18n.language === "en" ? "Latest Article" : "Último Artículo"}
+                    {t("blog_page.latest_article")}
                   </span>
                   <div className="border-b border-border pb-16">
                     <BlogCard post={posts[0]} />
@@ -122,7 +122,7 @@ export default function Blog() {
               {posts.length > 1 && (
                 <div>
                   <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider mb-8 block">
-                    {i18n.language === "en" ? "All Articles" : "Todos los Artículos"}
+                    {t("blog_page.all_articles")}
                   </span>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                     {posts.slice(1).map((post) => (

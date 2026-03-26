@@ -63,7 +63,7 @@ export default function Header() {
           <button
             className="lg:hidden text-iron-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Abrir menú"
+            aria-label={t("navbar.open_menu")}
           >
             {mobileOpen ? <X size={28} /> : <Menu size={28} />}
           </button>

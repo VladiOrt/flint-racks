@@ -7,7 +7,8 @@ export default {
     blog: "Blog",
     faq: "FAQ",
     contact: "Contacto",
-    cta: "Cotizar"
+    cta: "Cotizar",
+    open_menu: "Abrir menú"
   },
   admin_blogs: {
     title: "Panel de Administración",
@@ -279,6 +280,11 @@ export default {
       q4: "¿Tienen distribuidores autorizados en mi ciudad?",
       a4: "Contamos con una red de distribuidores autorizados en las principales ciudades del país. Contáctanos para verificar la disponibilidad en tu zona y conectarte con el distribuidor más cercano.",
       cta: "Ver todas las preguntas"
+    },
+    map: {
+      title_p1: "Mapa de",
+      title_p2: "Cobertura",
+      description: "Explora nuestra presencia en cada estado de la República Mexicana. Posiciona el cursor sobre cualquier estado para más información."
     }
   },
   blog_page: {
@@ -290,9 +296,15 @@ export default {
       description: "Explora las últimas tendencias, consejos de seguridad y mejores prácticas en sistemas de almacenamiento industrial.",
     },
     read_more: "Leer Más",
+    latest_article: "Último Artículo",
+    all_articles: "Todos los Artículos",
     no_posts: "No se encontraron publicaciones.",
     back_to_blog: "Volver al Blog",
     not_found: "Artículo no encontrado",
+  },
+  not_found_page: {
+    message: "¡Oops! Página no encontrada",
+    back_home: "Volver al Inicio"
   },
   faq_page: {
     hero: {
@@ -388,11 +400,11 @@ export default {
     },
     info: {
       address_title: "Dirección",
-      address_value: "Monterrey, Nuevo León, México",
+      address_value: "Ejército nacional No. 700 Piso 2 Interior 201, CDMX, México",
       contact_title: "Contáctanos",
       hours_title: "Horario",
       hours_mon_fri: "Lun – Vie: 8:00 – 18:00",
-      hours_sat: "Sábado: 9:00 – 14:00",
+      hours_sat: "Sábado y domingo: Cerrado",
       hours_sun: "Domingo: Cerrado"
     },
     faqs: {
@@ -411,6 +423,21 @@ export default {
   blog: {},
   footer: {
     brand_text: "Soluciones de racks industriales diseñadas, fabricadas e instaladas con precisión. Estructura que eleva tu negocio.",
+    informative_title: "Informativa",
+    services_links_title: "Servicios",
+    legal_title: "Legales",
+    link_home: "Inicio",
+    link_about: "Nosotros",
+    link_services: "Servicios",
+    link_coverage: "Cobertura",
+    link_blog: "Blog",
+    link_faq: "FAQ",
+    link_contact: "Contacto",
+    link_predesigned_racks: "Racks prefabricados",
+    link_custom_racks: "Racks personalizados",
+    link_world_class_materials: "Materiales de clase mundial",
+    link_privacy_policy: "Política de Privacidad",
+    link_terms_service: "Términos de Servicio",
     company_title: "Empresa",
     company_about: "Nosotros",
     company_services: "Servicios",
@@ -426,6 +453,7 @@ export default {
     support_privacy: "Política de Privacidad",
     support_terms: "Términos de Servicio",
     rights_reserved: "Flint Racks. Todos los derechos reservados.",
-    slogan: "Estructura es Poder"
+    slogan: "Estructura es Poder",
+    studio_credit: "Diseñado y desarrollado por tBE Studio"
   }
 };

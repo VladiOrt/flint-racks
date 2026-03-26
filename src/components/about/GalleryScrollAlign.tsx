@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useTranslation } from "react-i18next";
 import "./GalleryScrollAlign.css";
 
-import aboutGallery1 from "@/assets/about-gallery-1.jpg";
+import aboutGallery1 from "@/assets/about-gallery-1.webp";
 import aboutGallery2 from "@/assets/about-gallery-2.webp";
 import aboutGallery3 from "@/assets/about-gallery-3.webp";
 import aboutGallery4 from "@/assets/about-gallery-4.webp";

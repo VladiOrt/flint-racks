@@ -7,7 +7,8 @@ export default {
     blog: "Blog",
     faq: "FAQ",
     contact: "Contact",
-    cta: "Get a Quote"
+    cta: "Get a Quote",
+    open_menu: "Open menu"
   },
   admin_blogs: {
     title: "Admin Panel",
@@ -279,6 +280,11 @@ export default {
       q4: "Do you have authorized distributors in my city?",
       a4: "We have a network of authorized distributors in the main cities of the country. Contact us to verify availability in your area and connect you with the nearest distributor.",
       cta: "See all questions"
+    },
+    map: {
+      title_p1: "Coverage",
+      title_p2: "Map",
+      description: "Explore our presence in each state of Mexico. Hover over any state for more information."
     }
   },
   blog_page: {
@@ -290,9 +296,15 @@ export default {
       description: "Explore the latest trends, safety tips, and best practices in industrial storage systems.",
     },
     read_more: "Read More",
+    latest_article: "Latest Article",
+    all_articles: "All Articles",
     no_posts: "No posts found.",
     back_to_blog: "Back to Blog",
     not_found: "Article not found",
+  },
+  not_found_page: {
+    message: "Oops! Page not found",
+    back_home: "Back to Home"
   },
   faq_page: {
     hero: {
@@ -388,11 +400,11 @@ export default {
     },
     info: {
       address_title: "Address",
-      address_value: "Monterrey, Nuevo León, Mexico",
+      address_value: "Ejército nacional No. 700 Piso 2 Interior 201, CDMX, Mexico",
       contact_title: "Contact Us",
       hours_title: "Hours",
       hours_mon_fri: "Mon – Fri: 8:00 – 18:00",
-      hours_sat: "Saturday: 9:00 – 14:00",
+      hours_sat: "Saturday and Sunday: Closed",
       hours_sun: "Sunday: Closed"
     },
     faqs: {
@@ -411,6 +423,21 @@ export default {
   blog: {},
   footer: {
     brand_text: "Industrial racking solutions designed, manufactured, and installed with precision. Structure that elevates your business.",
+    informative_title: "Informational",
+    services_links_title: "Services",
+    legal_title: "Legal",
+    link_home: "Home",
+    link_about: "About Us",
+    link_services: "Services",
+    link_coverage: "Coverage",
+    link_blog: "Blog",
+    link_faq: "FAQ",
+    link_contact: "Contact",
+    link_predesigned_racks: "Predesigned Racks",
+    link_custom_racks: "Custom Racks",
+    link_world_class_materials: "World-Class Materials",
+    link_privacy_policy: "Privacy Policy",
+    link_terms_service: "Terms of Service",
     company_title: "Company",
     company_about: "About Us",
     company_services: "Services",
@@ -426,6 +453,7 @@ export default {
     support_privacy: "Privacy Policy",
     support_terms: "Terms of Service",
     rights_reserved: "Flint Racks. All rights reserved.",
-    slogan: "Structure is Power"
+    slogan: "Structure is Power",
+    studio_credit: "Designed and developed by tBE Studio"
   }
 };

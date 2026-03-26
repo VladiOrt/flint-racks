@@ -1,39 +1,53 @@
 import { useParams, Link } from "react-router-dom";
-import { sanitizeHtml } from "@/lib/sanitize";
 import { getPostBySlug } from "@/lib/blogData";
 import LatestBlogs from "@/components/blog/LatestBlogs";
-import { ArrowLeft, Calendar, User } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import MarqueeBanner from "@/components/layout/MarqueeBanner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language === "en";
   const post = slug ? getPostBySlug(slug) : undefined;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!post || post.status !== "published") {
     return (
       <section className="py-40 bg-background">
         <div className="container-brand section-padding text-center">
-          <h1 className="font-heading text-5xl text-foreground">ARTÍCULO NO ENCONTRADO</h1>
+          <h1 className="font-heading text-5xl text-foreground uppercase">{t('blog_page.not_found')}</h1>
           <p className="font-body text-muted-foreground mt-4">
-            Este artículo no existe o aún no ha sido publicado.
+            {isEn ? "This article does not exist or has not been published yet." : "Este artículo no existe o aún no ha sido publicado."}
           </p>
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-8 py-4 text-sm mt-8 hover:bg-primary transition-colors"
           >
             <ArrowLeft size={16} />
-            Volver al Blog
+            {t('blog_page.back_to_blog')}
           </Link>
         </div>
       </section>
     );
   }
 
-  const isHtml = post.content.includes("<") && post.content.includes(">");
+  const title = isEn ? post.titleEn : post.title;
+  const content = isEn ? post.contentEn : post.content;
 
-  // Parse markdown-like content (legacy support)
-  const renderMarkdown = (content: string) => {
+  const formattedDate = new Date(post.date).toLocaleDateString(isEn ? "en-US" : "es-MX", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  // Parse markdown-like content
+  const renderContent = (content: string) => {
     const lines = content.split("\n");
     const elements: JSX.Element[] = [];
     let currentList: string[] = [];
@@ -60,15 +74,15 @@ export default function BlogPost() {
       if (trimmed.startsWith("## ")) {
         flushList();
         elements.push(
-          <h2 key={i} className="font-heading text-3xl tracking-wide text-foreground mt-10 mb-4">
-            {trimmed.replace("## ", "").toUpperCase()}
+          <h2 key={i} className="font-heading text-3xl tracking-wide text-foreground mt-10 mb-4 uppercase">
+            {trimmed.replace("## ", "")}
           </h2>
         );
       } else if (trimmed.startsWith("### ")) {
         flushList();
         elements.push(
-          <h3 key={i} className="font-heading text-2xl tracking-wide text-foreground mt-8 mb-3">
-            {trimmed.replace("### ", "").toUpperCase()}
+          <h3 key={i} className="font-heading text-2xl tracking-wide text-foreground mt-8 mb-3 uppercase">
+            {trimmed.replace("### ", "")}
           </h3>
         );
       } else if (trimmed.startsWith("- **")) {
@@ -122,12 +136,12 @@ export default function BlogPost() {
 
   return (
     <>
-      {/* Article Header with Cover Image */}
+      {/* Article Hero */}
       <section className="relative min-h-[60vh] lg:min-h-[70vh] flex items-end overflow-hidden">
         {post.coverImage ? (
           <motion.img
             src={post.coverImage}
-            alt={post.title}
+            alt={title}
             className="absolute inset-0 w-full h-full object-cover"
             initial={{ scale: 1 }}
             animate={{ scale: 1.08 }}
@@ -144,30 +158,33 @@ export default function BlogPost() {
             className="inline-flex items-center gap-2 font-body text-sm text-white/60 hover:text-primary transition-colors mb-8"
           >
             <ArrowLeft size={14} />
-            Volver al Blog
+            {t('blog_page.back_to_blog')}
           </Link>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-wider text-white leading-[0.95] max-w-4xl">
-            {post.title.toUpperCase()}
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-wider text-white leading-[0.95] max-w-4xl uppercase">
+            {title}
           </h1>
           <div className="flex flex-wrap items-center gap-6 mt-8">
             <div className="flex items-center gap-2">
               <User size={16} className="text-primary" />
-              <span className="font-body text-sm text-white/80">
-                {post.author}
-              </span>
-              <span className="text-white/40">•</span>
-              <span className="font-body text-sm text-white/60">
-                {post.authorRole}
-              </span>
+              <div className="flex flex-col">
+                <span className="font-body text-sm text-white/80">
+                  {post.author}
+                </span>
+                <span className="font-body text-xs text-white/40 uppercase tracking-widest">
+                  {post.authorRole || (isEn ? "Expert" : "Experto")}
+                </span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <Calendar size={16} className="text-primary" />
               <span className="font-body text-sm text-white/60">
-                {new Date(post.date).toLocaleDateString("es-MX", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {formattedDate}
+              </span>
+            </div>
+            <div className="hidden sm:flex items-center gap-2">
+              <Clock size={16} className="text-primary" />
+              <span className="font-body text-sm text-white/60 uppercase tracking-wider">
+                {isEn ? "5 MIN READ" : "5 MIN LECTURA"}
               </span>
             </div>
           </div>
@@ -177,20 +194,27 @@ export default function BlogPost() {
       {/* Article Content */}
       <section className="py-16 lg:py-24 bg-background">
         <div className="container-brand section-padding">
-          <article className="max-w-3xl">
-            {isHtml ? (
-              <div
-                className="prose prose-lg max-w-none font-body text-foreground/80 [&_h1]:font-heading [&_h1]:text-4xl [&_h1]:tracking-wide [&_h1]:text-foreground [&_h1]:mt-10 [&_h1]:mb-4 [&_h2]:font-heading [&_h2]:text-3xl [&_h2]:tracking-wide [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:font-heading [&_h3]:text-2xl [&_h3]:tracking-wide [&_h3]:text-foreground [&_h3]:mt-8 [&_h3]:mb-3 [&_h4]:font-heading [&_h4]:text-xl [&_h4]:text-foreground [&_h4]:mt-6 [&_h4]:mb-3 [&_h5]:font-heading [&_h5]:text-lg [&_h5]:text-foreground [&_h5]:mt-5 [&_h5]:mb-2 [&_h6]:font-heading [&_h6]:text-base [&_h6]:text-foreground [&_h6]:mt-4 [&_h6]:mb-2 [&_img]:max-w-full [&_img]:h-auto [&_img]:my-6 [&_iframe]:w-full [&_strong]:font-semibold [&_strong]:text-foreground [&_em]:italic [&_ul]:my-4 [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:my-4 [&_ol]:pl-6 [&_ol]:space-y-2 [&_li]:leading-relaxed [&_p]:leading-relaxed [&_p]:my-3"
-                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
-              />
-            ) : (
-              renderMarkdown(post.content)
+          <article className="max-w-4xl">
+            {renderContent(content)}
+
+            {/* Tags */}
+            {post.tags && (
+              <div className="flex flex-wrap gap-2 mt-16 pt-8 border-t border-border">
+                {post.tags.map(tag => (
+                  <span 
+                    key={tag}
+                    className="font-body text-[10px] md:text-xs font-bold uppercase tracking-widest border border-border px-4 py-2 text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             )}
           </article>
         </div>
       </section>
 
-      {/* Latest Blogs */}
+      {/* Related Posts */}
       <LatestBlogs excludeSlug={post.slug} />
 
       <MarqueeBanner />

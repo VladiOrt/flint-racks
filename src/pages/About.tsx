@@ -2,17 +2,19 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Target, Lightbulb, Handshake, Gauge, ShieldCheck } from "lucide-react";
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import MissionGallerySection from "@/components/about/MissionGallerySection";
 import GalleryScrollAlign from "@/components/about/GalleryScrollAlign";
-import heroImg from "@/assets/hero-warehouse.jpg";
+import heroImg from "@/assets/header-nosotros-v2.webp";
+import ctaBgImg from "@/assets/inicia-proyecto.webp";
 
 const values = [
-  { icon: ShieldCheck, title: "Solidez", description: "Estructuras confiables garantizadas, construidas para durar y rendir bajo condiciones exigentes." },
-  { icon: Lightbulb, title: "Innovación", description: "Diseño adaptado a tus necesidades operativas específicas y planes de crecimiento." },
-  { icon: Handshake, title: "Compromiso", description: "Acompañamos a nuestros clientes en cada fase — desde el diseño hasta la operación." },
-  { icon: Gauge, title: "Eficiencia", description: "Maximizando espacio, tiempo y productividad en cada instalación." },
-  { icon: Target, title: "Seguridad", description: "Cada rack protege no solo productos, sino toda tu operación empresarial." },
+  { icon: ShieldCheck, titleKey: "v1_title", descKey: "v1_desc" },
+  { icon: Lightbulb, titleKey: "v2_title", descKey: "v2_desc" },
+  { icon: Handshake, titleKey: "v3_title", descKey: "v3_desc" },
+  { icon: Gauge, titleKey: "v4_title", descKey: "v4_desc" },
+  { icon: Target, titleKey: "v5_title", descKey: "v5_desc" },
 ];
 
 const fadeUp = {
@@ -22,6 +24,7 @@ const fadeUp = {
 
 /* ── Value Card (replicates ServicesSection card style) ── */
 function ValueCard({ value, index }: { value: typeof values[0]; index: number }) {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const [perimeter, setPerimeter] = useState(0);
@@ -62,10 +65,10 @@ function ValueCard({ value, index }: { value: typeof values[0]; index: number })
       )}
       <value.icon size={40} className="text-primary mb-6 relative z-[2]" strokeWidth={1.5} />
       <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3 relative z-[2]">
-        {value.title.toUpperCase()}
+        {t(`about.values.${value.titleKey}`)}
       </h3>
       <p className="font-body text-sm text-muted-foreground leading-relaxed flex-1 relative z-[2]">
-        {value.description}
+        {t(`about.values.${value.descKey}`)}
       </p>
     </motion.div>
   );
@@ -73,6 +76,7 @@ function ValueCard({ value, index }: { value: typeof values[0]; index: number })
 
 /* ── Values Section (desktop grid + mobile carousel) ── */
 function ValuesSection() {
+  const { t } = useTranslation();
   const isMobile = useIsMobile();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -122,17 +126,17 @@ function ValuesSection() {
     >
       <div>
         <h3 className="font-heading text-2xl tracking-wide text-primary-foreground mb-3">
-          TRABAJA CON NOSOTROS
+          {t('about.values.cta_title')}
         </h3>
         <p className="font-body text-sm text-primary-foreground/70 leading-relaxed">
-          Conoce nuestros servicios y descubre cómo podemos optimizar tu operación.
+          {t('about.values.cta_desc')}
         </p>
       </div>
       <Link
         to="/services"
         className="inline-flex items-center gap-2 border-2 border-primary-foreground text-primary-foreground bg-transparent font-body font-semibold px-6 py-3 text-sm uppercase tracking-wider hover:bg-primary-foreground hover:text-primary transition-colors duration-200 self-start mt-6"
       >
-        Ver Servicios
+        {t('about.values.cta_btn')}
         <ArrowRight size={14} />
       </Link>
     </div>
@@ -142,15 +146,15 @@ function ValuesSection() {
     return (
       <section className="py-16 overflow-hidden" style={{ backgroundColor: '#f7f7f7' }}>
         <div className="px-6 mb-8 text-center">
-          <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">Lo Que Nos Define</span>
-          <h2 className="font-heading text-3xl tracking-wide text-foreground mt-3">VALORES DE MARCA</h2>
+          <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">{t('about.values.subtitle')}</span>
+          <h2 className="font-heading text-3xl tracking-wide text-foreground mt-3">{t('about.values.title')}</h2>
         </div>
         <div ref={scrollRef} className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-4 scrollbar-hide" style={{ WebkitOverflowScrolling: "touch" }}>
           {values.map((value) => (
-            <div key={value.title} className="flex-shrink-0 w-[80vw] snap-center bg-card border border-border p-6 flex flex-col" style={{ minHeight: "320px" }}>
+            <div key={value.titleKey} className="flex-shrink-0 w-[80vw] snap-center bg-card border border-border p-6 flex flex-col" style={{ minHeight: "320px" }}>
               <value.icon size={36} className="text-primary mb-4" strokeWidth={1.5} />
-              <h3 className="font-heading text-xl tracking-wide text-foreground mb-2">{value.title.toUpperCase()}</h3>
-              <p className="font-body text-sm text-muted-foreground leading-relaxed flex-1">{value.description}</p>
+              <h3 className="font-heading text-xl tracking-wide text-foreground mb-2">{t(`about.values.${value.titleKey}`)}</h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed flex-1">{t(`about.values.${value.descKey}`)}</p>
             </div>
           ))}
           {ctaCard(true)}
@@ -170,12 +174,12 @@ function ValuesSection() {
     <section className="py-20 lg:py-28" style={{ backgroundColor: '#f7f7f7' }}>
       <div className="container-brand section-padding">
         <div className="text-center mb-16">
-          <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">Lo Que Nos Define</span>
-          <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">VALORES DE MARCA</h2>
+          <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">{t('about.values.subtitle')}</span>
+          <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3">{t('about.values.title')}</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {values.map((value, i) => (
-            <ValueCard key={value.title} value={value} index={i} />
+            <ValueCard key={value.titleKey} value={value} index={i} />
           ))}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: values.length * 0.1 }}>
             {ctaCard()}
@@ -187,6 +191,7 @@ function ValuesSection() {
 }
 
 export default function About() {
+  const { t } = useTranslation();
   return (
     <>
       {/* Hero */}
@@ -220,7 +225,7 @@ export default function About() {
               backgroundClip: "text",
             }}
           >
-            NOSOTROS
+            {t('about.hero.bg_text')}
           </span>
         </motion.div>
 
@@ -234,7 +239,7 @@ export default function About() {
               transition={{ duration: 0.5 }}
               className="md:hidden font-heading text-sm tracking-[0.3em] text-primary uppercase"
             >
-              NOSOTROS
+              {t('about.hero.mobile_subtitle')}
             </motion.span>
 
             {/* Title */}
@@ -244,9 +249,9 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider text-iron-foreground leading-[0.95] max-w-3xl"
             >
-              NUESTRA VISIÓN ES
+              {t('about.hero.title_p1')}
               <br />
-              <span className="text-primary">CONSTRUIR</span> TU FUTURO
+              <span className="text-primary">{t('about.hero.title_p2')}</span> {t('about.hero.title_p3')}
             </motion.h1>
 
             {/* Right column: description + CTA */}
@@ -257,13 +262,13 @@ export default function About() {
               className="flex flex-col gap-5 lg:max-w-sm lg:pb-1"
             >
               <p className="font-body text-iron-foreground/70 text-sm leading-relaxed">
-                Diseñamos, fabricamos e instalamos soluciones de racks industriales respaldadas por experiencia técnica y de campo.
+                {t('about.hero.description')}
               </p>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200 w-fit"
               >
-                Contáctanos
+                {t('about.hero.cta')}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -279,7 +284,7 @@ export default function About() {
       {/* CTA Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <img
-          src={heroImg}
+          src={ctaBgImg}
           alt="Proyecto de almacén"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -288,7 +293,7 @@ export default function About() {
         {/* Watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
           <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
-            CONTÁCTANOS
+            {t('about.cta.bg_text')}
           </span>
         </div>
 
@@ -301,7 +306,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
           >
-            INICIA TU PROYECTO HOY
+            {t('about.cta.title')}
           </motion.h2>
 
           <motion.p
@@ -311,7 +316,7 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-body text-white/70 text-base mt-6 max-w-lg mx-auto"
           >
-            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
+            {t('about.cta.description')}
           </motion.p>
 
           <motion.div
@@ -325,7 +330,7 @@ export default function About() {
               to="/contact"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
             >
-              Cotizar Proyecto
+              {t('about.cta.btn')}
               <ArrowRight size={16} />
             </Link>
           </motion.div>

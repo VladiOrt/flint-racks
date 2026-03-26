@@ -1,27 +1,29 @@
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ShieldCheck, Wrench, TrendingUp } from "lucide-react";
-import imgRacks from "@/assets/services-racks.jpg";
+import { useTranslation } from "react-i18next";
+import imgRacks from "@/assets/servicios-ventajas.webp";
 
 const advantages = [
   {
     icon: ShieldCheck,
-    title: "Calidad Garantizada",
-    description: "Cada estructura es fabricada con materiales certificados y procesos de control de calidad rigurosos que aseguran durabilidad y rendimiento.",
+    titleKey: "adv1_title",
+    descKey: "adv1_desc",
   },
   {
     icon: Wrench,
-    title: "Soluciones a la Medida",
-    description: "Diseñamos cada proyecto según las necesidades específicas de tu operación, espacio disponible y proyección de crecimiento.",
+    titleKey: "adv2_title",
+    descKey: "adv2_desc",
   },
   {
     icon: TrendingUp,
-    title: "Respaldo Técnico",
-    description: "Acompañamiento integral desde la consultoría inicial hasta la instalación y mantenimiento, con un equipo de ingenieros especializados.",
+    titleKey: "adv3_title",
+    descKey: "adv3_desc",
   },
 ];
 
 function AdvantageCard({ advantage, index }: { advantage: typeof advantages[0]; index: number }) {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const [perimeter, setPerimeter] = useState(0);
@@ -68,16 +70,17 @@ function AdvantageCard({ advantage, index }: { advantage: typeof advantages[0]; 
       )}
       <advantage.icon size={40} className="text-primary mb-6 relative z-[2]" strokeWidth={1.5} />
       <h3 className="font-heading text-2xl tracking-wide text-foreground mb-3 relative z-[2]">
-        {advantage.title.toUpperCase()}
+        {t(`services.mission.${advantage.titleKey}`)}
       </h3>
       <p className="font-body text-sm text-muted-foreground leading-relaxed flex-1 relative z-[2]">
-        {advantage.description}
+        {t(`services.mission.${advantage.descKey}`)}
       </p>
     </motion.div>
   );
 }
 
 export default function MissionStatsSection() {
+  const { t } = useTranslation();
   return (
     <section className="py-20 lg:py-28 bg-background">
       <div className="container-brand section-padding">
@@ -90,7 +93,7 @@ export default function MissionStatsSection() {
               viewport={{ once: true }}
               className="font-body text-sm text-primary font-semibold uppercase tracking-wider"
             >
-              Ventajas Que Se Reflejan
+              {t('services.mission.subtitle')}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -99,7 +102,7 @@ export default function MissionStatsSection() {
               transition={{ delay: 0.1, duration: 0.6 }}
               className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-wide text-foreground mt-6 leading-[0.95] uppercase"
             >
-              Calidad y respaldo en cada estructura que construimos
+              {t('services.mission.title')}
             </motion.h2>
           </div>
           <motion.div
@@ -120,7 +123,7 @@ export default function MissionStatsSection() {
         {/* Advantage cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {advantages.map((adv, i) => (
-            <AdvantageCard key={adv.title} advantage={adv} index={i} />
+            <AdvantageCard key={adv.titleKey} advantage={adv} index={i} />
           ))}
         </div>
       </div>

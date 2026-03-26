@@ -1,73 +1,36 @@
 import { Shield, Cog, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
-import benefit1Img from "@/assets/benefit-1.jpg";
-import benefit2Img from "@/assets/benefit-2.jpg";
-import benefit3Img from "@/assets/benefit-3.jpg";
-
-const benefits = [
-  {
-    icon: Shield,
-    title: "INGENIERÍA ESTRUCTURAL\nCERTIFICADA",
-    description: "Cada diseño cumple con normativas sísmicas y de seguridad, respaldado por ingenieros certificados.",
-    image: null as string | null,
-  },
-  {
-    icon: null,
-    title: "",
-    description: "",
-    image: benefit1Img,
-  },
-  {
-    icon: Cog,
-    title: "SOLUCIONES\nPERSONALIZADAS",
-    description: "Diseñamos cada proyecto según las necesidades específicas de tu industria y operación.",
-    image: null as string | null,
-  },
-  {
-    icon: null,
-    title: "",
-    description: "",
-    image: benefit2Img,
-  },
-  {
-    icon: TrendingUp,
-    title: "GESTIÓN INTEGRAL\nDE PROYECTOS",
-    description: "Acompañamiento completo desde el diseño hasta la instalación y mantenimiento continuo.",
-    image: null as string | null,
-  },
-  {
-    icon: null,
-    title: "",
-    description: "",
-    image: benefit3Img,
-  },
-];
+import benefit1Img from "@/assets/gestion-integral-de-proyectos.webp";
+import benefit2Img from "@/assets/ingenieria-estructural-certificada.webp";
+import benefit3Img from "@/assets/soluciones-personalizadas.webp";
 
 // Only text items for mobile carousel
 const mobileBenefits = [
   {
     icon: Shield,
-    title: "INGENIERÍA ESTRUCTURAL CERTIFICADA",
-    description: "Cada diseño cumple con normativas sísmicas y de seguridad, respaldado por ingenieros certificados.",
+    titleKey: "b1_title_full",
+    descKey: "b1_desc",
     image: benefit1Img,
   },
   {
     icon: Cog,
-    title: "SOLUCIONES PERSONALIZADAS",
-    description: "Diseñamos cada proyecto según las necesidades específicas de tu industria y operación.",
+    titleKey: "b2_title_full",
+    descKey: "b2_desc",
     image: benefit2Img,
   },
   {
     icon: TrendingUp,
-    title: "GESTIÓN INTEGRAL DE PROYECTOS",
-    description: "Acompañamiento completo desde el diseño hasta la instalación y mantenimiento continuo.",
+    titleKey: "b3_title_full",
+    descKey: "b3_desc",
     image: benefit3Img,
   },
 ];
 
 export default function BenefitsSection() {
+  const { t } = useTranslation();
   const isMobile = useIsMobile();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -114,9 +77,9 @@ export default function BenefitsSection() {
       <section className="py-12 bg-background overflow-hidden">
         <div className="px-6 mb-8">
           <h2 className="font-heading text-3xl tracking-wide text-foreground leading-[0.95] text-center">
-            BENEFICIOS DE TRABAJAR
+            {t('home.benefits.title_p1')}
             <br />
-            CON NOSOTROS
+            {t('home.benefits.title_p2')}
           </h2>
         </div>
         <div
@@ -131,16 +94,16 @@ export default function BenefitsSection() {
             >
               <img
                 src={item.image}
-                alt={item.title}
+                alt={t(`home.benefits.${item.titleKey}`)}
                 className="w-full aspect-[4/3] object-cover"
               />
               <div className="flex flex-col items-center text-center gap-2">
                 <item.icon size={28} className="text-foreground" strokeWidth={1} />
                 <h3 className="font-heading text-lg tracking-wide text-foreground">
-                  {item.title}
+                  {t(`home.benefits.${item.titleKey}`)}
                 </h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
+                  {t(`home.benefits.${item.descKey}`)}
                 </p>
               </div>
             </div>
@@ -174,9 +137,9 @@ export default function BenefitsSection() {
           className="text-center"
         >
           <h2 className="font-heading text-4xl lg:text-5xl xl:text-6xl tracking-wide text-foreground leading-[0.95]">
-            BENEFICIOS DE TRABAJAR
+            {t('home.benefits.title_p1')}
             <br />
-            CON NOSOTROS
+            {t('home.benefits.title_p2')}
           </h2>
         </motion.div>
 
@@ -192,12 +155,12 @@ export default function BenefitsSection() {
           >
             <Shield size={32} className="text-foreground" strokeWidth={1} />
             <h3 className="font-heading text-base lg:text-lg xl:text-xl tracking-wide text-foreground leading-tight">
-              INGENIERÍA ESTRUCTURAL
+              {t('home.benefits.b1_title_p1')}
               <br />
-              CERTIFICADA
+              {t('home.benefits.b1_title_p2')}
             </h3>
             <p className="font-body text-xs lg:text-sm text-muted-foreground leading-relaxed">
-              Cada diseño cumple con normativas sísmicas y de seguridad, respaldado por ingenieros certificados.
+              {t('home.benefits.b1_desc')}
             </p>
           </motion.div>
 
@@ -220,12 +183,12 @@ export default function BenefitsSection() {
           >
             <Cog size={32} className="text-foreground" strokeWidth={1} />
             <h3 className="font-heading text-base lg:text-lg xl:text-xl tracking-wide text-foreground leading-tight">
-              SOLUCIONES
+              {t('home.benefits.b2_title_p1')}
               <br />
-              PERSONALIZADAS
+              {t('home.benefits.b2_title_p2')}
             </h3>
             <p className="font-body text-xs lg:text-sm text-muted-foreground leading-relaxed">
-              Diseñamos cada proyecto según las necesidades específicas de tu industria y operación.
+              {t('home.benefits.b2_desc')}
             </p>
           </motion.div>
 
@@ -237,7 +200,7 @@ export default function BenefitsSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="overflow-hidden"
           >
-            <img src={benefit2Img} alt="Detalle de estructura metálica" className="w-full h-full object-cover" />
+            <img src={benefit3Img} alt="Detalle de estructura metálica" className="w-full h-full object-cover" />
           </motion.div>
 
           <motion.div
@@ -249,12 +212,12 @@ export default function BenefitsSection() {
           >
             <TrendingUp size={32} className="text-foreground" strokeWidth={1} />
             <h3 className="font-heading text-base lg:text-lg xl:text-xl tracking-wide text-foreground leading-tight">
-              GESTIÓN INTEGRAL
+              {t('home.benefits.b3_title_p1')}
               <br />
-              DE PROYECTOS
+              {t('home.benefits.b3_title_p2')}
             </h3>
             <p className="font-body text-xs lg:text-sm text-muted-foreground leading-relaxed">
-              Acompañamiento completo desde el diseño hasta la instalación y mantenimiento continuo.
+              {t('home.benefits.b3_desc')}
             </p>
           </motion.div>
 
@@ -265,7 +228,7 @@ export default function BenefitsSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="overflow-hidden"
           >
-            <img src={benefit3Img} alt="Almacén con racks organizados" className="w-full h-full object-cover" />
+            <img src={benefit2Img} alt="Almacén con racks organizados" className="w-full h-full object-cover" />
           </motion.div>
         </div>
       </div>

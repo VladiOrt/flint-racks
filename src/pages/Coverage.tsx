@@ -2,36 +2,26 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
-import coverageHero from "@/assets/coverage-hero.jpg";
+import { useTranslation } from "react-i18next";
+import coverageHero from "@/assets/cobertura-header-v2.webp";
 import MexicoMapSection from "@/components/coverage/MexicoMapSection";
 
-const coverageFaqs = [
-  {
-    question: "¿Realizan instalaciones en todo México?",
-    answer: "Sí, contamos con cobertura en las principales ciudades y zonas industriales de México. Nuestro equipo de instalación se desplaza a cualquier punto del país para garantizar un servicio profesional y oportuno.",
-  },
-  {
-    question: "¿Cuánto tiempo tarda la instalación fuera de la zona metropolitana?",
-    answer: "El tiempo de instalación varía según la ubicación y el tamaño del proyecto. Generalmente, para proyectos fuera de la zona metropolitana, el proceso toma entre 5 y 15 días hábiles desde la confirmación del pedido.",
-  },
-  {
-    question: "¿Ofrecen servicio de mantenimiento en todas las ubicaciones?",
-    answer: "Sí, nuestro servicio de mantenimiento preventivo y correctivo está disponible en todas las ubicaciones donde realizamos instalaciones. Contamos con equipos regionales para atender cualquier necesidad.",
-  },
-  {
-    question: "¿Tienen distribuidores autorizados en mi ciudad?",
-    answer: "Contamos con una red de distribuidores autorizados en las principales ciudades del país. Contáctanos para verificar la disponibilidad en tu zona y conectarte con el distribuidor más cercano.",
-  },
+const coverageFaqsKeys = [
+  { qKey: "q1", aKey: "a1" },
+  { qKey: "q2", aKey: "a2" },
+  { qKey: "q3", aKey: "a3" },
+  { qKey: "q4", aKey: "a4" },
 ];
 
 const regions = [
-  { name: "Norte", cities: ["Monterrey", "Chihuahua", "Tijuana", "Saltillo", "Hermosillo"] },
-  { name: "Centro", cities: ["CDMX", "Querétaro", "Puebla", "Toluca", "Aguascalientes"] },
-  { name: "Bajío", cities: ["León", "Guadalajara", "San Luis Potosí", "Irapuato", "Celaya"] },
-  { name: "Sur", cities: ["Mérida", "Villahermosa", "Oaxaca", "Veracruz", "Cancún"] },
+  { nameKey: "north", cities: ["Monterrey", "Chihuahua", "Tijuana", "Saltillo", "Hermosillo"] },
+  { nameKey: "center", cities: ["CDMX", "Querétaro", "Puebla", "Toluca", "Aguascalientes"] },
+  { nameKey: "bajio", cities: ["León", "Guadalajara", "San Luis Potosí", "Irapuato", "Celaya"] },
+  { nameKey: "south", cities: ["Mérida", "Villahermosa", "Oaxaca", "Veracruz", "Cancún"] },
 ];
 
 export default function Coverage() {
+  const { t } = useTranslation();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
@@ -64,7 +54,7 @@ export default function Coverage() {
               backgroundClip: "text",
             }}
           >
-            COBERTURA
+            {t('coverage.hero.bg_text')}
           </span>
         </motion.div>
 
@@ -76,7 +66,7 @@ export default function Coverage() {
               transition={{ duration: 0.5 }}
               className="md:hidden font-heading text-sm tracking-[0.3em] text-primary uppercase"
             >
-              COBERTURA
+              {t('coverage.hero.mobile_subtitle')}
             </motion.span>
 
             <motion.h1
@@ -85,9 +75,7 @@ export default function Coverage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider text-iron-foreground leading-[0.95] max-w-3xl"
             >
-              PRESENCIA <span className="text-primary">NACIONAL</span>,
-              <br />
-              SERVICIO LOCAL
+              {t('coverage.hero.title_p1')} <span className="text-primary">{t('coverage.hero.title_p2')}</span>{t('coverage.hero.title_p3')}
             </motion.h1>
 
             <motion.div
@@ -97,13 +85,13 @@ export default function Coverage() {
               className="flex flex-col gap-5 lg:max-w-sm lg:pb-1"
             >
               <p className="font-body text-iron-foreground/70 text-sm leading-relaxed">
-                Cubrimos el 98% del territorio mexicano con puntos estratégicos en toda la República.
+                {t('coverage.hero.description')}
               </p>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200 w-fit"
               >
-                Solicitar Cobertura
+                {t('coverage.hero.cta')}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -123,7 +111,7 @@ export default function Coverage() {
                 viewport={{ once: true }}
                 className="font-heading text-4xl md:text-5xl lg:text-6xl uppercase text-foreground leading-tight"
               >
-                Cubrimos gran parte del país
+                {t('coverage.stats.title')}
               </motion.h2>
               <div className="w-20 h-1 bg-primary mt-6 mb-8" />
               <motion.p
@@ -133,22 +121,18 @@ export default function Coverage() {
                 transition={{ delay: 0.1 }}
                 className="font-body text-muted-foreground text-lg leading-relaxed mb-10"
               >
-                Con presencia en más de 25 estados de la República Mexicana, llevamos soluciones de almacenamiento industrial a donde tu negocio lo necesite. Nuestro equipo de especialistas garantiza instalación profesional y soporte técnico en cada región.
+                {t('coverage.stats.desc')}
               </motion.p>
 
               {/* Stats */}
               <div className="flex gap-12">
                 <div>
                   <span className="font-heading text-5xl text-primary">25+</span>
-                  <p className="font-body text-muted-foreground mt-1">Estados</p>
-                </div>
-                <div>
-                  <span className="font-heading text-5xl text-primary">500+</span>
-                  <p className="font-body text-muted-foreground mt-1">Proyectos</p>
+                  <p className="font-body text-muted-foreground mt-1">{t('coverage.stats.states')}</p>
                 </div>
                 <div>
                   <span className="font-heading text-5xl text-primary">50+</span>
-                  <p className="font-body text-muted-foreground mt-1">Ciudades</p>
+                  <p className="font-body text-muted-foreground mt-1">{t('coverage.stats.cities')}</p>
                 </div>
               </div>
             </div>
@@ -157,7 +141,7 @@ export default function Coverage() {
             <div className="grid grid-cols-2 gap-6">
               {regions.map((region, i) => (
                 <motion.div
-                  key={region.name}
+                  key={region.nameKey}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -166,7 +150,7 @@ export default function Coverage() {
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <MapPin className="w-5 h-5 text-primary" />
-                    <h3 className="font-heading text-xl uppercase text-foreground">{region.name}</h3>
+                    <h3 className="font-heading text-xl uppercase text-foreground">{t(`coverage.regions.${region.nameKey}`)}</h3>
                   </div>
                   <ul className="space-y-2">
                     {region.cities.map((city) => (
@@ -194,11 +178,11 @@ export default function Coverage() {
             viewport={{ once: true }}
             className="font-heading text-3xl md:text-4xl lg:text-5xl uppercase text-foreground text-center mb-16"
           >
-            Preguntas Frecuentes
+            {t('coverage.faqs.title')}
           </motion.h2>
 
           <div className="max-w-3xl mx-auto">
-            {coverageFaqs.map((faq, i) => {
+            {coverageFaqsKeys.map((faq, i) => {
               const isOpen = openFaq === i;
               return (
                 <motion.div
@@ -225,7 +209,7 @@ export default function Coverage() {
                         isOpen ? "text-foreground" : "text-muted-foreground"
                       }`}
                     >
-                      {faq.question}
+                      {t(`coverage.faqs.${faq.qKey}`)}
                     </span>
                     <div className="relative w-6 h-6 flex items-center justify-center">
                       <div className="w-4 h-[2px] bg-foreground" />
@@ -247,7 +231,7 @@ export default function Coverage() {
                         className="overflow-hidden"
                       >
                         <p className="font-body text-muted-foreground pb-6 pl-12">
-                          {faq.answer}
+                          {t(`coverage.faqs.${faq.aKey}`)}
                         </p>
                       </motion.div>
                     )}
@@ -271,7 +255,7 @@ export default function Coverage() {
               to="/faqs"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-8 py-4 hover:bg-red-deep transition-colors duration-200 uppercase tracking-wide"
             >
-              Ver todas las preguntas
+              {t('coverage.faqs.cta')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

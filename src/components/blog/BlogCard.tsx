@@ -1,106 +1,74 @@
 import { Link } from "react-router-dom";
 import type { BlogPost } from "@/lib/blogData";
-import { ArrowUpRight, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
-  const formattedDate = new Date(post.date).toLocaleDateString("es-MX", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  }).toUpperCase();
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language === "en";
 
-  const tags = post.tags ?? ["INDUSTRIAL", "ALMACENAJE"];
+  const title = isEn ? post.titleEn : post.title;
+  const excerpt = isEn ? post.excerptEn : post.excerpt;
+
+  const formattedDate = new Date(post.date).toLocaleDateString(isEn ? "en-US" : "es-MX", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <article className="group">
-      {/* ===== DESKTOP: horizontal row ===== */}
-      <div className="hidden md:grid md:grid-cols-[280px_1fr_auto] lg:grid-cols-[320px_1fr_auto] gap-8 items-center py-10">
-        {/* Image */}
-        <Link to={`/blog/${post.slug}`} className="block aspect-[4/3] overflow-hidden bg-iron">
-          {post.coverImage ? (
-            <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80 group-hover:scale-105 transition-transform duration-500" />
-          )}
-        </Link>
+    <article className="group bg-card border border-border hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
+      {/* Image placeholder with brand pattern */}
+      <Link to={`/blog/${post.slug}`} className="block aspect-[16/10] bg-iron relative overflow-hidden">
+        {post.coverImage ? (
+          <img 
+            src={post.coverImage} 
+            alt={title} 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-iron/80" />
+        )}
+        <div className="absolute bottom-4 left-4">
+          <span className="font-body text-[10px] md:text-xs text-iron-foreground/60 bg-iron/80 px-3 py-1 uppercase tracking-widest">
+            {formattedDate}
+          </span>
+        </div>
+      </Link>
 
-        {/* Content */}
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Calendar size={14} />
-            <span className="font-body text-xs tracking-wider">{formattedDate}</span>
-          </div>
-
-          <h3 className="font-heading text-xl lg:text-2xl tracking-wide text-foreground leading-tight uppercase group-hover:text-primary transition-colors">
-            <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-          </h3>
-
-          <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2">
-            {post.excerpt}
-          </p>
-
-          <div className="flex flex-wrap gap-2 mt-1">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-body text-xs uppercase tracking-wider border border-border px-3 py-1.5 text-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+      <div className="p-6 flex flex-col flex-1">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="font-body text-[10px] md:text-xs text-primary font-semibold uppercase tracking-wider">
+            {post.author}
+          </span>
+          <span className="text-muted-foreground text-xs">•</span>
+          <span className="font-body text-[10px] md:text-xs text-muted-foreground uppercase opacity-70">
+            {post.authorRole || (isEn ? "Expert" : "Experto")}
+          </span>
         </div>
 
-        {/* Read More */}
-        <Link
-          to={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-1.5 font-body text-sm font-semibold uppercase tracking-wider text-foreground group-hover:text-primary transition-colors whitespace-nowrap self-center"
-        >
-          Leer Más
-          <ArrowUpRight size={14} />
-        </Link>
-      </div>
+        <h3 className="font-heading text-xl md:text-2xl tracking-wide text-foreground mb-3 group-hover:text-primary transition-colors uppercase leading-tight">
+          <Link to={`/blog/${post.slug}`}>
+            {title}
+          </Link>
+        </h3>
 
-      {/* ===== MOBILE: vertical stacked ===== */}
-      <div className="md:hidden py-8">
-        {/* Full-width image */}
-        <Link to={`/blog/${post.slug}`} className="block aspect-[16/10] overflow-hidden bg-iron mb-6">
-          {post.coverImage ? (
-            <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-iron/80" />
-          )}
-        </Link>
+        <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+          {excerpt}
+        </p>
 
-        {/* Content centered */}
-        <div className="flex flex-col items-center text-center gap-3">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Calendar size={14} />
-            <span className="font-body text-xs tracking-wider">{formattedDate}</span>
-          </div>
-
-          <h3 className="font-heading text-xl tracking-wide text-foreground leading-tight uppercase">
-            <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-          </h3>
-
-          <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2">
-            {post.excerpt}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-2 mt-1">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-body text-xs uppercase tracking-wider border border-border px-3 py-1.5 text-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <div className="mt-auto">
+          <Link
+            to={`/blog/${post.slug}`}
+            className="inline-flex items-center gap-2 font-body text-sm font-semibold text-foreground group-hover:text-primary transition-colors uppercase tracking-widest"
+          >
+            {t('blog_page.read_more')}
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </article>

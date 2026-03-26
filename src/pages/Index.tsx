@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import LatestBlogs from "@/components/blog/LatestBlogs";
 import HeroSection from "@/components/home/HeroSection";
 import BenefitsSection from "@/components/home/BenefitsSection";
@@ -8,17 +9,18 @@ import ServicesSection from "@/components/home/ServicesSection";
 import IndustriesSection from "@/components/home/IndustriesSection";
 import HomeFAQSection from "@/components/home/HomeFAQSection";
 import CoverageCtaSection from "@/components/home/CoverageCtaSection";
-import aboutImg from "@/assets/about-installation.jpg";
+import aboutImg from "@/assets/home-nosotros-somos.webp";
 
 const stats = [
-  { value: "18+", label: "Años de Experiencia" },
-  { value: "1,200+", label: "Proyectos Completados" },
-  { value: "98%", label: "Satisfacción del Cliente" },
-  { value: "50+", label: "Miembros del Equipo" },
+  { value: "18+", labelKey: "years" },
+  { value: "1,200+", labelKey: "projects" },
+  { value: "98%", labelKey: "satisfaction" },
+  { value: "50+", labelKey: "team" },
 ];
 
 
 export default function Index() {
+  const { t } = useTranslation();
   return (
     <>
       {/* Hero Section */}
@@ -36,22 +38,19 @@ export default function Index() {
               transition={{ duration: 0.6 }}
             >
               <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-                Sobre Flint Racks
+                {t('home.about.label')}
               </span>
               <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3 leading-[0.95]">
-                SOLUCIONES CONFIABLES Y RENTABLES A TU MEDIDA
+                {t('home.about.title')}
               </h2>
               <p className="font-body text-muted-foreground text-base mt-6 leading-relaxed">
-                Flint Racks nació de la convicción de que la eficiencia y la seguridad son la base 
-                de toda operación bien diseñada. Somos una marca enfocada en diseñar, fabricar 
-                e implementar racks industriales y soluciones de almacenamiento, respaldados por 
-                conocimiento técnico y experiencia de campo.
+                {t('home.about.description')}
               </p>
               <Link
                 to="/about"
                 className="inline-flex items-center gap-2 bg-iron text-iron-foreground font-body font-semibold px-8 py-4 text-sm mt-10 hover:bg-primary transition-colors duration-200"
               >
-                Conocer Más
+                {t('home.about.cta')}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -61,7 +60,7 @@ export default function Index() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <img src={aboutImg} alt="Instalación de racks industriales" className="w-full aspect-[4/5] object-cover" />
+              <img src={aboutImg} alt={t('home.about.label')} className="w-full aspect-[4/5] object-cover" />
             </motion.div>
           </div>
         </div>
@@ -76,7 +75,7 @@ export default function Index() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
               <motion.div
-                key={stat.label}
+                key={stat.labelKey}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -87,7 +86,7 @@ export default function Index() {
                   {stat.value}
                 </span>
                 <p className="font-body text-sm text-iron-foreground/60 mt-2 uppercase tracking-wider">
-                  {stat.label}
+                  {t(`home.stats.${stat.labelKey}`)}
                 </p>
               </motion.div>
             ))}

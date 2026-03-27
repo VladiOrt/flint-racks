@@ -90,7 +90,7 @@ export default {
       title: "Tenemos una cobertura casi total ubicada en puntos estratégicos de la república mexicana",
       stat1_value: "98%",
       stat1_desc: "Del territorio mexicano cubierto",
-      stat2_value: "100%",
+      stat2_value: "98%",
       stat2_desc: "De clientes felices",
       cta: "Ver Cobertura"
     },
@@ -403,7 +403,7 @@ export default {
       address_value: "Ejército nacional No. 700 Piso 2 Interior 201, CDMX, México",
       contact_title: "Contáctanos",
       hours_title: "Horario",
-      hours_mon_fri: "Lun – Vie: 8:00 – 18:00",
+      hours_mon_fri: "Lun – Vie: 9:00 – 18:00",
       hours_sat: "Sábado y domingo: Cerrado",
       hours_sun: "Domingo: Cerrado"
     },

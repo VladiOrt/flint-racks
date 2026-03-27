@@ -7,6 +7,9 @@ import logoDesktop from "@/assets/flint-logo-escritorio.png";
 import logoMobile from "@/assets/flint-logo-movil.png";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
+const WHATSAPP_URL =
+  "https://wa.me/525539073713?text=Estaba%20navegando%20la%20pagina%20web%20de%20Flint%20Racks%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n";
+
 const navItems = [
   { labelKey: "home", path: "/" },
   { labelKey: "about", path: "/about" },
@@ -50,12 +53,14 @@ export default function Header() {
 
         <div className="flex items-center gap-4 lg:gap-6">
           {/* CTA Button */}
-          <Link
-            to="/contact"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden lg:inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3 hover:bg-red-deep transition-colors duration-200"
           >
             {t('navbar.cta')}
-          </Link>
+          </a>
 
           <LanguageSwitcher />
 
@@ -94,13 +99,15 @@ export default function Header() {
                   {t(`navbar.${item.labelKey}`)}
                 </Link>
               ))}
-              <Link
-                to="/contact"
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 inline-flex items-center justify-center bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3"
               >
                 {t('navbar.cta')}
-              </Link>
+              </a>
             </nav>
           </motion.div>
         )}

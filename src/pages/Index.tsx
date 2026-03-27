@@ -12,8 +12,7 @@ import CoverageCtaSection from "@/components/home/CoverageCtaSection";
 import aboutImg from "@/assets/home-nosotros-somos.webp";
 
 const stats = [
-  { value: "18+", labelKey: "years" },
-  { value: "1,200+", labelKey: "projects" },
+  { value: "300+", labelKey: "projects" },
   { value: "98%", labelKey: "satisfaction" },
   { value: "50+", labelKey: "team" },
 ];
@@ -72,7 +71,7 @@ export default function Index() {
       {/* Stats */}
       <section className="bg-iron py-16 lg:py-20">
         <div className="container-brand section-padding">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.labelKey}

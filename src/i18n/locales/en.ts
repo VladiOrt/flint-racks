@@ -90,7 +90,7 @@ export default {
       title: "We have almost total coverage located in strategic points of the Mexican Republic",
       stat1_value: "98%",
       stat1_desc: "Of Mexican territory covered",
-      stat2_value: "100%",
+      stat2_value: "98%",
       stat2_desc: "Happy clients",
       cta: "View Coverage"
     },
@@ -403,7 +403,7 @@ export default {
       address_value: "Ejército nacional No. 700 Piso 2 Interior 201, CDMX, Mexico",
       contact_title: "Contact Us",
       hours_title: "Hours",
-      hours_mon_fri: "Mon – Fri: 8:00 – 18:00",
+      hours_mon_fri: "Mon – Fri: 9:00 – 18:00",
       hours_sat: "Saturday and Sunday: Closed",
       hours_sun: "Sunday: Closed"
     },

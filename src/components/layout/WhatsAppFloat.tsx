@@ -15,7 +15,7 @@ export default function WhatsAppFloat() {
       <img
         src={whatsappLogo}
         alt="WhatsApp Flint Racks"
-        className="w-[60px] md:w-[70px] h-auto"
+        className="w-[50px] md:w-[55px] h-auto"
       />
     </a>
   );

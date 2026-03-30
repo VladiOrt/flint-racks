@@ -13,6 +13,8 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import FAQs from "./pages/FAQs";
 import Coverage from "./pages/Coverage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import AdminBlogs from "./pages/AdminBlogs";
 import NotFound from "./pages/NotFound";
 
@@ -69,6 +71,8 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/cobertura" element={<Coverage />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
           </Route>
           {/* Admin has no layout (standalone) */}
           <Route path="/admin-blogs" element={<AdminBlogs />} />

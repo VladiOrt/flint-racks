@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import heroImg from "@/assets/header-home-img.webp";
 import heroVideo from "@/assets/header-home-video.mp4";
+import heroVideoMobile from "@/assets/hero-video.mp4";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -49,6 +50,7 @@ export default function HeroSection() {
             className="w-full h-[120%] object-cover"
             poster={heroImg}
           >
+            <source media="(max-width: 767px)" src={heroVideoMobile} type="video/mp4" />
             <source src={heroVideo} type="video/mp4" />
           </video>
         </motion.div>

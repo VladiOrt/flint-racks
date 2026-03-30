@@ -20,6 +20,96 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+type RouteMeta = {
+  title: string;
+  description: string;
+};
+
+const defaultMeta: RouteMeta = {
+  title: "Flint Racks | Racks Industriales en México | Diseño e Instalación",
+  description:
+    "Diseñamos y fabricamos racks industriales en México. Optimiza tu almacén con soluciones seguras, personalizadas y de alta eficiencia. Cotiza hoy.",
+};
+
+const routeMetaMap: Record<string, RouteMeta> = {
+  "/": defaultMeta,
+  "/about": {
+    title: "Nosotros | Expertos en Racks Industriales | Flint Racks",
+    description:
+      "Conoce a Flint Racks: especialistas en diseño e instalación de sistemas de almacenamiento industrial. Ingeniería, seguridad y eficiencia para tu operación.",
+  },
+  "/nosotros": {
+    title: "Nosotros | Expertos en Racks Industriales | Flint Racks",
+    description:
+      "Conoce a Flint Racks: especialistas en diseño e instalación de sistemas de almacenamiento industrial. Ingeniería, seguridad y eficiencia para tu operación.",
+  },
+  "/services": {
+    title: "Servicios de Racks Industriales | Diseño e Instalación",
+    description:
+      "Soluciones de racks industriales a la medida: selectivo, drive-in, push-back y más. Ingeniería especializada y ejecución completa para tu almacén.",
+  },
+  "/servicios": {
+    title: "Servicios de Racks Industriales | Diseño e Instalación",
+    description:
+      "Soluciones de racks industriales a la medida: selectivo, drive-in, push-back y más. Ingeniería especializada y ejecución completa para tu almacén.",
+  },
+  "/cobertura": {
+    title: "Cobertura Nacional | Instalación de Racks en México",
+    description:
+      "Instalamos racks industriales en todo México. Cobertura nacional con equipos especializados y soporte técnico en cada región. Solicita tu proyecto.",
+  },
+  "/blog": {
+    title: "Blog de Racks Industriales | Logística y Almacenamiento",
+    description:
+      "Aprende sobre racks industriales, seguridad y optimización de almacenes. Tendencias, consejos y mejores prácticas para tu operación logística.",
+  },
+  "/contact": {
+    title: "Contacto | Cotiza Racks Industriales en México | Flint Racks",
+    description:
+      "Solicita una cotización para tu proyecto de racks industriales. Asesoría gratuita, diagnóstico y soluciones personalizadas para tu almacén.",
+  },
+  "/contacto": {
+    title: "Contacto | Cotiza Racks Industriales en México | Flint Racks",
+    description:
+      "Solicita una cotización para tu proyecto de racks industriales. Asesoría gratuita, diagnóstico y soluciones personalizadas para tu almacén.",
+  },
+  "/faqs": {
+    title: "Preguntas Frecuentes | Racks Industriales y Almacenamiento",
+    description:
+      "Resuelve tus dudas sobre racks industriales, instalación, tiempos y mantenimiento. Todo lo que necesitas saber antes de tu proyecto.",
+  },
+  "/faq": {
+    title: "Preguntas Frecuentes | Racks Industriales y Almacenamiento",
+    description:
+      "Resuelve tus dudas sobre racks industriales, instalación, tiempos y mantenimiento. Todo lo que necesitas saber antes de tu proyecto.",
+  },
+};
+
+function RouteMetaManager() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const pathname = location.pathname;
+    const basePath = pathname.startsWith("/blog/") ? "/blog" : pathname;
+    const meta = routeMetaMap[basePath] ?? defaultMeta;
+
+    document.title = meta.title;
+
+    const setMeta = (selector: string, attr: string, value: string) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.setAttribute(attr, value);
+      }
+    };
+
+    setMeta('meta[name="description"]', "content", meta.description);
+    setMeta('meta[property="og:title"]', "content", meta.title);
+    setMeta('meta[property="og:description"]', "content", meta.description);
+  }, [location.pathname]);
+
+  return null;
+}
+
 function RouteScrollManager() {
   const location = useLocation();
 
@@ -60,6 +150,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <RouteMetaManager />
         <RouteScrollManager />
         <Routes>
           <Route element={<Layout />}>

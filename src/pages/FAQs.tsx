@@ -2,118 +2,60 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Minus, Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-import heroImg from "@/assets/hero-warehouse.jpg";
+import heroImg from "@/assets/faq-header.webp";
 
 interface FAQCategory {
-  title: string;
-  faqs: { question: string; answer: string }[];
+  titleKey: string;
+  faqs: { qKey: string; aKey: string }[];
 }
 
 const categories: FAQCategory[] = [
   {
-    title: "SERVICIOS",
+    titleKey: "services.title",
     faqs: [
-      {
-        question: "¿Qué tipos de sistemas de racks ofrecen?",
-        answer: "Ofrecemos una gama completa que incluye rack selectivo, rack drive-in y drive-through, sistemas push-back, racks cantilever, soluciones de mezzanine y sistemas multinivel. Cada solución está diseñada para cumplir con tus requerimientos operativos específicos.",
-      },
-      {
-        question: "¿Proporcionan servicios de inspección de racks?",
-        answer: "Sí. Proporcionamos programas integrales de inspección que incluyen inspecciones anuales certificadas, reportes de evaluación de daños, reemplazo de componentes y auditorías de cumplimiento de seguridad. Las inspecciones regulares son críticas para mantener un ambiente de almacén seguro.",
-      },
-      {
-        question: "¿Pueden trabajar con la distribución existente de mi almacén?",
-        answer: "Por supuesto. Nuestro equipo de ingeniería realiza evaluaciones exhaustivas del sitio, considerando las condiciones del piso, alturas de techo, ubicación de columnas y patrones de flujo de trabajo existentes. Diseñamos soluciones que optimizan tu espacio actual.",
-      },
-      {
-        question: "¿Sus sistemas de racks cumplen con los requisitos sísmicos?",
-        answer: "Sí. Todos nuestros sistemas están diseñados para cumplir o superar los requisitos sísmicos locales. Utilizamos cálculos estructurales y materiales certificados, y cada instalación incluye anclaje y arriostramiento adecuados para zonas sísmicas.",
-      },
-      {
-        question: "¿Qué industrias atienden?",
-        answer: "Atendemos una amplia gama de industrias incluyendo logística y distribución, alimentos y bebidas, farmacéutica, automotriz, retail, e-commerce, manufactura y operaciones de almacenamiento en frío.",
-      },
+      { qKey: "services.q1", aKey: "services.a1" },
+      { qKey: "services.q2", aKey: "services.a2" },
+      { qKey: "services.q3", aKey: "services.a3" },
+      { qKey: "services.q4", aKey: "services.a4" },
+      { qKey: "services.q5", aKey: "services.a5" },
     ],
   },
   {
-    title: "COBERTURA EN EL PAÍS",
+    titleKey: "coverage.title",
     faqs: [
-      {
-        question: "¿En qué estados de la república tienen cobertura?",
-        answer: "Contamos con cobertura a nivel nacional. Tenemos presencia directa en los principales centros industriales del país y red de distribución que nos permite atender proyectos en cualquier estado de la república mexicana.",
-      },
-      {
-        question: "¿Realizan instalaciones fuera de su zona principal?",
-        answer: "Sí, nuestro equipo de instalación se desplaza a cualquier punto del país. Contamos con cuadrillas especializadas que pueden movilizarse para proyectos en ubicaciones remotas o fuera de las principales zonas metropolitanas.",
-      },
-      {
-        question: "¿Tienen sucursales o centros de distribución regionales?",
-        answer: "Operamos desde nuestras instalaciones principales y contamos con alianzas estratégicas en diferentes regiones del país que nos permiten ofrecer tiempos de respuesta competitivos sin importar la ubicación de tu proyecto.",
-      },
-      {
-        question: "¿Ofrecen servicio de mantenimiento en todo el país?",
-        answer: "Sí, nuestros programas de mantenimiento preventivo e inspección están disponibles a nivel nacional. Coordinamos visitas periódicas con nuestros técnicos certificados para garantizar el óptimo funcionamiento de tus sistemas.",
-      },
-      {
-        question: "¿Cómo manejan la logística para proyectos en zonas alejadas?",
-        answer: "Planificamos cuidadosamente la logística de cada proyecto considerando rutas de transporte, accesos y condiciones locales. Incluimos los costos de movilización de forma transparente en nuestras cotizaciones.",
-      },
+      { qKey: "coverage.q1", aKey: "coverage.a1" },
+      { qKey: "coverage.q2", aKey: "coverage.a2" },
+      { qKey: "coverage.q3", aKey: "coverage.a3" },
+      { qKey: "coverage.q4", aKey: "coverage.a4" },
+      { qKey: "coverage.q5", aKey: "coverage.a5" },
     ],
   },
   {
-    title: "CONTACTO",
+    titleKey: "contact.title",
     faqs: [
-      {
-        question: "¿Cómo puedo solicitar una cotización?",
-        answer: "Puedes solicitar una cotización a través de nuestro formulario de contacto en la página web, por correo electrónico o llamando directamente a nuestras oficinas. Un asesor se pondrá en contacto contigo en menos de 24 horas hábiles.",
-      },
-      {
-        question: "¿Ofrecen visitas técnicas sin costo?",
-        answer: "Sí, realizamos visitas técnicas de evaluación sin costo ni compromiso para proyectos dentro de nuestra zona de cobertura directa. Durante la visita, nuestros ingenieros evalúan el espacio y tus necesidades para elaborar una propuesta personalizada.",
-      },
-      {
-        question: "¿Cuál es el horario de atención?",
-        answer: "Nuestro horario de atención es de lunes a viernes de 8:00 a 18:00 horas. Para emergencias o proyectos en curso, contamos con una línea de soporte técnico disponible fuera de horario regular.",
-      },
-      {
-        question: "¿Ofrecen opciones de financiamiento o arrendamiento?",
-        answer: "Trabajamos con nuestros clientes para encontrar el mejor arreglo financiero para sus necesidades. Contáctanos para discutir las opciones disponibles incluyendo compra directa, arrendamiento y planes de implementación por fases.",
-      },
-      {
-        question: "¿Trabajan con empresas de cualquier tamaño?",
-        answer: "Sí, atendemos desde pequeñas y medianas empresas hasta grandes corporativos. Nuestras soluciones son escalables y se adaptan a cualquier volumen de operación, garantizando siempre la misma calidad y compromiso.",
-      },
+      { qKey: "contact.q1", aKey: "contact.a1" },
+      { qKey: "contact.q2", aKey: "contact.a2" },
+      { qKey: "contact.q3", aKey: "contact.a3" },
+      { qKey: "contact.q4", aKey: "contact.a4" },
+      { qKey: "contact.q5", aKey: "contact.a5" },
     ],
   },
   {
-    title: "TIEMPOS DE ENTREGA",
+    titleKey: "delivery.title",
     faqs: [
-      {
-        question: "¿Cuánto tiempo toma una instalación típica?",
-        answer: "Los tiempos de instalación varían según el alcance del proyecto. Una instalación estándar de almacén típicamente toma de 2 a 4 semanas. Ofrecemos planes de despliegue por fases para minimizar la interrupción en tus operaciones.",
-      },
-      {
-        question: "¿Cuál es el tiempo de entrega para un nuevo proyecto de racks?",
-        answer: "Desde la consulta inicial hasta la instalación, un proyecto típico toma de 6 a 10 semanas dependiendo de la complejidad y el alcance. Esto incluye diseño, ingeniería, fabricación e instalación. Se dispone de tiempos acelerados para proyectos urgentes.",
-      },
-      {
-        question: "¿Pueden acelerar un proyecto urgente?",
-        answer: "Sí, contamos con opciones de fabricación acelerada para proyectos con plazos ajustados. Evaluamos cada caso de forma individual para determinar la viabilidad y los costos asociados a la aceleración del proyecto.",
-      },
-      {
-        question: "¿Qué pasa si hay retrasos en la instalación?",
-        answer: "Mantenemos comunicación constante sobre el avance del proyecto. En caso de imprevistos, informamos de inmediato y presentamos un plan de contingencia para minimizar el impacto en tus operaciones y cumplir con los plazos acordados.",
-      },
-      {
-        question: "¿Cuánto toma recibir una cotización después de la visita técnica?",
-        answer: "Generalmente entregamos la cotización formal entre 3 y 5 días hábiles después de la visita técnica. Para proyectos más complejos que requieren ingeniería detallada, el plazo puede extenderse hasta 10 días hábiles.",
-      },
+      { qKey: "delivery.q1", aKey: "delivery.a1" },
+      { qKey: "delivery.q2", aKey: "delivery.a2" },
+      { qKey: "delivery.q3", aKey: "delivery.a3" },
+      { qKey: "delivery.q4", aKey: "delivery.a4" },
+      { qKey: "delivery.q5", aKey: "delivery.a5" },
     ],
   },
 ];
 
 function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; globalOffset: number }) {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(-1);
 
   const toggle = (i: number) => {
@@ -131,7 +73,7 @@ function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; g
         className="mb-10"
       >
         <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl tracking-wide text-foreground leading-[0.95]">
-          {category.title}
+          {t(`faq_page.categories.${category.titleKey}`)}
         </h3>
       </motion.div>
 
@@ -164,7 +106,7 @@ function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; g
                     isOpen ? "text-foreground" : "text-muted-foreground/50"
                   }`}
                 >
-                  {faq.question}
+                  {t(`faq_page.categories.${faq.qKey}`)}
                 </span>
                 <div className="flex-shrink-0">
                   {isOpen ? (
@@ -185,7 +127,7 @@ function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; g
                     className="overflow-hidden"
                   >
                     <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed pb-6 pl-12 lg:pl-16 pr-8">
-                      {faq.answer}
+                      {t(`faq_page.categories.${faq.aKey}`)}
                     </p>
                   </motion.div>
                 )}
@@ -207,6 +149,7 @@ function FAQCategoryBlock({ category, globalOffset }: { category: FAQCategory; g
 }
 
 export default function FAQs() {
+  const { t } = useTranslation();
   let globalOffset = 0;
 
   return (
@@ -239,7 +182,7 @@ export default function FAQs() {
               backgroundClip: "text",
             }}
           >
-            FAQ
+            {t('faq_page.hero.bg_text')}
           </span>
         </motion.div>
 
@@ -251,7 +194,7 @@ export default function FAQs() {
               transition={{ duration: 0.5 }}
               className="md:hidden font-heading text-sm tracking-[0.3em] text-primary uppercase"
             >
-              FAQ
+              {t('faq_page.hero.mobile_subtitle')}
             </motion.span>
 
             <motion.h1
@@ -260,9 +203,9 @@ export default function FAQs() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider text-iron-foreground leading-[0.95] max-w-3xl"
             >
-              PREGUNTAS
+              {t('faq_page.hero.title_p1')}
               <br />
-              <span className="text-primary">FRECUENTES</span>
+              <span className="text-primary">{t('faq_page.hero.title_p2')}</span>
             </motion.h1>
 
             <motion.div
@@ -272,13 +215,13 @@ export default function FAQs() {
               className="flex flex-col gap-5 lg:max-w-sm lg:pb-1"
             >
               <p className="font-body text-iron-foreground/70 text-sm leading-relaxed">
-                Encuentra respuestas a las dudas más comunes sobre nuestros servicios, instalación y soporte técnico.
+                {t('faq_page.hero.description')}
               </p>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors duration-200 w-fit"
               >
-                Contáctanos
+                {t("services.cta.btn")}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -316,7 +259,7 @@ export default function FAQs() {
 
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
           <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
-            CONTÁCTANOS
+            {t('faq_page.cta.bg_text')}
           </span>
         </div>
 
@@ -328,7 +271,7 @@ export default function FAQs() {
             transition={{ duration: 0.6 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
           >
-            INICIA TU PROYECTO HOY
+            {t('faq_page.cta.title')}
           </motion.h2>
 
           <motion.p
@@ -338,7 +281,7 @@ export default function FAQs() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-body text-white/70 text-base mt-6 max-w-lg mx-auto"
           >
-            Contáctanos para una consultoría gratuita y evaluación de tu almacén.
+            {t('faq_page.cta.description')}
           </motion.p>
 
           <motion.div
@@ -352,7 +295,7 @@ export default function FAQs() {
               to="/contact"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
             >
-              Cotizar Proyecto
+              {t('faq_page.cta.btn')}
               <ArrowRight size={16} />
             </Link>
           </motion.div>

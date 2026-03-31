@@ -1,25 +1,26 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import "./GalleryScrollAlign.css";
 
-import imgAutomotive from "@/assets/industry-automotive.jpg";
-import imgFood from "@/assets/industry-food.jpg";
-import imgLogistics from "@/assets/industry-logistics.jpg";
-import imgManufacturing from "@/assets/industry-manufacturing.jpg";
-import imgPharma from "@/assets/industry-pharma.jpg";
-import imgRetail from "@/assets/industry-retail.jpg";
-import imgInstallation from "@/assets/about-installation.jpg";
-import imgRacks from "@/assets/services-racks.jpg";
+import aboutGallery1 from "@/assets/about-gallery-1.webp";
+import aboutGallery2 from "@/assets/about-gallery-2.webp";
+import aboutGallery3 from "@/assets/about-gallery-3.webp";
+import aboutGallery4 from "@/assets/about-gallery-4.webp";
+import aboutGallery5 from "@/assets/about-gallery-5.webp";
+import aboutGallery6 from "@/assets/about-gallery-6.webp";
+import aboutGallery7 from "@/assets/about-gallery-7.webp";
+import aboutGallery8 from "@/assets/about-gallery-8.webp";
 
 const galleryImages = [
-  { src: imgAutomotive, alt: "Industria automotriz" },
-  { src: imgFood, alt: "Industria alimentaria" },
-  { src: imgLogistics, alt: "Logística" },
-  { src: imgManufacturing, alt: "Manufactura" },
-  { src: imgPharma, alt: "Farmacéutica" },
-  { src: imgRetail, alt: "Retail" },
-  { src: imgInstallation, alt: "Instalación" },
-  { src: imgRacks, alt: "Racks industriales" },
+  { src: aboutGallery1, altKey: "img1" },
+  { src: aboutGallery2, altKey: "img2" },
+  { src: aboutGallery3, altKey: "img3" },
+  { src: aboutGallery4, altKey: "img4" },
+  { src: aboutGallery5, altKey: "img5" },
+  { src: aboutGallery6, altKey: "img6" },
+  { src: aboutGallery7, altKey: "img7" },
+  { src: aboutGallery8, altKey: "img8" },
 ];
 
 const initialOffsets = [0, 120, 60, 160, 80, 140, 40, 100];
@@ -177,6 +178,12 @@ function MobileCarousel({ images, onOpen }: { images: { src: string; alt: string
 export default function GalleryScrollAlign() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const { t } = useTranslation();
+
+  const localizedImages = galleryImages.map(img => ({
+    src: img.src,
+    alt: t(`about.gallery.${img.altKey}`)
+  }));
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -189,7 +196,7 @@ export default function GalleryScrollAlign() {
         <div className="galleryContainer">
           {/* Desktop/Tablet grid */}
           <div className="galleryGrid">
-            {galleryImages.map((img, i) => (
+            {localizedImages.map((img, i) => (
               <GalleryCard
                 key={i}
                 img={img}
@@ -202,14 +209,14 @@ export default function GalleryScrollAlign() {
           </div>
 
           {/* Mobile carousel */}
-          <MobileCarousel images={galleryImages} onOpen={setLightboxIndex} />
+          <MobileCarousel images={localizedImages} onOpen={setLightboxIndex} />
         </div>
       </div>
 
       <AnimatePresence>
         {lightboxIndex !== null && (
           <Lightbox
-            images={galleryImages}
+            images={localizedImages}
             index={lightboxIndex}
             onClose={() => setLightboxIndex(null)}
           />

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import coverageHero from "@/assets/coverage-hero.jpg";
+import { useTranslation } from "react-i18next";
+import coverageHero from "@/assets/cobertura-home.webp";
 
 export default function CoverageCtaSection() {
+  const { t } = useTranslation();
   return (
     <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -15,10 +17,9 @@ export default function CoverageCtaSection() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-foreground/80" />
 
-      {/* Giant background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
         <span className="font-heading text-[12vw] lg:text-[10vw] text-white/[0.07] uppercase tracking-wider leading-none">
-          COBERTURA
+          {t('home.coverage.bg_text')}
         </span>
       </div>
 
@@ -31,7 +32,7 @@ export default function CoverageCtaSection() {
           transition={{ duration: 0.6 }}
           className="font-heading text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide max-w-4xl mx-auto leading-[0.95]"
         >
-          Tenemos una cobertura casi total ubicada en puntos estratégicos de la república mexicana
+          {t('home.coverage.title')}
         </motion.h2>
 
         {/* Stats */}
@@ -43,13 +44,13 @@ export default function CoverageCtaSection() {
           className="flex items-center justify-center gap-0 mt-12"
         >
           <div className="text-center px-10 lg:px-16">
-            <span className="font-heading text-4xl md:text-5xl text-white">98%</span>
-            <p className="font-body text-sm text-white/70 mt-1">Del territorio mexicano cubierto</p>
+            <span className="font-heading text-4xl md:text-5xl text-white">{t('home.coverage.stat1_value')}</span>
+            <p className="font-body text-sm text-white/70 mt-1">{t('home.coverage.stat1_desc')}</p>
           </div>
           <div className="w-px h-16 bg-white/30" />
           <div className="text-center px-10 lg:px-16">
-            <span className="font-heading text-4xl md:text-5xl text-white">100%</span>
-            <p className="font-body text-sm text-white/70 mt-1">De clientes felices</p>
+            <span className="font-heading text-4xl md:text-5xl text-white">{t('home.coverage.stat2_value')}</span>
+            <p className="font-body text-sm text-white/70 mt-1">{t('home.coverage.stat2_desc')}</p>
           </div>
         </motion.div>
 
@@ -65,7 +66,7 @@ export default function CoverageCtaSection() {
             to="/cobertura"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-10 py-4 text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
           >
-            Ver Cobertura
+            {t('home.coverage.cta')}
             <ArrowRight size={16} />
           </Link>
         </motion.div>

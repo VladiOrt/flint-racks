@@ -1,46 +1,33 @@
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, Minus, Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { toast } from "sonner";
-import heroImg from "@/assets/hero-warehouse.jpg";
+import heroImg from "@/assets/contact-header.webp";
 
-/* ─── Contact FAQs ─── */
-const contactFaqs = [
-  {
-    question: "¿Qué tipos de sistemas de racks ofrecen?",
-    answer:
-      "Ofrecemos una gama completa que incluye rack selectivo, rack drive-in y drive-through, sistemas push-back, racks cantilever, soluciones de mezzanine y sistemas multinivel.",
-  },
-  {
-    question: "¿Cuánto tiempo toma una instalación típica?",
-    answer:
-      "Los tiempos de instalación varían según el alcance del proyecto. Una instalación estándar típicamente toma de 2 a 4 semanas. Ofrecemos planes de despliegue por fases para minimizar la interrupción.",
-  },
-  {
-    question: "¿Ofrecen visitas técnicas sin costo?",
-    answer:
-      "Sí, realizamos visitas técnicas de evaluación sin costo ni compromiso. Durante la visita, nuestros ingenieros evalúan el espacio y tus necesidades para elaborar una propuesta personalizada.",
-  },
-  {
-    question: "¿Tienen cobertura a nivel nacional?",
-    answer:
-      "Contamos con cobertura a nivel nacional. Tenemos presencia directa en los principales centros industriales del país y red de distribución que nos permite atender proyectos en cualquier estado.",
-  },
+const contactFaqsKeys = [
+  { qKey: "q1", aKey: "a1" },
+  { qKey: "q2", aKey: "a2" },
+  { qKey: "q3", aKey: "a3" },
+  { qKey: "q4", aKey: "a4" },
 ];
 
 /* ─── FAQ Accordion Item ─── */
 function FAQItem({
-  faq,
+  qKey,
+  aKey,
   index,
   isOpen,
   onToggle,
 }: {
-  faq: { question: string; answer: string };
+  qKey: string;
+  aKey: string;
   index: number;
   isOpen: boolean;
   onToggle: () => void;
 }) {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -64,7 +51,7 @@ function FAQItem({
             isOpen ? "text-foreground" : "text-muted-foreground/50"
           }`}
         >
-          {faq.question}
+          {t(`contact.faqs.${qKey}`)}
         </span>
         <div className="flex-shrink-0">
           {isOpen ? (
@@ -85,7 +72,7 @@ function FAQItem({
             className="overflow-hidden"
           >
             <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed pb-6 pl-12 lg:pl-16 pr-8">
-              {faq.answer}
+              {t(`contact.faqs.${aKey}`)}
             </p>
           </motion.div>
         )}
@@ -103,6 +90,7 @@ function FAQItem({
 
 /* ─── Contact Page ─── */
 export default function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -116,10 +104,10 @@ export default function Contact() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!agreed) {
-      toast.error("Debes aceptar los términos y condiciones.");
+      toast.error(t('contact.form.terms_error'));
       return;
     }
-    toast.success("¡Gracias! Nos pondremos en contacto contigo pronto.");
+    toast.success(t('contact.form.success'));
     setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     setAgreed(false);
   };
@@ -159,7 +147,7 @@ export default function Contact() {
               backgroundClip: "text",
             }}
           >
-            CONTACTO
+            {t('contact.hero.bg_text')}
           </span>
         </motion.div>
 
@@ -170,7 +158,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="md:hidden absolute top-28 left-6 font-heading text-sm tracking-[0.3em] text-primary uppercase z-10"
         >
-          CONTACTO
+          {t('contact.hero.mobile_subtitle')}
         </motion.span>
 
         {/* Form card */}
@@ -184,7 +172,7 @@ export default function Contact() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
               <input
                 type="text"
-                placeholder="Tu Nombre"
+                placeholder={t('contact.form.name')}
                 required
                 value={formData.name}
                 onChange={(e) =>
@@ -194,7 +182,7 @@ export default function Contact() {
               />
               <input
                 type="email"
-                placeholder="Correo Electrónico"
+                placeholder={t('contact.form.email')}
                 required
                 value={formData.email}
                 onChange={(e) =>
@@ -204,7 +192,7 @@ export default function Contact() {
               />
               <input
                 type="tel"
-                placeholder="Teléfono"
+                placeholder={t('contact.form.phone')}
                 value={formData.phone}
                 onChange={(e) =>
                   setFormData({ ...formData, phone: e.target.value })
@@ -213,7 +201,7 @@ export default function Contact() {
               />
               <input
                 type="text"
-                placeholder="Asunto"
+                placeholder={t('contact.form.subject')}
                 value={formData.subject}
                 onChange={(e) =>
                   setFormData({ ...formData, subject: e.target.value })
@@ -222,7 +210,7 @@ export default function Contact() {
               />
             </div>
             <textarea
-              placeholder="Mensaje"
+              placeholder={t('contact.form.message')}
               required
               rows={4}
               value={formData.message}
@@ -237,7 +225,7 @@ export default function Contact() {
                 type="submit"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors"
               >
-                Enviar
+                {t('contact.form.submit')}
               </button>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -247,7 +235,7 @@ export default function Contact() {
                   className="w-4 h-4 border border-iron-foreground/40 bg-transparent accent-primary"
                 />
                 <span className="font-body text-xs text-iron-foreground/60">
-                  Acepto los términos y condiciones
+                  {t('contact.form.terms')}
                 </span>
               </label>
             </div>
@@ -269,14 +257,12 @@ export default function Contact() {
             >
               <div className="flex items-center justify-between mb-6">
                 <h4 className="font-heading text-sm tracking-wider text-foreground uppercase">
-                  Dirección
+                  {t('contact.info.address_title')}
                 </h4>
                 <MapPin size={18} className="text-muted-foreground" />
               </div>
               <p className="font-body text-sm text-muted-foreground uppercase leading-relaxed">
-                Monterrey, Nuevo León,
-                <br />
-                México
+                {t('contact.info.address_value')}
               </p>
             </motion.div>
 
@@ -290,22 +276,22 @@ export default function Contact() {
             >
               <div className="flex items-center justify-between mb-6">
                 <h4 className="font-heading text-sm tracking-wider text-foreground uppercase">
-                  Contáctanos
+                  {t('contact.info.contact_title')}
                 </h4>
                 <Send size={18} className="text-muted-foreground" />
               </div>
               <div className="flex flex-col gap-1">
                 <a
-                  href="mailto:contact@flintracks.com"
+                  href="mailto:contacto@flintracks.com"
                   className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  contact@flintracks.com
+                  contacto@flintracks.com
                 </a>
                 <a
-                  href="tel:+521234567890"
+                  href="tel:+525563193469"
                   className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  +52 (123) 456-7890
+                  +52 55 6319 3469
                 </a>
               </div>
             </motion.div>
@@ -320,14 +306,13 @@ export default function Contact() {
             >
               <div className="flex items-center justify-between mb-6">
                 <h4 className="font-heading text-sm tracking-wider text-foreground uppercase">
-                  Horario
+                  {t('contact.info.hours_title')}
                 </h4>
                 <Clock size={18} className="text-muted-foreground" />
               </div>
               <div className="font-body text-sm text-muted-foreground uppercase leading-relaxed flex flex-col gap-0.5">
-                <span>Lun – Vie: 8:00 – 18:00</span>
-                <span>Sábado: 9:00 – 14:00</span>
-                <span>Domingo: Cerrado</span>
+                <span>{t('contact.info.hours_mon_fri')}</span>
+                <span>{t('contact.info.hours_sat')}</span>
               </div>
             </motion.div>
           </div>
@@ -337,7 +322,7 @@ export default function Contact() {
       {/* ── Map ── */}
       <section className="w-full">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.443282450274!2d-99.19302092314275!3d19.436445740554795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d203e7b9f2d751%3A0x100e1b6dbac1268c!2stBE%20Studio%20-%20Agencia%20de%20Branding!5e0!3m2!1ses!2smx!4v1770772002634!5m2!1ses!2smx"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.4090446137598!2d-99.20021672314279!3d19.43792324050779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d202045b79a3ad%3A0x1a2872df113bf061!2sAv.%20Ej%C3%A9rcito%20Nacional%20Mexicano%20700-Piso%202%20Interior%20201%2C%20Polanco%2C%20Polanco%20III%20Secc%2C%20Miguel%20Hidalgo%2C%2011540%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1774558557694!5m2!1ses!2smx"
           width="100%"
           height="550"
           style={{ border: 0 }}
@@ -360,17 +345,18 @@ export default function Contact() {
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground leading-[0.95]">
-              PREGUNTAS
+              {t('contact.faqs.title_p1')}
               <br />
-              FRECUENTES
+              {t('contact.faqs.title_p2')}
             </h2>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            {contactFaqs.map((faq, i) => (
+            {contactFaqsKeys.map((faq, i) => (
               <FAQItem
                 key={i}
-                faq={faq}
+                qKey={faq.qKey}
+                aKey={faq.aKey}
                 index={i}
                 isOpen={openFaq === i}
                 onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}

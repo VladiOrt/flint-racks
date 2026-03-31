@@ -2,29 +2,29 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import imgPredefined from "@/assets/service-predefined-racks.jpg";
-import imgCustom from "@/assets/service-custom-racks.jpg";
+import { useTranslation } from "react-i18next";
+import imgPredefined from "@/assets/ns-home-racks-pre.webp";
+import imgCustom from "@/assets/ns-home-racks-pers.webp";
 
 const services = [
   {
-    title: "Racks Prediseñados",
-    subtitle: "Estándar",
-    description:
-      "Soluciones de almacenamiento listas para instalar, diseñadas con medidas y configuraciones estándar que se adaptan a la mayoría de los espacios industriales. Ideales para optimizar tu operación de forma rápida y eficiente.",
+    titleKey: "s1_title",
+    subtitleKey: "s1_subtitle",
+    descKey: "s1_desc",
     image: imgPredefined,
     link: "/services",
   },
   {
-    title: "Racks Personalizados",
-    subtitle: "A la Medida",
-    description:
-      "Diseñamos y fabricamos racks completamente adaptados a las necesidades específicas de tu operación, espacio y tipo de carga. Cada proyecto es único, garantizando máxima eficiencia y aprovechamiento de tu almacén.",
+    titleKey: "s2_title",
+    subtitleKey: "s2_subtitle",
+    descKey: "s2_desc",
     image: imgCustom,
     link: "/services",
   },
 ];
 
 export default function ServicesSection() {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -39,10 +39,10 @@ export default function ServicesSection() {
           className="text-center mb-12 lg:mb-16"
         >
           <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-            Lo Que Hacemos
+            {t('home.services.subtitle')}
           </span>
           <h2 className="font-heading text-5xl md:text-6xl tracking-wide text-foreground mt-3 uppercase">
-            Nuestros Servicios
+            {t('home.services.title')}
           </h2>
         </motion.div>
 
@@ -52,7 +52,7 @@ export default function ServicesSection() {
             const isActive = activeIndex === i;
             return (
               <motion.div
-                key={service.title}
+                key={service.titleKey}
                 className="relative overflow-hidden cursor-pointer group"
                 style={{ borderRadius: 0 }}
                 animate={{ flex: isActive ? 1.5 : 1 }}
@@ -63,7 +63,7 @@ export default function ServicesSection() {
                   {/* Image */}
                   <img
                     src={service.image}
-                    alt={service.title}
+                    alt={t(`home.services.${service.titleKey}`)}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
@@ -81,13 +81,13 @@ export default function ServicesSection() {
                       transition={{ duration: 0.4 }}
                     >
                       <span className="font-body text-xs text-primary font-semibold uppercase tracking-wider">
-                        {service.subtitle}
+                        {t(`home.services.${service.subtitleKey}`)}
                       </span>
                       <h3 className="font-heading text-2xl lg:text-3xl text-iron-foreground uppercase tracking-wide mt-1">
-                        {service.title}
+                        {t(`home.services.${service.titleKey}`)}
                       </h3>
                       <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed max-w-md line-clamp-3">
-                        {service.description}
+                        {t(`home.services.${service.descKey}`)}
                       </p>
                     </motion.div>
 
@@ -116,26 +116,26 @@ export default function ServicesSection() {
         <div className="lg:hidden flex flex-col gap-4">
           {services.map((service) => (
             <Link
-              key={service.title}
+              key={service.titleKey}
               to={service.link}
               className="relative h-[400px] overflow-hidden group block"
             >
               <img
                 src={service.image}
-                alt={service.title}
+                alt={t(`home.services.${service.titleKey}`)}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-iron/80 via-iron/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
                 <div>
                   <span className="font-body text-xs text-primary font-semibold uppercase tracking-wider">
-                    {service.subtitle}
+                    {t(`home.services.${service.subtitleKey}`)}
                   </span>
                   <h3 className="font-heading text-2xl text-iron-foreground uppercase tracking-wide mt-1">
-                    {service.title}
+                    {t(`home.services.${service.titleKey}`)}
                   </h3>
                   <p className="font-body text-sm text-iron-foreground/80 mt-2 leading-relaxed line-clamp-3">
-                    {service.description}
+                    {t(`home.services.${service.descKey}`)}
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0">

@@ -2,19 +2,26 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoRed from "@/assets/logo-red.svg";
+import { useTranslation } from "react-i18next";
+import logoDesktop from "@/assets/flint-logo-escritorio.png";
+import logoMobile from "@/assets/flint-logo-movil.png";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+
+const WHATSAPP_URL =
+  "https://wa.me/525539073713?text=Estaba%20navegando%20la%20pagina%20web%20de%20Flint%20Racks%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n";
 
 const navItems = [
-  { label: "Inicio", path: "/" },
-  { label: "Nosotros", path: "/about" },
-  { label: "Servicios", path: "/services" },
-  { label: "Cobertura", path: "/cobertura" },
-  { label: "Blog", path: "/blog" },
-  { label: "FAQ", path: "/faqs" },
-  { label: "Contacto", path: "/contact" },
+  { labelKey: "home", path: "/" },
+  { labelKey: "about", path: "/about" },
+  { labelKey: "services", path: "/services" },
+  { labelKey: "coverage", path: "/cobertura" },
+  { labelKey: "blog", path: "/blog" },
+  { labelKey: "faq", path: "/faqs" },
+  { labelKey: "contact", path: "/contact" },
 ];
 
 export default function Header() {
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
@@ -23,7 +30,8 @@ export default function Header() {
       <div className="container-brand section-padding flex items-center justify-between h-20">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img src={logoRed} alt="Flint Racks" className="h-7 w-auto" />
+          <img src={logoDesktop} alt="Flint Racks" className="hidden lg:block h-7 w-auto" />
+          <img src={logoMobile} alt="Flint Racks" className="block lg:hidden h-7 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
@@ -38,27 +46,33 @@ export default function Header() {
                   : "text-iron-foreground/80 hover:text-primary"
               }`}
             >
-              {item.label}
+              {t(`navbar.${item.labelKey}`)}
             </Link>
           ))}
         </nav>
 
-        {/* CTA Button */}
-        <Link
-          to="/contact"
-          className="hidden lg:inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3 hover:bg-red-deep transition-colors duration-200"
-        >
-          Cotizar
-        </Link>
+        <div className="flex items-center gap-4 lg:gap-6">
+          {/* CTA Button */}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3 hover:bg-red-deep transition-colors duration-200"
+          >
+            {t('navbar.cta')}
+          </a>
 
-        {/* Mobile Toggle */}
-        <button
-          className="lg:hidden text-iron-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Abrir menú"
-        >
-          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          <LanguageSwitcher />
+
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden text-iron-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={t("navbar.open_menu")}
+          >
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -82,16 +96,18 @@ export default function Header() {
                       : "text-iron-foreground/80 hover:text-primary"
                   }`}
                 >
-                  {item.label}
+                  {t(`navbar.${item.labelKey}`)}
                 </Link>
               ))}
-              <Link
-                to="/contact"
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 inline-flex items-center justify-center bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-3"
               >
-                Cotizar
-              </Link>
+                {t('navbar.cta')}
+              </a>
             </nav>
           </motion.div>
         )}

@@ -1,17 +1,22 @@
 import { motion } from "framer-motion";
-import img1 from "@/assets/showcase-rack-1.jpg";
-import img2 from "@/assets/showcase-rack-2.jpg";
-import img3 from "@/assets/showcase-rack-3.jpg";
+import { useTranslation } from "react-i18next";
+import img1 from "@/assets/servicios-caso-01.webp";
+import img2 from "@/assets/servicios-caso-02.webp";
+import img3 from "@/assets/servicios-caso-03.webp";
+import img4 from "@/assets/servicios-caso-04.webp";
+import img5 from "@/assets/servicios-caso-05.webp";
+import img6 from "@/assets/servicios-caso-06.webp";
 
-const images = [img1, img2, img3, img1, img2, img3];
+const images = [img1, img2, img3, img4, img5, img6];
 
 export default function ProductShowcaseSection() {
+  const { t } = useTranslation();
   return (
     <section className="bg-background overflow-hidden">
       {/* Big text banner */}
       <div className="py-10 lg:py-14 flex items-center justify-center">
         <span className="font-heading text-[15vw] sm:text-[12vw] lg:text-[8vw] tracking-wider leading-none text-foreground select-none whitespace-nowrap">
-          CASOS DE ÉXITO
+          {t('services.products.bg_text')}
         </span>
       </div>
 
@@ -26,7 +31,7 @@ export default function ProductShowcaseSection() {
             transition={{ duration: 0.6 }}
             className="font-heading text-4xl sm:text-5xl tracking-wide text-foreground leading-[0.95] uppercase"
           >
-            Impacto Real en Empresas Reales
+            {t('services.products.title')}
           </motion.h2>
 
           <motion.p
@@ -36,7 +41,7 @@ export default function ProductShowcaseSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-body text-muted-foreground text-sm leading-relaxed mt-5 max-w-md"
           >
-            Nuestros clientes han optimizado sus operaciones logísticas, reducido costos y maximizado su capacidad de almacenamiento gracias a las soluciones de Flint Racks.
+            {t('services.products.desc')}
           </motion.p>
 
         </div>

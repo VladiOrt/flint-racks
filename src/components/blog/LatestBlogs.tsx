@@ -1,5 +1,6 @@
 import { getPublishedPosts } from "@/lib/blogData";
-import BlogCardColumn from "./BlogCardColumn";
+import { useTranslation } from "react-i18next";
+import BlogCard from "./BlogCard";
 
 interface LatestBlogsProps {
   excludeSlug?: string;
@@ -7,6 +8,7 @@ interface LatestBlogsProps {
 }
 
 export default function LatestBlogs({ excludeSlug, limit = 3 }: LatestBlogsProps) {
+  const { t } = useTranslation();
   const posts = getPublishedPosts()
     .filter((p) => p.slug !== excludeSlug)
     .slice(0, limit);
@@ -19,16 +21,16 @@ export default function LatestBlogs({ excludeSlug, limit = 3 }: LatestBlogsProps
         <div className="flex items-end justify-between mb-12">
           <div>
             <span className="font-body text-sm text-primary font-semibold uppercase tracking-wider">
-              Últimas Publicaciones
+              {t('home.blog.subtitle')}
             </span>
             <h2 className="font-heading text-4xl md:text-5xl tracking-wide text-foreground mt-2">
-              DEL BLOG
+              {t('home.blog.title')}
             </h2>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <BlogCardColumn key={post.id} post={post} />
+            <BlogCard key={post.id} post={post} />
           ))}
         </div>
       </div>

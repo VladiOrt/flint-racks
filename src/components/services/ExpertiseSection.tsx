@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
 import { Warehouse, Wrench } from "lucide-react";
-import imgMain from "@/assets/expertise-main.jpg";
-import imgDetail from "@/assets/expertise-detail.jpg";
+import { useTranslation } from "react-i18next";
+import imgMain from "@/assets/servicios-materiales-01.webp";
+import imgDetail from "@/assets/servicios-materiales-02.webp";
 
 const points = [
   {
     icon: Warehouse,
-    title: "Acero de Grado Industrial",
-    desc: "Cada componente es fabricado con acero de alta resistencia proveniente de los principales manufactureros internacionales del continente asiático.",
+    titleKey: "pt1_title",
+    descKey: "pt1_desc",
   },
   {
     icon: Wrench,
-    title: "Precisión Milimétrica",
-    desc: "Cada pieza pasa por rigurosos controles de calidad dimensional, garantizando ensambles perfectos y estructuras seguras en cada instalación.",
+    titleKey: "pt2_title",
+    descKey: "pt2_desc",
   },
 ];
 
@@ -26,8 +27,9 @@ const fadeUp = {
 };
 
 export default function ExpertiseSection() {
+  const { t } = useTranslation();
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section id="materiales-clase-mundial" className="py-20 lg:py-28 bg-background scroll-mt-24">
       <div className="container-brand section-padding">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left – Text */}
@@ -40,7 +42,7 @@ export default function ExpertiseSection() {
               custom={0}
               className="font-body text-sm text-primary font-semibold uppercase tracking-wider"
             >
-              Calidad Sin Compromiso
+              {t('services.expertise.subtitle')}
             </motion.span>
 
             <motion.h2
@@ -51,7 +53,7 @@ export default function ExpertiseSection() {
               custom={0.5}
               className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-wide text-foreground leading-[0.95] uppercase mt-3"
             >
-              Materiales de Clase Mundial
+              {t('services.expertise.title')}
             </motion.h2>
 
             <motion.p
@@ -62,13 +64,13 @@ export default function ExpertiseSection() {
               custom={1}
               className="font-body text-muted-foreground text-base leading-relaxed mt-6 max-w-lg"
             >
-              En Flint Racks trabajamos exclusivamente con los mejores manufactureros de acero a nivel internacional, provenientes del continente asiático, asegurando un cuidado milimétrico en cada pieza que integra nuestras infraestructuras.
+              {t('services.expertise.desc')}
             </motion.p>
 
             <div className="flex flex-col gap-8 mt-10">
               {points.map((pt, i) => (
                 <motion.div
-                  key={pt.title}
+                  key={pt.titleKey}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="visible"
@@ -81,10 +83,10 @@ export default function ExpertiseSection() {
                   </div>
                   <div>
                     <h3 className="font-heading text-lg tracking-wide text-foreground uppercase">
-                      {pt.title}
+                      {t(`services.expertise.${pt.titleKey}`)}
                     </h3>
                     <p className="font-body text-sm text-muted-foreground leading-relaxed mt-1">
-                      {pt.desc}
+                      {t(`services.expertise.${pt.descKey}`)}
                     </p>
                   </div>
                 </motion.div>

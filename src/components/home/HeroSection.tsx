@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import heroImg from "@/assets/hero-warehouse.jpg";
-import heroVideo from "@/assets/hero-video.mp4";
+import { useTranslation } from "react-i18next";
+import heroImg from "@/assets/header-home-img.webp";
+import heroVideo from "@/assets/header-home-video.mp4";
+import heroVideoMobile from "@/assets/hero-video.mp4";
 
 export default function HeroSection() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -47,6 +50,7 @@ export default function HeroSection() {
             className="w-full h-[120%] object-cover"
             poster={heroImg}
           >
+            <source media="(max-width: 767px)" src={heroVideoMobile} type="video/mp4" />
             <source src={heroVideo} type="video/mp4" />
           </video>
         </motion.div>
@@ -94,15 +98,15 @@ export default function HeroSection() {
             <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 lg:gap-16 w-full mx-auto">
               <div className="flex-1 flex flex-col gap-8">
                 <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7rem] tracking-wider text-iron-foreground leading-[0.9]">
-                  MÁS QUE
+                  {t('home.hero.title_p1')}
                   <br />
-                  RACKS:
+                  {t('home.hero.title_p2')}
                   <br />
-                  <span className="text-primary">ESTRUCTURA</span>
+                  <span className="text-primary">{t('home.hero.title_p3')}</span>
                   <br />
-                  QUE ELEVA
+                  {t('home.hero.title_p4')}
                   <br />
-                  TU NEGOCIO.
+                  {t('home.hero.title_p5')}
                 </h1>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
@@ -115,21 +119,20 @@ export default function HeroSection() {
                       ))}
                     </div>
                     <p className="font-body text-xs text-iron-foreground/60 uppercase tracking-wider">
-                      La confianza de +500 empresas
+                      {t('home.hero.trust_badge')}
                     </p>
                   </div>
                 </div>
               </div>
               <div className="lg:max-w-sm flex flex-col gap-6">
                 <p className="font-body text-iron-foreground/70 text-base leading-relaxed">
-                  Diseñamos, fabricamos e instalamos soluciones de racks industriales respaldadas por
-                  experiencia técnica y de campo. Cada proyecto nace de un análisis riguroso.
+                  {t('home.hero.description')}
                 </p>
                 <Link
                   to="/contact"
                   className="pointer-events-auto group inline-flex items-center gap-3 bg-primary text-primary-foreground font-body font-semibold px-8 py-4 text-sm hover:bg-red-deep transition-colors duration-300 w-fit"
                 >
-                  Cotizar Proyecto
+                  {t('home.hero.cta')}
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>

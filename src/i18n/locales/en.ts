@@ -398,7 +398,8 @@ export default {
       terms: "I accept the terms and conditions",
       terms_error: "You must accept the terms and conditions.",
       success: "Thank you! We'll get in touch soon.",
-      error: "Your message could not be sent. Please try again in a few minutes."
+      error: "Your message could not be sent. Please try again in a few minutes.",
+      activation_required: "You must activate FormSubmit from the email sent to contacto@flintracks.com."
     },
     info: {
       address_title: "Address",

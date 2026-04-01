@@ -115,6 +115,7 @@ export default function Contact() {
       const payload = {
         name: formData.name,
         email: formData.email,
+        _replyto: formData.email,
         phone: formData.phone,
         subject: formData.subject || "Nueva solicitud desde sitio web",
         message: formData.message,
@@ -138,11 +139,26 @@ export default function Contact() {
         throw new Error("Contact form request failed");
       }
 
+      const result = await response.json().catch(() => null);
+      const sentOk =
+        result?.success === true ||
+        result?.success === "true" ||
+        result?.status === "success";
+
+      if (!sentOk) {
+        const providerMessage = typeof result?.message === "string" ? result.message : "";
+        if (providerMessage.toLowerCase().includes("activate")) {
+          throw new Error(t("contact.form.activation_required"));
+        }
+        throw new Error(providerMessage || t("contact.form.error"));
+      }
+
       toast.success(t('contact.form.success'));
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       setAgreed(false);
-    } catch {
-      toast.error(t('contact.form.error'));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : t("contact.form.error");
+      toast.error(message || t("contact.form.error"));
     } finally {
       setIsSubmitting(false);
     }

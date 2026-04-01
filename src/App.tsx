@@ -156,11 +156,15 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
+            <Route path="/nosotros" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/servicios" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/contacto" element={<Contact />} />
             <Route path="/faqs" element={<FAQs />} />
+            <Route path="/faq" element={<FAQs />} />
             <Route path="/cobertura" element={<Coverage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />

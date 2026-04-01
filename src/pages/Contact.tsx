@@ -100,16 +100,52 @@ export default function Contact() {
   });
   const [agreed, setAgreed] = useState(false);
   const [openFaq, setOpenFaq] = useState(-1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!agreed) {
       toast.error(t('contact.form.terms_error'));
       return;
     }
-    toast.success(t('contact.form.success'));
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    setAgreed(false);
+
+    try {
+      setIsSubmitting(true);
+
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject || "Nueva solicitud desde sitio web",
+        message: formData.message,
+        _subject: formData.subject
+          ? `Flint Racks | ${formData.subject}`
+          : "Flint Racks | Nueva solicitud desde formulario de contacto",
+        _template: "table",
+        _captcha: "false",
+      };
+
+      const response = await fetch("https://formsubmit.co/ajax/contacto@flintracks.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact form request failed");
+      }
+
+      toast.success(t('contact.form.success'));
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      setAgreed(false);
+    } catch {
+      toast.error(t('contact.form.error'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass =
@@ -223,9 +259,10 @@ export default function Contact() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-red-deep transition-colors"
               >
-                {t('contact.form.submit')}
+                {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
               </button>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input

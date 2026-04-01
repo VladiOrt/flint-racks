@@ -394,9 +394,11 @@ export default {
       subject: "Asunto",
       message: "Mensaje",
       submit: "Enviar",
+      sending: "Enviando...",
       terms: "Acepto los términos y condiciones",
       terms_error: "Debes aceptar los términos y condiciones.",
-      success: "¡Gracias! Nos pondremos en contacto contigo pronto."
+      success: "¡Gracias! Nos pondremos en contacto contigo pronto.",
+      error: "No se pudo enviar tu mensaje. Intenta nuevamente en unos minutos."
     },
     info: {
       address_title: "Dirección",

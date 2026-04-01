@@ -394,9 +394,11 @@ export default {
       subject: "Subject",
       message: "Message",
       submit: "Send",
+      sending: "Sending...",
       terms: "I accept the terms and conditions",
       terms_error: "You must accept the terms and conditions.",
-      success: "Thank you! We'll get in touch soon."
+      success: "Thank you! We'll get in touch soon.",
+      error: "Your message could not be sent. Please try again in a few minutes."
     },
     info: {
       address_title: "Address",

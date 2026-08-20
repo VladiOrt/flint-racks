@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import img1 from "@/assets/servicios-caso-01.webp";
-import img2 from "@/assets/servicios-caso-02.webp";
-import img3 from "@/assets/servicios-caso-03.webp";
-import img4 from "@/assets/servicios-caso-04.webp";
-import img5 from "@/assets/servicios-caso-05.webp";
-import img6 from "@/assets/servicios-caso-06.webp";
+import img1 from "@/assets/servicios-caso-01.png";
+import img2 from "@/assets/servicios-caso-02.png";
+import img3 from "@/assets/servicios-caso-03.png";
+import img4 from "@/assets/servicios-caso-04.png";
+import img5 from "@/assets/servicios-caso-05.png";
+import img6 from "@/assets/servicios-caso-06.png";
+import img7 from "@/assets/servicios-caso-07.png";
+import img8 from "@/assets/servicios-caso-08.png";
 
-const images = [img1, img2, img3, img4, img5, img6];
+const images = [img1, img2, img3, img4, img5, img6, img7, img8];
 
 export default function ProductShowcaseSection() {
   const { t } = useTranslation();
@@ -50,7 +52,7 @@ export default function ProductShowcaseSection() {
         <div className="w-full lg:w-[60%] overflow-hidden pb-16 lg:pb-20">
           <motion.div
             className="flex gap-5 pl-6"
-            animate={{ x: [0, -1260] }}
+            animate={{ x: [0, -1680] }}
             transition={{
               x: {
                 repeat: Infinity,

@@ -3,8 +3,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import imgPredefined from "@/assets/servicios-rack-predisenado.jpg";
-import imgCustom from "@/assets/servicios-rack-custom.jpg";
+import imgPredefined from "@/assets/servicios-rack-predisenado.webp";
+import imgCustom from "@/assets/servicios-rack-custom.webp";
 
 export default function ServiceShowcaseSection() {
   const { t } = useTranslation();

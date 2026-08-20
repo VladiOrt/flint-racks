@@ -245,6 +245,9 @@ export default {
       bg_text: "CASOS DE ÉXITO",
       title: "Impacto Real en Empresas Reales",
       desc: "Nuestros clientes han optimizado sus operaciones logísticas, reducido costos y maximizándoles su capacidad de almacenamiento gracias a las soluciones que ofrecemos."
+    },
+    clients: {
+      title: "Algunos de Nuestros Clientes"
     }
   },
   coverage: {

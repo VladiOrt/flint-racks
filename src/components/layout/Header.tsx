@@ -30,8 +30,20 @@ export default function Header() {
       <div className="container-brand section-padding flex items-center justify-between h-20">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img src={logoDesktop} alt="Flint Racks" className="hidden lg:block h-7 w-auto" />
-          <img src={logoMobile} alt="Flint Racks" className="block lg:hidden h-7 w-auto" />
+          <img
+            src={logoDesktop}
+            alt="Flint Racks"
+            width={300}
+            height={32}
+            className="hidden lg:block h-7 w-auto object-contain"
+          />
+          <img
+            src={logoMobile}
+            alt="Flint Racks"
+            width={214}
+            height={150}
+            className="block lg:hidden h-7 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}

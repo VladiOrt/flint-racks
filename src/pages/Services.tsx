@@ -7,6 +7,7 @@ import MissionStatsSection from "@/components/services/MissionStatsSection";
 import ServiceShowcaseSection from "@/components/services/ServiceShowcaseSection";
 import ExpertiseSection from "@/components/services/ExpertiseSection";
 import ProductShowcaseSection from "@/components/services/ProductShowcaseSection";
+import ClientsMarqueeSection from "@/components/services/ClientsMarqueeSection";
 import servicesImg from "@/assets/servicios-hero.webp";
 import heroImg from "@/assets/hero-warehouse.jpg";
 import processImg from "@/assets/servicios-nuestro-proceso.webp";
@@ -113,6 +114,8 @@ export default function Services() {
       <ExpertiseSection />
 
       <ProductShowcaseSection />
+
+      <ClientsMarqueeSection />
 
       {/* Process */}
       <section className="py-20 lg:py-28 bg-iron">

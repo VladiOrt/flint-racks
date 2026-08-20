@@ -245,6 +245,9 @@ export default {
       bg_text: "SUCCESS STORIES",
       title: "Real Impact on Real Companies",
       desc: "Our clients have optimized their logistics operations, reduced costs, and maximized their storage capacity thanks to the solutions we offer."
+    },
+    clients: {
+      title: "Some of Our Clients"
     }
   },
   coverage: {
